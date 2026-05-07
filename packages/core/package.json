@@ -60,8 +60,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "generate:migrations": "npx tsx scripts/generate-migrations.ts",
-    "prebuild": "npm run generate:migrations",
+    "generate:migrations": "pnpm dlx tsx scripts/generate-migrations.ts",
+    "prebuild": "pnpm run generate:migrations",
     "build": "tsup",
     "dev": "tsup --watch",
     "type-check": "tsc --noEmit",
@@ -70,7 +70,7 @@
     "test": "vitest --run",
     "test:cov": "vitest --run --coverage",
     "test:watch": "vitest",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [
     "cms",

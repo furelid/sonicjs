@@ -1,4 +1,4 @@
-# SonicJS Core to NPM Package - Migration Complete
+# SonicJS Core to pnpm Package - Migration Complete
 
 **Status**: ✅ Complete
 **Date**: October 20, 2024
@@ -6,7 +6,7 @@
 
 ## Overview
 
-Successfully migrated SonicJS core functionality into a standalone npm package (`@sonicjs-cms/core`) and created a world-class CLI tool (`create-sonicjs-app`) for developer onboarding. Both packages are ready for publication to npm.
+Successfully migrated SonicJS core functionality into a standalone pnpm package (`@sonicjs-cms/core`) and created a world-class CLI tool (`create-sonicjs-app`) for developer onboarding. Both packages are ready for publication to pnpm.
 
 ## Completed Phases
 
@@ -15,7 +15,7 @@ Successfully migrated SonicJS core functionality into a standalone npm package (
 - Set up TypeScript build with tsup
 - Configured package.json with proper exports
 - Created comprehensive type definitions
-- **Deliverables**: Full npm-ready package structure
+- **Deliverables**: Full pnpm-ready package structure
 
 ### ✅ Phase 2: Core Migration
 - Organized code into logical modules
@@ -32,7 +32,7 @@ Successfully migrated SonicJS core functionality into a standalone npm package (
 - **Deliverables**: Production-ready starter template
 
 ### ✅ Phase 4: Testing & Validation
-- Linked core package locally with npm link
+- Linked core package locally with pnpm link
 - Fixed template type mismatches
 - Tested wrangler dev server
 - Verified health endpoint
@@ -42,9 +42,9 @@ Successfully migrated SonicJS core functionality into a standalone npm package (
 - Created comprehensive README (388 lines)
 - Created detailed CHANGELOG (265 lines)
 - Verified LICENSE file
-- Tested npm pack (386.6 KB, 93 files)
+- Tested pnpm pack (386.6 KB, 93 files)
 - Created publishing guide
-- **Deliverables**: npm-ready `@sonicjs-cms/core@2.0.0-alpha.1`
+- **Deliverables**: pnpm-ready `@sonicjs-cms/core@2.0.0-alpha.1`
 
 ### ✅ Phase 6: CLI Tool
 - Created `create-sonicjs-app` package
@@ -52,7 +52,7 @@ Successfully migrated SonicJS core functionality into a standalone npm package (
 - Added Cloudflare resource creation
 - Built comprehensive test suite
 - Created documentation
-- **Deliverables**: npm-ready `create-sonicjs-app@2.0.0-alpha.1`
+- **Deliverables**: pnpm-ready `create-sonicjs-app@2.0.0-alpha.1`
 
 ## Published Packages
 
@@ -77,7 +77,7 @@ Successfully migrated SonicJS core functionality into a standalone npm package (
 
 **Installation**:
 ```bash
-npm install @sonicjs-cms/core@alpha
+pnpm install @sonicjs-cms/core@alpha
 ```
 
 **Files Included**:
@@ -103,7 +103,7 @@ npm install @sonicjs-cms/core@alpha
 
 **Usage**:
 ```bash
-npx create-sonicjs-app my-app
+pnpm dlx create-sonicjs-app my-app
 ```
 
 **Files to Include** (before publishing):
@@ -120,13 +120,13 @@ npx create-sonicjs-app my-app
 1. **Verify Build**:
    ```bash
    cd packages/core
-   npm run build
+   pnpm run build
    ls -la dist/
    ```
 
 2. **Test Pack**:
    ```bash
-   npm pack
+   pnpm pack
    # Should create @sonicjs-cms-core-2.0.0-alpha.1.tgz
    ```
 
@@ -158,13 +158,13 @@ npx create-sonicjs-app my-app
 
 3. **Test CLI**:
    ```bash
-   npm test
+   pnpm test
    # Should pass all checks
    ```
 
 4. **Test Pack**:
    ```bash
-   npm pack
+   pnpm pack
    # Should include templates directory
    tar -tzf create-sonicjs-app-2.0.0-alpha.1.tgz | grep templates
    ```
@@ -176,14 +176,14 @@ npx create-sonicjs-app my-app
 ```bash
 cd packages/core
 
-# Login to npm (if needed)
-npm login
+# Login to pnpm (if needed)
+pnpm login
 
 # Publish with alpha tag
-npm publish --tag alpha --access public
+pnpm publish --tag alpha --access public
 
 # Verify
-npm view @sonicjs-cms/core@alpha
+pnpm view @sonicjs-cms/core@alpha
 ```
 
 #### Publish create-sonicjs-app:
@@ -195,14 +195,14 @@ cd packages/create-app
 mkdir -p templates
 cp -r ../../templates/starter templates/
 
-# Login to npm (if needed)
-npm login
+# Login to pnpm (if needed)
+pnpm login
 
 # Publish with alpha tag
-npm publish --tag alpha --access public
+pnpm publish --tag alpha --access public
 
 # Verify
-npm view create-sonicjs-app@alpha
+pnpm view create-sonicjs-app@alpha
 ```
 
 ### Post-Publishing Verification
@@ -215,8 +215,8 @@ mkdir /tmp/test-core
 cd /tmp/test-core
 
 # Install
-npm init -y
-npm install @sonicjs-cms/core@alpha
+pnpm init -y
+pnpm install @sonicjs-cms/core@alpha
 
 # Verify imports
 node -e "import('@sonicjs-cms/core').then(m => console.log(m.VERSION))"
@@ -230,7 +230,7 @@ node -e "import('@sonicjs-cms/core').then(m => console.log(m.VERSION))"
 cd /tmp
 
 # Run CLI
-npx create-sonicjs-app@alpha test-project \
+pnpm dlx create-sonicjs-app@alpha test-project \
   --template=starter \
   --database=test-db \
   --bucket=test-media \
@@ -240,8 +240,8 @@ npx create-sonicjs-app@alpha test-project \
 
 # Verify project
 cd test-project
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 # Should start successfully
 ```
 
@@ -265,7 +265,7 @@ After successful publishing:
    ```
 
 3. **Update Project Documentation**:
-   - Link to npm packages
+   - Link to pnpm packages
    - Update quick start guide
    - Add migration guide (if needed for existing users)
 
@@ -276,7 +276,7 @@ After successful publishing:
 | **Purpose** | CMS framework | Project scaffolder |
 | **Size** | 386.6 KB (93 files) | ~50 KB (+ templates) |
 | **Dependencies** | Many (Hono, Drizzle, etc.) | Few (prompts, ora, etc.) |
-| **Usage** | `import { ... } from '@sonicjs-cms/core'` | `npx create-sonicjs-app` |
+| **Usage** | `import { ... } from '@sonicjs-cms/core'` | `pnpm dlx create-sonicjs-app` |
 | **Version** | 2.0.0-alpha.1 | 2.0.0-alpha.1 |
 | **Access** | public | public |
 | **License** | MIT | MIT |
@@ -287,7 +287,7 @@ After successful publishing:
 
 ```bash
 # 1. Create new project
-npx create-sonicjs-app my-blog
+pnpm dlx create-sonicjs-app my-blog
 
 # 2. Follow prompts (or use flags)
 # 3. Navigate to project
@@ -298,10 +298,10 @@ wrangler d1 create my-blog-db
 wrangler r2 bucket create my-blog-media
 
 # 5. Run migrations
-npm run db:migrate:local
+pnpm run db:migrate:local
 
 # 6. Start development
-npm run dev
+pnpm run dev
 
 # 7. Open admin
 open http://localhost:8787/admin
@@ -311,8 +311,8 @@ open http://localhost:8787/admin
 
 ```bash
 # 1. Create project manually
-npm init -y
-npm install @sonicjs-cms/core@alpha
+pnpm init -y
+pnpm install @sonicjs-cms/core@alpha
 
 # 2. Create configuration
 # ... manual setup ...
@@ -355,7 +355,7 @@ sonicjs-ai/
    - Independent dependency management
 
 3. **Local Development**:
-   - Use `npm link` for testing
+   - Use `pnpm link` for testing
    - No need to publish for development
    - Easy debugging
 
@@ -383,7 +383,7 @@ sonicjs-ai/
    ```json
    // In create-app package.json
    "scripts": {
-     "prepublishOnly": "npm run copy-templates",
+     "prepublishOnly": "pnpm run copy-templates",
      "copy-templates": "mkdir -p templates && cp -r ../../templates/starter templates/"
    }
    ```
@@ -395,7 +395,7 @@ sonicjs-ai/
 
 3. **Testing**:
    - Add integration tests between packages
-   - Test actual npm installations
+   - Test actual pnpm installations
    - Automated E2E testing
 
 ## Success Metrics
@@ -441,7 +441,7 @@ sonicjs-ai/
    - Show HN / Reddit posts
 
 3. **Monitoring**:
-   - Watch for npm download stats
+   - Watch for pnpm download stats
    - Monitor GitHub issues
    - Collect user feedback
 
@@ -473,7 +473,7 @@ sonicjs-ai/
 | `docs/ai/phase-5-publishing-prep-complete.md` | Publishing prep | ✅ Complete |
 | `docs/ai/phase-6-create-app-cli-complete.md` | CLI tool | ✅ Complete |
 | `docs/ai/publishing-guide.md` | Publishing workflow | ✅ Complete |
-| `docs/ai/npm-migration-complete.md` | This summary | ✅ Complete |
+| `docs/ai/pnpm-migration-complete.md` | This summary | ✅ Complete |
 | `packages/core/README.md` | Core package docs | ✅ Complete |
 | `packages/core/CHANGELOG.md` | Core version history | ✅ Complete |
 | `packages/create-app/README.md` | CLI package docs | ✅ Complete |
@@ -482,11 +482,11 @@ sonicjs-ai/
 
 🎉 **All Phases Complete**
 
-Both packages are fully implemented, tested, and documented. Ready for npm publication.
+Both packages are fully implemented, tested, and documented. Ready for pnpm publication.
 
 **Action Required**:
 1. Copy templates to create-app package
-2. Publish both packages to npm
+2. Publish both packages to pnpm
 3. Announce to community
 
 **Timeline**:

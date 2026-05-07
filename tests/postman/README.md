@@ -12,7 +12,7 @@ A comprehensive Postman collection for manually testing the SonicJS API.
 
 2. **Start SonicJS locally**:
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 3. **Seed the admin user** (first time only):

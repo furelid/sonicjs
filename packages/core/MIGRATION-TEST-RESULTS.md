@@ -13,7 +13,7 @@
 
 - **Test Server**: http://localhost:62344
 - **Package**: `@sonicjs-cms/core` v2.0.0-alpha.3
-- **Testing Method**: npm link (local development)
+- **Testing Method**: pnpm link (local development)
 - **Database**: D1 (sonicjs-test2-db)
 
 ---
@@ -125,7 +125,7 @@ curl -X POST http://localhost:62344/api/content \
 ## Build Verification
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 **Results:**
@@ -165,28 +165,28 @@ DTS ⚡️ Build success in 1896ms
 
 ---
 
-## npm Link Testing
+## pnpm Link Testing
 
 The local development workflow is working perfectly:
 
 1. **Core Package Built**: ✅
    ```bash
    cd packages/core
-   npm run build
-   npm link
+   pnpm run build
+   pnpm link
    ```
 
 2. **Test Project Linked**: ✅
    ```bash
    cd /Users/lane/Dev/temp/sonicjs-test2
-   npm link @sonicjs-cms/core
+   pnpm link @sonicjs-cms/core
    ```
 
 3. **Changes Immediately Available**: ✅
    - Made changes to core package
    - Rebuilt core package
    - Changes instantly reflected in test project
-   - No need to publish to npm
+   - No need to publish to pnpm
 
 ---
 
@@ -226,7 +226,7 @@ The first route migration is **100% successful**. The gradual migration strategy
 
 1. ✅ Routes can be migrated incrementally
 2. ✅ Dependencies can be created as needed
-3. ✅ Local testing with npm link works perfectly
+3. ✅ Local testing with pnpm link works perfectly
 4. ✅ No need to publish for every test
 5. ✅ TypeScript compilation clean
 6. ✅ All endpoints functional

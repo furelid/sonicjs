@@ -88,31 +88,31 @@ I've created a comprehensive end-to-end testing suite for the entire SonicJS AI 
 ### Quick Start
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Install Playwright browsers
-npx playwright install
+pnpm dlx playwright install
 
 # Run all E2E tests
-npm run test:e2e
+pnpm run test:e2e
 
 # Run with UI for debugging
-npm run test:e2e:ui
+pnpm run test:e2e:ui
 ```
 
 ### Specific Test Scenarios
 ```bash
 # Run health checks only
-npx playwright test tests/e2e/01-health.spec.ts
+pnpm dlx playwright test tests/e2e/01-health.spec.ts
 
 # Run mobile tests only
-npx playwright test --project="Mobile Chrome"
+pnpm dlx playwright test --project="Mobile Chrome"
 
 # Run with visual debugging
-npx playwright test --headed --debug
+pnpm dlx playwright test --headed --debug
 
 # Run specific browser
-npx playwright test --project=chromium
+pnpm dlx playwright test --project=chromium
 ```
 
 ## 🎯 Browser Coverage
@@ -175,13 +175,13 @@ Tests run on 5 different browser configurations:
 ### Debug Commands
 ```bash
 # Visual step-through
-npx playwright test --debug tests/e2e/02-authentication.spec.ts
+pnpm dlx playwright test --debug tests/e2e/02-authentication.spec.ts
 
 # See browser execution
-npx playwright test --headed
+pnpm dlx playwright test --headed
 
 # Generate trace files
-npx playwright test --trace on
+pnpm dlx playwright test --trace on
 ```
 
 ## 📈 Test Results & Reporting
@@ -279,13 +279,13 @@ This comprehensive testing suite ensures that SonicJS AI maintains high quality 
 ### For Developers
 ```bash
 # Before committing changes
-npm run test:e2e
+pnpm run test:e2e
 
 # When developing new features
-npx playwright test --ui
+pnpm dlx playwright test --ui
 
 # When debugging issues
-npx playwright test --debug --headed
+pnpm dlx playwright test --debug --headed
 ```
 
 ### For CI/CD

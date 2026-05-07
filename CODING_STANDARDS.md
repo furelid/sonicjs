@@ -389,7 +389,7 @@ Prettier runs automatically on commit. Configuration is in `.prettierrc`:
 ESLint rules must pass. Run before committing:
 
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 ### Pre-commit Hooks

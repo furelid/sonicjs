@@ -1,9 +1,9 @@
-#!/usr/bin/env npx tsx
+#!/usr/bin/env pnpm dlx tsx
 /**
  * Script to generate a TypeScript file containing all migration SQL
  * This is necessary because Cloudflare Workers don't have filesystem access at runtime
  *
- * Usage: npx tsx scripts/generate-migrations.ts
+ * Usage: pnpm dlx tsx scripts/generate-migrations.ts
  */
 
 import * as fs from 'fs'

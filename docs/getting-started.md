@@ -18,7 +18,7 @@
 Before you begin, ensure you have the following installed:
 
 - **Node.js** (version 18 or higher)
-- **npm** or **pnpm**
+- **pnpm** or **pnpm**
 - **Git**
 - **Cloudflare account** (for deployment and production use)
 
@@ -36,16 +36,16 @@ Get started in under 60 seconds with the official CLI:
 
 ```bash
 # Create a new SonicJS project
-npx create-sonicjs my-cms
+pnpm dlx create-sonicjs my-cms
 
 # Navigate to project
 cd my-cms
 
 # Run database migrations
-npm run db:migrate
+pnpm run db:migrate
 
 # Start development server
-npm run dev
+pnpm run dev
 ```
 
 Your SonicJS instance will be available at **<http://localhost:8787>**
@@ -60,13 +60,13 @@ git clone https://github.com/lane711/sonicjs-ai.git
 cd sonicjs-ai
 
 # Install dependencies
-npm install
+pnpm install
 
 # Run database migrations
-npm run db:migrate
+pnpm run db:migrate
 
 # Start development server
-npm run dev
+pnpm run dev
 ```
 
 ## Development Setup
@@ -81,7 +81,7 @@ cd sonicjs-ai
 ### 2. Install Dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 This will install all required dependencies including:
@@ -99,7 +99,7 @@ SonicJS uses Cloudflare D1 (SQLite) for local development and production.
 **Run migrations locally:**
 
 ```bash
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 This command applies all database migrations and creates the initial schema including:
@@ -115,16 +115,16 @@ This command applies all database migrations and creates the initial schema incl
 
 ```bash
 # Generate new migration files (if you modify schema)
-npm run db:generate
+pnpm run db:generate
 
 # Apply migrations to local database
-npm run db:migrate
+pnpm run db:migrate
 
 # Apply migrations to production
-npm run db:migrate:prod
+pnpm run db:migrate:prod
 
 # Open interactive database studio (Drizzle Studio)
-npm run db:studio
+pnpm run db:studio
 ```
 
 ### 4. Environment Configuration
@@ -165,7 +165,7 @@ id = "your-kv-id"
 ### 5. Start Development Server
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 **What happens on startup:**
@@ -645,7 +645,7 @@ export const productsCollection: CollectionConfig = {
 
 ```bash
 # Collections are auto-synced on server restart
-npm run dev
+pnpm run dev
 ```
 
 ## Available Scripts
@@ -656,32 +656,32 @@ These are the scripts available in your SonicJS application.
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start development server with Wrangler |
-| `npm run deploy` | Deploy to Cloudflare Workers |
-| `npm run type-check` | Run TypeScript type checking |
+| `pnpm run dev` | Start development server with Wrangler |
+| `pnpm run deploy` | Deploy to Cloudflare Workers |
+| `pnpm run type-check` | Run TypeScript type checking |
 
 ### Database
 
 | Command | Description |
 |---------|-------------|
-| `npm run db:migrate:local` | Apply migrations to local D1 database |
-| `npm run db:migrate` | Apply migrations to remote D1 database |
-| `npm run db:reset` | Reset and reinitialize local database |
-| `npm run db:studio` | Open Drizzle Studio (database GUI) |
+| `pnpm run db:migrate:local` | Apply migrations to local D1 database |
+| `pnpm run db:migrate` | Apply migrations to remote D1 database |
+| `pnpm run db:reset` | Reset and reinitialize local database |
+| `pnpm run db:studio` | Open Drizzle Studio (database GUI) |
 
 ### Testing
 
 | Command | Description |
 |---------|-------------|
-| `npm test` | Run Vitest unit tests |
-| `npm run test:watch` | Run tests in watch mode |
+| `pnpm test` | Run Vitest unit tests |
+| `pnpm run test:watch` | Run tests in watch mode |
 
 ### Updates
 
 | Command | Description |
 |---------|-------------|
-| `npm run update` | Update @sonicjs-cms/core to latest version |
-| `npm run update:beta` | Update to latest beta version |
+| `pnpm run update` | Update @sonicjs-cms/core to latest version |
+| `pnpm run update:beta` | Update to latest beta version |
 
 ## Monorepo Scripts (Contributors)
 
@@ -691,53 +691,53 @@ If you're contributing to SonicJS and working in the monorepo, these additional 
 
 | Command | Description |
 |---------|-------------|
-| `npm run workspace` | Fresh workspace setup (install deps + reset database) |
-| `npm run db:reset` | Reset the local development database |
-| `npm run kill` | Kill workerd process and restart dev server |
+| `pnpm run workspace` | Fresh workspace setup (install deps + reset database) |
+| `pnpm run db:reset` | Reset the local development database |
+| `pnpm run kill` | Kill workerd process and restart dev server |
 
 ### Development
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Run the demo app (my-sonicjs-app) |
-| `npm run dev:www` | Run the documentation website locally |
-| `npm run build` | Build core package and demo app |
-| `npm run build:core` | Build only the core package |
-| `npm run build:www` | Build the documentation website |
+| `pnpm run dev` | Run the demo app (my-sonicjs-app) |
+| `pnpm run dev:www` | Run the documentation website locally |
+| `pnpm run build` | Build core package and demo app |
+| `pnpm run build:core` | Build only the core package |
+| `pnpm run build:www` | Build the documentation website |
 
 ### Testing
 
 | Command | Description |
 |---------|-------------|
-| `npm test` | Run unit tests |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run test:cov` | Run tests with coverage report |
-| `npm run e2e` | Run Playwright E2E tests |
-| `npm run e2e:ui` | Run E2E tests with UI mode |
-| `npm run e2e:smoke` | Run smoke tests |
-| `npm run type-check` | Run TypeScript type checking |
-| `npm run lint` | Run linting (alias for type-check) |
+| `pnpm test` | Run unit tests |
+| `pnpm run test:watch` | Run tests in watch mode |
+| `pnpm run test:cov` | Run tests with coverage report |
+| `pnpm run e2e` | Run Playwright E2E tests |
+| `pnpm run e2e:ui` | Run E2E tests with UI mode |
+| `pnpm run e2e:smoke` | Run smoke tests |
+| `pnpm run type-check` | Run TypeScript type checking |
+| `pnpm run lint` | Run linting (alias for type-check) |
 
 ### Publishing
 
 | Command | Description |
 |---------|-------------|
-| `npm run version:patch` | Bump patch version |
-| `npm run version:minor` | Bump minor version |
-| `npm run version:major` | Bump major version |
-| `npm run publish:core` | Build and publish core package |
-| `npm run publish:create-app` | Publish create-sonicjs CLI |
-| `npm run publish:all` | Publish all packages |
-| `npm run release:patch` | Version bump + publish + announce |
-| `npm run release:minor` | Version bump + publish + announce |
-| `npm run release:major` | Version bump + publish + announce |
+| `pnpm run version:patch` | Bump patch version |
+| `pnpm run version:minor` | Bump minor version |
+| `pnpm run version:major` | Bump major version |
+| `pnpm run publish:core` | Build and publish core package |
+| `pnpm run publish:create-app` | Publish create-sonicjs CLI |
+| `pnpm run publish:all` | Publish all packages |
+| `pnpm run release:patch` | Version bump + publish + announce |
+| `pnpm run release:minor` | Version bump + publish + announce |
+| `pnpm run release:major` | Version bump + publish + announce |
 
 ### Deployment
 
 | Command | Description |
 |---------|-------------|
-| `npm run deploy` | Deploy demo app to Cloudflare Workers |
-| `npm run deploy:www` | Deploy documentation website |
+| `pnpm run deploy` | Deploy demo app to Cloudflare Workers |
+| `pnpm run deploy:www` | Deploy documentation website |
 
 ## Troubleshooting
 
@@ -751,7 +751,7 @@ If you're contributing to SonicJS and working in the monorepo, these additional 
 
 ```bash
 # Run migrations
-npm run db:migrate
+pnpm run db:migrate
 
 # Verify migration status
 wrangler d1 migrations list DB --local
@@ -785,7 +785,7 @@ lsof -ti:8787 | xargs kill -9
 ```bash
 # Clear and reinstall dependencies
 rm -rf node_modules package-lock.json
-npm install
+pnpm install
 
 # Clear TypeScript build cache
 rm -rf .wrangler
@@ -806,7 +806,7 @@ rm -rf .wrangler
 
 ```bash
 # Check bootstrap logs
-npm run dev 2>&1 | grep -i "bootstrap\|plugin"
+pnpm run dev 2>&1 | grep -i "bootstrap\|plugin"
 ```
 
 ---
@@ -859,10 +859,10 @@ wrangler r2 bucket info sonicjs-media-dev
 
 ```bash
 # Update Cloudflare Workers types
-npm install --save-dev @cloudflare/workers-types@latest
+pnpm install --save-dev @cloudflare/workers-types@latest
 
 # Regenerate TypeScript definitions
-npx tsc --noEmit
+pnpm dlx tsc --noEmit
 ```
 
 ---
@@ -893,14 +893,14 @@ If changes aren't reflected:
 
 1. Stop dev server (Ctrl+C)
 2. Clear Wrangler cache: `rm -rf .wrangler`
-3. Restart: `npm run dev`
+3. Restart: `pnpm run dev`
 
 **Database Schema Changes:**
 
 When modifying the database schema:
 
 1. Update migration files in `migrations/`
-2. Run `npm run db:migrate`
+2. Run `pnpm run db:migrate`
 3. Update TypeScript types if needed
 4. Restart dev server
 
@@ -909,7 +909,7 @@ When modifying the database schema:
 When modifying collections:
 
 1. Edit collection file in `src/collections/`
-2. Run `npm run sync-collections`
+2. Run `pnpm run sync-collections`
 3. Or restart dev server (auto-syncs)
 
 **Plugin Development:**

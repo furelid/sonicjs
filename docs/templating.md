@@ -1115,7 +1115,7 @@ export function renderDashboardPage(data: DashboardPageData): string {
     currentPath: '/admin',
     user: data.user,
     content: pageContent,
-    scripts: ['https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js']
+    scripts: ['https://cdn.jsdelivr.net/pnpm/chart.js@4.4.0/dist/chart.umd.min.js']
   })
 }
 ```

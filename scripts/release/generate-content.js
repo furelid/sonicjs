@@ -127,7 +127,7 @@ function getFallbackContent(releaseInfo) {
   if (highlights.length > 0) {
     thread.push(`✨ What's new in v${version}:\n\n${highlights.map((h, i) => `${i + 1}. ${h}`).join('\n')}`)
   }
-  thread.push(`📦 Get started:\nnpx create-sonicjs@latest my-app\n\nSonicJS is 6x faster than Node/Express and deploys globally on Cloudflare Workers in seconds.`)
+  thread.push(`📦 Get started:\npnpm dlx create-sonicjs@latest my-app\n\nSonicJS is 6x faster than Node/Express and deploys globally on Cloudflare Workers in seconds.`)
   thread.push(`⭐ If you find SonicJS useful, please star us on GitHub!\n\nhttps://github.com/lane711/sonicjs\n\nYour support helps us keep improving the project!`)
 
   return {

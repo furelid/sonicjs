@@ -19,7 +19,7 @@ Move the foundation layers to `@sonicjs-cms/core`:
 ### Task 1: Install Dependencies ⏳
 ```bash
 cd packages/core
-npm install
+pnpm install
 ```
 
 ### Task 2: Move Types
@@ -41,7 +41,7 @@ npm install
 - Test build
 
 ### Task 5: Verify Build
-- Run `npm run build` in packages/core
+- Run `pnpm run build` in packages/core
 - Verify dist/ output structure
 - Check TypeScript definitions
 - Test imports

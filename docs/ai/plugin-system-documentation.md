@@ -648,7 +648,7 @@ myPluginRoutes.get('/admin/my-plugin', async (c) => {
 ### 5. Rebuild Plugin Registry
 
 ```bash
-npm run plugins:generate
+pnpm run plugins:generate
 ```
 
 ---
@@ -703,7 +703,7 @@ test('plugin route works', async ({ page }) => {
 All 13 plugins have been validated and registered in the plugin registry:
 
 ```bash
-npm run plugins:generate
+pnpm run plugins:generate
 ```
 
 **Output**:

@@ -11,7 +11,7 @@ You're seeing this error on Cloudflare:
 
 Cloudflare has saved the **wrong build command** in your project settings. It's trying to run:
 ```bash
-npx next build && npx next export  # ❌ WRONG
+pnpm dlx next build && pnpm dlx next export  # ❌ WRONG
 ```
 
 ## The Solution
@@ -37,12 +37,12 @@ This project uses **OpenNext for Cloudflare**, which requires different commands
 
    **Build command:**
    ```bash
-   npx @opennextjs/cloudflare build
+   pnpm dlx @opennextjs/cloudflare build
    ```
 
-   Or use the npm script:
+   Or use the pnpm script:
    ```bash
-   npm run deploy
+   pnpm run deploy
    ```
 
    **Build output directory:**
@@ -67,7 +67,7 @@ In **Environment Variables**, add:
 | ❌ Wrong (Old Next.js) | ✅ Correct (OpenNext) |
 |------------------------|----------------------|
 | Framework: Next.js | Framework: None/Custom |
-| Build: `next build && next export` | Build: `npx @opennextjs/cloudflare build` |
+| Build: `next build && next export` | Build: `pnpm dlx @opennextjs/cloudflare build` |
 | Output: `.next` | Output: `.open-next` |
 | Static site | Cloudflare Worker |
 
@@ -89,13 +89,13 @@ Instead of using Cloudflare's automatic deployments:
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Authenticate with Cloudflare
-npx wrangler login
+pnpm dlx wrangler login
 
 # Deploy directly
-npm run deploy
+pnpm run deploy
 ```
 
 This bypasses Cloudflare's build system entirely.

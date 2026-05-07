@@ -28,19 +28,19 @@
 
 ```bash
 # Create a new SonicJS project
-npx create-sonicjs my-cms
+pnpm dlx create-sonicjs my-cms
 
 # Navigate to project
 cd my-cms
 
 # Install dependencies
-npm install
+pnpm install
 
 # Run database migrations
-npm run db:migrate
+pnpm run db:migrate
 
 # Start development server
-npm run dev
+pnpm run dev
 ```
 
 ### Manual Installation
@@ -48,16 +48,16 @@ npm run dev
 ```bash
 # Create new project
 mkdir my-cms && cd my-cms
-npm init -y
+pnpm init -y
 
 # Install core package
-npm install @sonicjs-cms/core
+pnpm install @sonicjs-cms/core
 
 # Install peer dependencies
-npm install hono drizzle-orm zod @cloudflare/workers-types
+pnpm install hono drizzle-orm zod @cloudflare/workers-types
 
 # Install dev dependencies
-npm install -D wrangler typescript tsx vitest
+pnpm install -D wrangler typescript tsx vitest
 ```
 
 ---

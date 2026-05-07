@@ -40,7 +40,7 @@ This project uses Claude's memory MCP server to maintain context across sessions
 
 2. **Install memory MCP server**:
    ```bash
-   npm install -g @modelcontextprotocol/server-memory
+   pnpm install -g @modelcontextprotocol/server-memory
    ```
 
 3. **Restart Claude Desktop** to load the MCP server

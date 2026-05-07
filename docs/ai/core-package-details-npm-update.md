@@ -4,24 +4,24 @@
 
 **Status: ACTIVE - Core Package v2.0.2**
 
-The core SonicJS functionality has been successfully extracted into an npm package (`@sonicjs-cms/core` v2.0.2) to enable:
+The core SonicJS functionality has been successfully extracted into an pnpm package (`@sonicjs-cms/core` v2.0.2) to enable:
 
-- ✅ Easy upgrades via `npm update @sonicjs-cms/core`
+- ✅ Easy upgrades via `pnpm update @sonicjs-cms/core`
 - ✅ Version control of core features
 - ✅ Separation of framework code from user customizations
 - ✅ Faster bug fixes and feature releases
 - ✅ Better testing and stability
 
-**Current Version**: 2.0.2 (Published to npm)
+**Current Version**: 2.0.2 (Published to pnpm)
 **Latest Updates**: User management routes, permission system integration, admin route consolidation
 
 ## Goals
 
-1. **Easy Installation**: Quick start with `npx create-sonicjs`
-2. **Easy Upgrades**: Developers run `npm update` to get latest core
+1. **Easy Installation**: Quick start with `pnpm dlx create-sonicjs`
+2. **Easy Upgrades**: Developers run `pnpm update` to get latest core
 3. **Clean Separation**: User code stays separate from framework code
 4. **Customization**: Developers can override/extend core functionality
-5. **Developer Experience**: Standard npm workflow for greenfield projects
+5. **Developer Experience**: Standard pnpm workflow for greenfield projects
 
 ## Package Structure
 
@@ -233,7 +233,7 @@ Users can enable/disable plugins via configuration.
 
 2. **Build System**
    - Configure TypeScript compilation
-   - Bundle for npm distribution
+   - Bundle for pnpm distribution
    - Generate type definitions
 
 3. **Testing**
@@ -250,7 +250,7 @@ Users can enable/disable plugins via configuration.
    - Documentation
 
 2. **CLI Tool**
-   - `npx create-sonicjs my-app`
+   - `pnpm dlx create-sonicjs my-app`
    - Project scaffolding
 
 ### Phase 4: Testing & Polish (Week 4-5)
@@ -378,27 +378,27 @@ Starting at v2.0.0 (v1.x was the monolith):
 
 ```bash
 # Create new SonicJS project
-npx create-sonicjs my-app
+pnpm dlx create-sonicjs my-app
 
 # Or manually
-npm init
-npm install @sonicjs-cms/core
+pnpm init
+pnpm install @sonicjs-cms/core
 
 # Run migrations
-npm run db:migrate
+pnpm run db:migrate
 
 # Start development
-npm run dev
+pnpm run dev
 ```
 
 ### Update Core
 
 ```bash
-# Simple npm update
-npm update @sonicjs-cms/core
+# Simple pnpm update
+pnpm update @sonicjs-cms/core
 
 # Run any new migrations
-npm run db:migrate
+pnpm run db:migrate
 
 # Done!
 ```
@@ -411,10 +411,10 @@ Since we're targeting greenfield projects only:
 
 ```bash
 # Core migrations run automatically on startup
-npm run dev
+pnpm run dev
 
 # Or run manually
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 Database migrations are tracked and versioned in the core package.
@@ -431,7 +431,7 @@ Database migrations are tracked and versioned in the core package.
 
 ### For Users
 
-✅ **Easy upgrades**: `npm update @sonicjs-cms/core`
+✅ **Easy upgrades**: `pnpm update @sonicjs-cms/core`
 ✅ **Stable projects**: Core changes don't affect user code
 ✅ **Better DX**: Clear separation of user vs framework code
 ✅ **Faster bug fixes**: Update package, not entire codebase
@@ -485,7 +485,7 @@ Database migrations are tracked and versioned in the core package.
 
 ### Challenge 5: Build Complexity
 
-**Problem**: Need to bundle for npm + Cloudflare Workers
+**Problem**: Need to bundle for pnpm + Cloudflare Workers
 **Solution**:
 
 - Use esbuild/tsup for fast builds
@@ -544,7 +544,7 @@ docs/
 
 ### Phase 1: Alpha (Internal Testing)
 
-- Package published to npm with `-alpha` tag
+- Package published to pnpm with `-alpha` tag
 - Core team tests in real projects
 - Fix critical issues
 
@@ -564,7 +564,7 @@ docs/
 
 ### Phase 4: v2.0.2 Release (CURRENT)
 
-- ✅ Stable release to npm (v2.0.2)
+- ✅ Stable release to pnpm (v2.0.2)
 - ✅ Core package published and functional
 - ✅ User routes fully implemented
 - ✅ Permission system integrated
@@ -590,14 +590,14 @@ docs/
 ### User Metrics
 
 - ✅ Setup time < 5 minutes (greenfield)
-- ✅ Upgrade time < 5 minutes (npm update)
+- ✅ Upgrade time < 5 minutes (pnpm update)
 - ✅ Documentation completeness > 90%
 - ✅ Community satisfaction > 80%
 
 ### Ecosystem Metrics
 
 - ✅ 10+ community plugins in first year
-- ✅ Weekly npm downloads > 1000
+- ✅ Weekly pnpm downloads > 1000
 - ✅ GitHub stars > 2000
 - ✅ Active contributors > 20
 
@@ -685,9 +685,9 @@ docs/
 
 ## Conclusion
 
-Extracting SonicJS core into an npm package will:
+Extracting SonicJS core into an pnpm package will:
 
-1. **Simplify upgrades** from manual merges to `npm update`
+1. **Simplify upgrades** from manual merges to `pnpm update`
 2. **Enable rapid iteration** on core features
 3. **Foster ecosystem growth** through plugins
 4. **Improve developer experience** with clear separation

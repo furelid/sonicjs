@@ -177,17 +177,17 @@ git checkout feature/formio-integration
 git pull
 
 # 2. Install dependencies
-npm install
+pnpm install
 
 # 3. Build
-npm run build:core
+pnpm run build:core
 
 # 4. Run migrations
 cd my-sonicjs-app
-npm run db:migrate
+pnpm run db:migrate
 
 # 5. Start dev server
-npm run dev
+pnpm run dev
 
 # 6. Test features
 # - Form builder: http://localhost:8787/admin/forms
@@ -206,7 +206,7 @@ git pull
 wrangler d1 migrations apply DB --remote
 
 # Deploy to Cloudflare Workers
-npm run deploy
+pnpm run deploy
 ```
 
 ---

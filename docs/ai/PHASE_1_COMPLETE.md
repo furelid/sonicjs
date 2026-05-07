@@ -53,7 +53,7 @@ Total:           65 files,  37,046 lines
 
 **Dependency Architecture**:
 ```
-Tier 0: External Dependencies (npm packages)
+Tier 0: External Dependencies (pnpm packages)
    ↓
 Tier 1: Types (zero internal dependencies)
    ↓
@@ -122,7 +122,7 @@ sonicjs/
 ```
 
 **Package Configuration**:
-- ✅ npm workspaces compatible
+- ✅ pnpm workspaces compatible
 - ✅ ESM and CJS outputs
 - ✅ TypeScript definitions
 - ✅ Tree-shaking enabled
@@ -261,7 +261,7 @@ export { PluginBuilder, HookSystem, PluginRegistry } from './plugins/sdk'
 - **Name**: `@sonicjs-cms/core`
 - **Version**: `1.0.0-alpha.1`
 - **License**: MIT
-- **Access**: Public (npm)
+- **Access**: Public (pnpm)
 - **Files**: dist, migrations, README.md
 
 **Peer Dependencies**:
@@ -281,7 +281,7 @@ export { PluginBuilder, HookSystem, PluginRegistry } from './plugins/sdk'
   "dev": "tsup --watch",
   "type-check": "tsc --noEmit",
   "test": "vitest --run",
-  "prepublishOnly": "npm run build"
+  "prepublishOnly": "pnpm run build"
 }
 ```
 
@@ -455,13 +455,13 @@ export { PluginBuilder, HookSystem, PluginRegistry } from './plugins/sdk'
 1. **Install Dependencies**:
    ```bash
    cd packages/core
-   npm install
+   pnpm install
    ```
 
 2. **Test Build System**:
    ```bash
    cd packages/core
-   npm run build
+   pnpm run build
    # Verify dist/ output
    ```
 
@@ -490,7 +490,7 @@ Phase 1 is **100% complete**. All foundation work is in place:
 ✅ Monorepo structure created (packages/core ready)
 ✅ Build tooling configured (tsup with tree-shaking)
 ✅ Public API defined (comprehensive exports)
-✅ Package configured (ready for npm publish)
+✅ Package configured (ready for pnpm publish)
 
 **The project is ready to begin Phase 2: Core Extraction.**
 

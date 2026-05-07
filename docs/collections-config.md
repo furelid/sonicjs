@@ -912,7 +912,7 @@ export default teamMembersCollection
 Start your dev server:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Look for the sync output:
@@ -1971,7 +1971,7 @@ const productsCollection: CollectionConfig = {
 **Validate before deploying:**
 ```typescript
 // Run the app and check console for errors
-npm run dev
+pnpm run dev
 
 // Look for validation errors:
 // ✅ "✓ Loaded collection config: products"

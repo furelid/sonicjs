@@ -35,7 +35,7 @@ The SonicJS documentation site (www folder) needs a comprehensive update to alig
 3. **Placeholder Pages**: Some pages have minimal or outdated content
 4. **Navigation Structure**: Needs reorganization to match current feature set
 5. **Code Examples**: Need updating to reflect current API patterns
-6. **Package Documentation**: Core package (published to npm) needs dedicated documentation
+6. **Package Documentation**: Core package (published to pnpm) needs dedicated documentation
 
 ## Documentation Update Strategy
 
@@ -75,7 +75,7 @@ The SonicJS documentation site (www folder) needs a comprehensive update to alig
 - Expand installation steps with prerequisites (Node 20+, Wrangler)
 - Add monorepo-specific instructions
 - Update database migration commands
-- Add "Using npm package" section for @sonicjs-cms/core
+- Add "Using pnpm package" section for @sonicjs-cms/core
 - Include troubleshooting for common setup issues
 - Add links to example projects and templates
 - Update screenshots of admin interface
@@ -308,7 +308,7 @@ The SonicJS documentation site (www folder) needs a comprehensive update to alig
 #### 9.1 Core Package (NEW: `/www/src/app/packages/core/page.mdx`)
 **Current State**: Doesn't exist
 **Updates Needed**:
-- Document @sonicjs-cms/core npm package
+- Document @sonicjs-cms/core pnpm package
 - Show installation and setup
 - Explain package exports structure
 - Document services, middleware, routes, templates
@@ -600,9 +600,9 @@ export const sections = [
 
 ### Deployment Steps
 1. **Development**: Work in `/www/` directory
-2. **Local Testing**: `npm run dev:www` for local preview
-3. **Build**: `npm run build:www` to verify build
-4. **Deploy**: `npm run deploy:www` to Cloudflare Pages
+2. **Local Testing**: `pnpm run dev:www` for local preview
+3. **Build**: `pnpm run build:www` to verify build
+4. **Deploy**: `pnpm run deploy:www` to Cloudflare Pages
 5. **Verify**: Test live site after deployment
 
 ### Rollback Plan

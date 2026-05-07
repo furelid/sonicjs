@@ -12,7 +12,7 @@ SonicJS collects **anonymous, privacy-respecting telemetry data** to help us und
 - Template selection
 - Operating system (macOS, Linux, Windows)
 - Node.js version (major.minor only)
-- Package manager (npm, yarn, pnpm, bun)
+- Package manager (pnpm, yarn, pnpm, bun)
 
 ### Runtime Metrics (Future)
 - Development server start/stop events
@@ -85,7 +85,7 @@ export DO_NOT_TRACK=1
 
 ```bash
 # During installation
-npx create-sonicjs my-app --no-telemetry
+pnpm dlx create-sonicjs my-app --no-telemetry
 ```
 
 ### 4. Configuration File (Future)
@@ -155,7 +155,7 @@ Telemetry helps us:
     version: '2.0.0',
     os: 'darwin',
     nodeVersion: '18.0',
-    packageManager: 'npm',
+    packageManager: 'pnpm',
     template: 'starter'
   },
   distinctId: 'uuid-v4-installation-id'

@@ -5,7 +5,7 @@ This document outlines the workflow for using Claude in Conductor to fix GitHub 
 ## Workflow Overview
 
 1. **Start in Conductor** - Conductor automatically creates a worktree and branch
-2. **Setup fresh database** - Run `npm run setup:db` in my-sonicjs-app to create a clean D1 database
+2. **Setup fresh database** - Run `pnpm run setup:db` in my-sonicjs-app to create a clean D1 database
 3. **Claude fixes the issue** - Implement the fix with tests
 4. **Create PR** - Push changes and create pull request
 5. **CI runs tests** - GitHub Actions creates a fresh D1 database and runs unit/E2E tests
@@ -19,7 +19,7 @@ Each PR and worktree gets a fresh D1 database to ensure clean testing environmen
 
 ```bash
 cd my-sonicjs-app
-npm run setup:db
+pnpm run setup:db
 ```
 
 This script:
@@ -53,19 +53,19 @@ When given a GitHub issue to fix, follow these steps:
 - Add tests in `packages/core/src/__tests__/`
 - Use Vitest framework
 - Test both happy path and edge cases
-- Run: `npm test`
+- Run: `pnpm test`
 
 ### 4. Write E2E Tests
 - Add tests in `tests/e2e/`
 - Use Playwright framework
 - Test user-facing functionality
-- Run: `npm run e2e`
+- Run: `pnpm run e2e`
 
 ### 5. Verify All Tests Pass
 ```bash
-npm run type-check  # Type checking
-npm test            # Unit tests
-npm run e2e         # E2E tests
+pnpm run type-check  # Type checking
+pnpm test            # Unit tests
+pnpm run e2e         # E2E tests
 ```
 
 ### 6. Create Pull Request
@@ -122,10 +122,10 @@ To run E2E tests locally:
 ```bash
 # In one terminal - start dev server
 cd my-sonicjs-app
-npm run dev
+pnpm run dev
 
 # In another terminal - run E2E tests
-npm run e2e
+pnpm run e2e
 ```
 
 **Note**: CI automatically deploys each PR to a preview environment and runs E2E tests against it.
@@ -175,7 +175,7 @@ Types: `fix`, `feat`, `refactor`, `test`, `docs`, `chore`
 # Create: tests/e2e/99-my-feature.spec.ts
 
 # 5. Run all tests
-npm run type-check && npm test && npm run e2e
+pnpm run type-check && pnpm test && pnpm run e2e
 
 # 6. Commit and push
 git add .
@@ -209,11 +209,11 @@ gh pr create --title "fix: resolve authentication timeout issue" \
 - Check test artifacts in GitHub Actions
 
 ### Type Check Failures
-- Run `npm run type-check` locally
+- Run `pnpm run type-check` locally
 - Fix TypeScript errors before pushing
 
 ### Unit Test Failures
-- Run `npm test` locally
+- Run `pnpm test` locally
 - Check test output for specific failures
 - Ensure mocks are properly configured
 

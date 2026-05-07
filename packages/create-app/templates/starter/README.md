@@ -14,29 +14,29 @@ A modern headless CMS built with [SonicJS](https://sonicjs.com) on Cloudflare's 
 
 1. **Install dependencies:**
    ```bash
-   npm install
+   pnpm install
    ```
 
 2. **Create your D1 database:**
    ```bash
-   npx wrangler d1 create my-sonicjs-db
+   pnpm dlx wrangler d1 create my-sonicjs-db
    ```
 
    Copy the `database_id` from the output and update it in `wrangler.toml`.
 
 3. **Create your R2 bucket:**
    ```bash
-   npx wrangler r2 bucket create my-sonicjs-media
+   pnpm dlx wrangler r2 bucket create my-sonicjs-media
    ```
 
 4. **Run migrations:**
    ```bash
-   npm run db:migrate:local
+   pnpm run db:migrate:local
    ```
 
 5. **Start the development server:**
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 6. **Open your browser:**
@@ -59,12 +59,12 @@ my-sonicjs-app/
 
 ## Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run deploy` - Deploy to Cloudflare
-- `npm run db:migrate` - Run migrations on production database
-- `npm run db:migrate:local` - Run migrations locally
-- `npm run type-check` - Check TypeScript types
-- `npm run test` - Run tests
+- `pnpm run dev` - Start development server
+- `pnpm run deploy` - Deploy to Cloudflare
+- `pnpm run db:migrate` - Run migrations on production database
+- `pnpm run db:migrate:local` - Run migrations locally
+- `pnpm run type-check` - Check TypeScript types
+- `pnpm run test` - Run tests
 
 ## Creating Collections
 
@@ -99,17 +99,17 @@ Your collections are automatically available via REST API:
 
 1. **Login to Cloudflare:**
    ```bash
-   npx wrangler login
+   pnpm dlx wrangler login
    ```
 
 2. **Deploy your application:**
    ```bash
-   npm run deploy
+   pnpm run deploy
    ```
 
 3. **Run migrations on production:**
    ```bash
-   npm run db:migrate
+   pnpm run db:migrate
    ```
 
 ## Documentation

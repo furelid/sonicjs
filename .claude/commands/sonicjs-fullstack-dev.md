@@ -128,9 +128,9 @@ describe('FeatureName', () => {
 
 **Test Commands**:
 ```bash
-npm test                    # Run all unit tests
-npm run test:cov            # Run with coverage
-npm run test:watch          # Watch mode
+pnpm test                    # Run all unit tests
+pnpm run test:cov            # Run with coverage
+pnpm run test:watch          # Watch mode
 ```
 
 ### Phase 4: E2E Testing
@@ -175,9 +175,9 @@ test.describe('Feature Name', () => {
 
 **E2E Test Commands**:
 ```bash
-npm run e2e                 # Run all e2e tests
-npm run e2e:ui              # Interactive UI mode
-npx playwright test tests/e2e/##-feature.spec.ts  # Run specific test
+pnpm run e2e                 # Run all e2e tests
+pnpm run e2e:ui              # Interactive UI mode
+pnpm dlx playwright test tests/e2e/##-feature.spec.ts  # Run specific test
 ```
 
 ### Phase 5: Regression Testing
@@ -186,10 +186,10 @@ npx playwright test tests/e2e/##-feature.spec.ts  # Run specific test
 
 ```bash
 # Run all unit tests
-npm test
+pnpm test
 
 # Run all e2e tests
-npm run e2e
+pnpm run e2e
 
 # If any tests fail, fix them before proceeding
 ```
@@ -267,8 +267,8 @@ docs/
 - [ ] All implementation tasks completed
 - [ ] Unit tests written with 90%+ coverage on new code
 - [ ] E2E tests written for user workflows
-- [ ] All existing unit tests pass (`npm test`)
-- [ ] All existing e2e tests pass (`npm run e2e`)
+- [ ] All existing unit tests pass (`pnpm test`)
+- [ ] All existing e2e tests pass (`pnpm run e2e`)
 - [ ] Code follows existing patterns
 - [ ] No TypeScript errors
 - [ ] Commits are clean and descriptive

@@ -41,7 +41,7 @@ This script:
 ### Step 2: Restart Dev Server
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ### Step 3: Enable & Index
@@ -242,7 +242,7 @@ vs. Cloudflare AI Search: $5/mo for 5,000 docs
 
 1. **Check Vectorize setup**:
    ```bash
-   npx wrangler vectorize list
+   pnpm dlx wrangler vectorize list
    # Should show: sonicjs-search
    ```
 
@@ -258,7 +258,7 @@ vs. Cloudflare AI Search: $5/mo for 5,000 docs
 
 3. **Restart dev server**:
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 ### "No results found"
@@ -351,7 +351,7 @@ Well within Vectorize free tier (10M dimensions = ~1.3GB)
 bash setup/vectorize-setup.sh
 
 # 2. Start dev server
-npm run dev
+pnpm run dev
 
 # 3. Create test content
 curl -X POST http://localhost:8787/admin/content \

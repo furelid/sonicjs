@@ -15,7 +15,7 @@ When implementing features or fixes:
 
 1. **Implement** the requested feature/fix
 2. **Create** corresponding E2E test file in `tests/e2e/`
-3. **Run** the test with `npx playwright test <test-file>` or `npm run e2e -- <test-file>`
+3. **Run** the test with `pnpm dlx playwright test <test-file>` or `pnpm run e2e -- <test-file>`
 4. **Fix** any issues found during testing
 5. **Verify** tests pass before considering the task complete
 6. **Commit** both implementation and tests together
@@ -54,17 +54,17 @@ test.describe('Feature Name', () => {
 
 ### Run specific test
 ```bash
-npx playwright test tests/e2e/36-feature-name.spec.ts
+pnpm dlx playwright test tests/e2e/36-feature-name.spec.ts
 ```
 
 ### Run with headed browser (for debugging)
 ```bash
-npx playwright test tests/e2e/36-feature-name.spec.ts --headed
+pnpm dlx playwright test tests/e2e/36-feature-name.spec.ts --headed
 ```
 
 ### Run all E2E tests
 ```bash
-npm run e2e
+pnpm run e2e
 ```
 
 ## Technology Stack
@@ -74,7 +74,7 @@ npm run e2e
 - **Database**: D1 (SQLite)
 - **Templates**: HTML tagged templates
 - **Testing**: Playwright E2E tests
-- **Package Manager**: npm workspaces
+- **Package Manager**: pnpm workspaces
 
 ## Code Quality
 

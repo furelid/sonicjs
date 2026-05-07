@@ -16,7 +16,7 @@ Analysis of 211 TypeScript files reveals:
 
 ### Tier 0: External Dependencies (Peer Dependencies)
 
-These are npm packages that will be peer dependencies:
+These are pnpm packages that will be peer dependencies:
 
 ```typescript
 // Package dependencies

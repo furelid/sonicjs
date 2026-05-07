@@ -6,7 +6,7 @@
 
 ## Summary
 
-Successfully prepared the `@sonicjs-cms/core` package for publication to npm. All documentation, metadata, and verification steps are complete.
+Successfully prepared the `@sonicjs-cms/core` package for publication to pnpm. All documentation, metadata, and verification steps are complete.
 
 ## Completed Tasks
 
@@ -46,7 +46,7 @@ Verified MIT license exists in core package.
 
 ### 4. Package Verification ✅
 
-Ran `npm pack --dry-run` to verify contents:
+Ran `pnpm pack --dry-run` to verify contents:
 
 **Package Stats:**
 - **Name**: @sonicjs-cms/core
@@ -72,7 +72,7 @@ Created comprehensive publishing documentation:
 - Alpha/Beta/RC/Stable release workflows
 - Post-publish verification steps
 - Version strategy
-- npm tag management
+- pnpm tag management
 - Rollback procedures
 - GitHub Actions automation template
 - Security best practices
@@ -93,7 +93,7 @@ Created comprehensive publishing documentation:
 - [x] Correct version (2.0.0-alpha.1)
 - [x] Package name (@sonicjs-cms/core)
 - [x] License (MIT)
-- [x] Keywords for npm search
+- [x] Keywords for pnpm search
 - [x] Repository links
 - [x] Bug tracker URL
 - [x] Homepage URL
@@ -132,20 +132,20 @@ Created comprehensive publishing documentation:
 
 ## Ready for Publication
 
-The package is now ready to be published to npm with:
+The package is now ready to be published to pnpm with:
 
 ```bash
 cd packages/core
-npm publish --tag alpha --access public
+pnpm publish --tag alpha --access public
 ```
 
 ## Post-Publication Checklist
 
 Once published, perform these steps:
 
-1. **Verify on npm**
+1. **Verify on pnpm**
    ```bash
-   npm view @sonicjs-cms/core@alpha
+   pnpm view @sonicjs-cms/core@alpha
    ```
 
 2. **Create Git tag**
@@ -156,7 +156,7 @@ Once published, perform these steps:
 
 3. **Test installation**
    ```bash
-   npm install @sonicjs-cms/core@alpha
+   pnpm install @sonicjs-cms/core@alpha
    ```
 
 4. **Update starter template**
@@ -172,8 +172,8 @@ Once published, perform these steps:
 
 ### Immediate
 1. Decide on alpha publication timing
-2. Set up npm organization access
-3. Configure 2FA for npm account
+2. Set up pnpm organization access
+3. Configure 2FA for pnpm account
 
 ### Phase 6: Alpha Testing
 1. Publish alpha release
@@ -200,7 +200,7 @@ Once published, perform these steps:
 ✅ **Complete Core Package** - All features implemented and tested
 ✅ **Comprehensive Documentation** - README, CHANGELOG, publishing guide
 ✅ **Quality Verified** - Build, types, and package contents validated
-✅ **Ready for npm** - Prepared for alpha publication
+✅ **Ready for pnpm** - Prepared for alpha publication
 
 ## Statistics
 
@@ -214,7 +214,7 @@ Once published, perform these steps:
 ## Links
 
 - **Package**: `@sonicjs-cms/core`
-- **npm**: https://www.npmjs.com/package/@sonicjs-cms/core (after publication)
+- **pnpm**: https://www.pnpmjs.com/package/@sonicjs-cms/core (after publication)
 - **Repository**: https://github.com/sonicjs/sonicjs
 - **Documentation**: https://docs.sonicjs.com
 
@@ -222,6 +222,6 @@ Once published, perform these steps:
 
 **Phase Status**: ✅ COMPLETE
 **Next Phase**: 6 - Alpha Publication & Testing
-**Ready for**: npm publication
+**Ready for**: pnpm publication
 **Prepared By**: AI Assistant
 **Date**: 2025-10-20

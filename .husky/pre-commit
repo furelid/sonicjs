@@ -1,8 +1,5 @@
-echo "Running linting..."
-npm run lint --workspace=@sonicjs-cms/core
+echo "Running linting..." pnpm run oxlint --workspace=@sonicjs-cms/core
 
-echo "Running type checks..."
-npm run type-check
+echo "Running type checks..." pnpm run type-check
 
-echo "Running unit tests..."
-npm test
+echo "Running unit tests..." pnpm test

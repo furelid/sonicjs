@@ -15,11 +15,11 @@ This guide helps you migrate from SonicJS v1.x (monolithic architecture) to v2.0
 For new projects, use the `create-sonicjs` CLI tool:
 
 ```bash
-npx create-sonicjs my-project
+pnpm dlx create-sonicjs my-project
 cd my-project
-npm install
-npm run db:migrate
-npm run dev
+pnpm install
+pnpm run db:migrate
+pnpm run dev
 ```
 
 ### Path 2: Existing Projects
@@ -35,9 +35,9 @@ For existing SonicJS v1.x projects, follow the incremental migration strategy be
 | v1.x (Monolithic) | v2.0 (Core Package) |
 |-------------------|---------------------|
 | All code in one repository | Core extracted to `@sonicjs-cms/core` |
-| Manual updates required | `npm update` for core updates |
+| Manual updates required | `pnpm update` for core updates |
 | Mixed user/framework code | Clear separation |
-| Custom build process | Standard npm workflow |
+| Custom build process | Standard pnpm workflow |
 | No versioning | Semantic versioning |
 
 ### Package Structure
@@ -76,7 +76,7 @@ my-app/
 Add the core package to your project:
 
 ```bash
-npm install @sonicjs-cms/core@latest
+pnpm install @sonicjs-cms/core@latest
 ```
 
 ### Step 2: Update Entry Point
@@ -461,7 +461,7 @@ These will be removed in v3.0:
 ### 1. Verify Build
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 Should complete without errors.
@@ -469,7 +469,7 @@ Should complete without errors.
 ### 2. Run Migrations
 
 ```bash
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 Should apply all core migrations.
@@ -477,7 +477,7 @@ Should apply all core migrations.
 ### 3. Start Development Server
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Server should start on `http://localhost:8787`
@@ -491,7 +491,7 @@ Server should start on `http://localhost:8787`
 ### 5. Run Tests
 
 ```bash
-npm test
+pnpm test
 ```
 
 All tests should pass.
@@ -507,7 +507,7 @@ All tests should pass.
 **Solution**:
 ```bash
 rm -rf node_modules package-lock.json
-npm install
+pnpm install
 ```
 
 ### Issue 2: Type Errors
@@ -516,8 +516,8 @@ npm install
 
 **Solution**:
 ```bash
-npm install --save-dev @cloudflare/workers-types@latest
-npm install --save-dev typescript@latest
+pnpm install --save-dev @cloudflare/workers-types@latest
+pnpm install --save-dev typescript@latest
 ```
 
 ### Issue 3: Database Errors
@@ -526,7 +526,7 @@ npm install --save-dev typescript@latest
 
 **Solution**:
 ```bash
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 ### Issue 4: Route Not Found
@@ -559,7 +559,7 @@ If you need to rollback to v1.x:
 
 ```bash
 git checkout HEAD~1 package.json
-npm install
+pnpm install
 ```
 
 ### Step 2: Restore Source Files
@@ -571,7 +571,7 @@ git checkout HEAD~1 src/
 ### Step 3: Rebuild
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ---

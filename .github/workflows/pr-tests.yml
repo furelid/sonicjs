@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     # Use 'external' environment (requires approval) for fork PRs, 'internal' for same-repo PRs
     environment:
-      name: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name != github.repository && 'external' || 'internal' }}
+      name: ${{ github.event_name == 'pull_request_target' &&
+        github.event.pull_request.head.repo.full_name != github.repository &&
+        'external' || 'internal' }}
     steps:
       - name: Authorize
         run: |
@@ -34,13 +36,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           # For pull_request_target, we need to checkout the PR head
-          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.event_name == 'pull_request_target' &&
+            github.event.pull_request.head.sha || github.sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -80,17 +83,17 @@ jobs:
           echo "Creating fresh D1 database: $DB_NAME"
 
           # Check if database already exists
-          EXISTING_DB=$(npx wrangler d1 list --json | jq -r ".[] | select(.name == \"$DB_NAME\") | .uuid" 2>/dev/null || echo "")
+          EXISTING_DB=$(pnpm dlx wrangler d1 list --json | jq -r ".[] | select(.name == \"$DB_NAME\") | .uuid" 2>/dev/null || echo "")
 
           if [ -n "$EXISTING_DB" ]; then
             echo "Database $DB_NAME already exists with ID: $EXISTING_DB"
             echo "Deleting existing database to ensure fresh migrations..."
-            npx wrangler d1 delete "$DB_NAME" -y || true
+            pnpm dlx wrangler d1 delete "$DB_NAME" -y || true
             sleep 2
           fi
 
           # Create new database (always fresh)
-          CREATE_OUTPUT=$(npx wrangler d1 create "$DB_NAME" 2>&1)
+          CREATE_OUTPUT=$(pnpm dlx wrangler d1 create "$DB_NAME" 2>&1)
           echo "$CREATE_OUTPUT"
 
           # Extract database ID from creation output
@@ -98,7 +101,7 @@ jobs:
 
           if [ -z "$DB_ID" ]; then
             # Try alternative extraction method
-            DB_ID=$(npx wrangler d1 list --json | jq -r ".[] | select(.name == \"$DB_NAME\") | .uuid")
+            DB_ID=$(pnpm dlx wrangler d1 list --json | jq -r ".[] | select(.name == \"$DB_NAME\") | .uuid")
           fi
 
           if [ -z "$DB_ID" ]; then
@@ -125,7 +128,7 @@ jobs:
         run: |
           cd my-sonicjs-app
           echo "Applying migrations to database: ${{ steps.create-db.outputs.db_name }}"
-          npx wrangler d1 migrations apply ${{ steps.create-db.outputs.db_name }} --remote
+          pnpm dlx wrangler d1 migrations apply ${{ steps.create-db.outputs.db_name }} --remote
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -146,7 +149,7 @@ jobs:
           # Deploy and capture the URL (don't exit on error)
           set +e
           echo "Deploying to preview environment: sonicjs-pr-${SAFE_BRANCH}"
-          DEPLOY_OUTPUT=$(npx wrangler deploy --name "sonicjs-pr-${SAFE_BRANCH}" 2>&1)
+          DEPLOY_OUTPUT=$(pnpm dlx wrangler deploy --name "sonicjs-pr-${SAFE_BRANCH}" 2>&1)
           DEPLOY_EXIT_CODE=$?
           set -e
 
@@ -190,7 +193,7 @@ jobs:
 
       - name: Install Playwright browsers
         if: github.actor != 'dependabot[bot]'
-        run: npx playwright install --with-deps chromium
+        run: pnpm dlx playwright install --with-deps chromium
 
       - name: Run E2E tests against preview
         if: github.actor != 'dependabot[bot]'

@@ -19,11 +19,11 @@ Thank you for your interest in contributing to SonicJS!
    ```
 3. **Install dependencies:**
    ```bash
-   npm install
+   pnpm install
    ```
 4. **Start development:**
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 ## Before You Start
@@ -54,18 +54,18 @@ We appreciate every developer who wants to contribute. To ensure the best experi
 
 ```bash
 # Lint the core package
-npm run lint --workspace=@sonicjs-cms/core
+pnpm run lint --workspace=@sonicjs-cms/core
 
 # Auto-fix lint issues
-npm run lint:fix --workspace=@sonicjs-cms/core
+pnpm run lint:fix --workspace=@sonicjs-cms/core
 ```
 
 ## Pull Request Checklist
 
 Before submitting a PR:
 
-- [ ] All tests pass (`npm test`)
-- [ ] Linting passes (`npm run lint --workspace=@sonicjs-cms/core`)
+- [ ] All tests pass (`pnpm test`)
+- [ ] Linting passes (`pnpm run lint --workspace=@sonicjs-cms/core`)
 - [ ] Changes are documented if needed
 - [ ] PR description explains the changes
 - [ ] Related issue is referenced

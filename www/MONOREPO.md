@@ -23,11 +23,11 @@ sonicjs-ai/
 
 ```bash
 # From monorepo root
-npm run dev:www
+pnpm run dev:www
 
 # From this directory
 cd www
-npm run dev
+pnpm run dev
 ```
 
 The site will be available at http://localhost:3010
@@ -36,10 +36,10 @@ The site will be available at http://localhost:3010
 
 ```bash
 # From monorepo root
-npm run build:www
+pnpm run build:www
 
 # From this directory
-npm run build
+pnpm run build
 ```
 
 ### Installing Dependencies
@@ -48,10 +48,10 @@ Always install from the monorepo root to ensure workspace linking works correctl
 
 ```bash
 # From monorepo root
-npm install
+pnpm install
 
 # To add a new dependency to www
-npm install some-package --workspace=www
+pnpm install some-package --workspace=www
 ```
 
 ## Deployment
@@ -60,10 +60,10 @@ The docs site is deployed separately from the main application to Cloudflare Pag
 
 ```bash
 # From monorepo root
-npm run deploy:www
+pnpm run deploy:www
 
 # From this directory
-npm run deploy
+pnpm run deploy
 ```
 
 ## Integration with Core Package
@@ -73,7 +73,7 @@ While this docs site documents the `@sonicjs-cms/core` package, it doesn't direc
 If you need to reference types or code from core in the docs, you can install it as a dev dependency:
 
 ```bash
-npm install @sonicjs-cms/core --save-dev --workspace=www
+pnpm install @sonicjs-cms/core --save-dev --workspace=www
 ```
 
 ## Port Configuration
@@ -85,4 +85,4 @@ The docs site runs on port `3010` to avoid conflicts with other services:
 
 ## Version Sync
 
-The www package version (`2.0.1`) should generally match the core package version for consistency, though this isn't strictly required since www is private and not published to npm.
+The www package version (`2.0.1`) should generally match the core package version for consistency, though this isn't strictly required since www is private and not published to pnpm.

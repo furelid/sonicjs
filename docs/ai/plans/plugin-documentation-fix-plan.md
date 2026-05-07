@@ -95,9 +95,9 @@ Ensure www docs show:
 
 ### Step 6: Build and Test
 
-1. Run `npm run build` in packages/core
-2. Run `npm test` for unit tests
-3. Run `npm run e2e` for e2e tests
+1. Run `pnpm run build` in packages/core
+2. Run `pnpm test` for unit tests
+3. Run `pnpm run e2e` for e2e tests
 4. Verify no TypeScript errors
 
 ## Testing Strategy
@@ -107,8 +107,8 @@ Ensure www docs show:
 No new unit tests needed - PluginBuilder already has internal usage (EasyMDE plugin).
 
 Verification:
-- [ ] `npm test` passes
-- [ ] `npm run type-check` passes
+- [ ] `pnpm test` passes
+- [ ] `pnpm run type-check` passes
 - [ ] Build completes without errors
 
 ### Manual Verification

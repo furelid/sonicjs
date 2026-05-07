@@ -1,0 +1,45 @@
+{
+  "id": "multisite-tenant",
+  "name": "Multisite Tenant",
+  "version": "1.0.0",
+  "description": "Multisite plugin for SonicJS",
+  "author": "furpan",
+  "dependencies": [],
+  "routes": [
+    {
+      "path": "/api/multisite",
+      "method": "GET",
+      "handler": "getSettings",
+      "description": "Get multisite tenant settings (admin)"
+    },
+    {
+      "path": "/api/multisite",
+      "method": "POST",
+      "handler": "saveSettings",
+      "description": "Save multisite tenant settings (admin)"
+    }
+  ],
+  "license": "MIT",
+  "category": "demo",
+  "codeName": "multisite-tenant",
+  "iconEmoji": "👋",
+  "is_core": false,
+  "defaultSettings": {
+    "useAliases": false
+  },
+  "settings": {
+    "useAliases": {
+      "type": "boolean",
+      "default": false,
+      "label": "Use Aliases",
+      "description": "Whether to use aliases for multisite tenants"
+    }
+  },
+  "permissions": {},
+  "adminMenu": {
+    "label": "Multisite",
+    "icon": "hand-raised",
+    "path": "/admin/multisite",
+    "order": 40
+  }
+}

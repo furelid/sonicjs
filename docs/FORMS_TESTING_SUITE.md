@@ -197,35 +197,35 @@
 
 ```bash
 # From project root
-npm test                # Unit tests
-npm run e2e            # E2E tests (full suite)
-npm run e2e:smoke      # Quick smoke tests
+pnpm test                # Unit tests
+pnpm run e2e            # E2E tests (full suite)
+pnpm run e2e:smoke      # Quick smoke tests
 ```
 
 ### Run Specific Test Files
 
 ```bash
 # Unit tests
-npm test -- forms.test.ts
+pnpm test -- forms.test.ts
 
 # E2E tests
-npx playwright test 50-forms.spec.ts
+pnpm dlx playwright test 50-forms.spec.ts
 
 # With UI
-npx playwright test 50-forms.spec.ts --ui
+pnpm dlx playwright test 50-forms.spec.ts --ui
 ```
 
 ### Debug Tests
 
 ```bash
 # Debug unit test
-npm test -- forms.test.ts --inspect
+pnpm test -- forms.test.ts --inspect
 
 # Debug E2E test
-npx playwright test 50-forms.spec.ts --debug
+pnpm dlx playwright test 50-forms.spec.ts --debug
 
 # Show trace
-npx playwright show-trace trace.zip
+pnpm dlx playwright show-trace trace.zip
 ```
 
 ---
@@ -233,8 +233,8 @@ npx playwright show-trace trace.zip
 ## 📋 Pre-Launch Testing Checklist
 
 ### Automated Tests
-- [ ] All unit tests pass (`npm test`)
-- [ ] All E2E tests pass (`npm run e2e`)
+- [ ] All unit tests pass (`pnpm test`)
+- [ ] All E2E tests pass (`pnpm run e2e`)
 - [ ] No flaky tests
 - [ ] Test coverage > 80%
 - [ ] Tests run in CI/CD
@@ -353,7 +353,7 @@ npx playwright show-trace trace.zip
 
 1. **Run automated tests:**
    ```bash
-   npm test && npm run e2e
+   pnpm test && pnpm run e2e
    ```
 
 2. **Complete manual testing:**

@@ -35,14 +35,14 @@ The plugin will automatically install when you activate it through the admin int
 Alternatively, run the migration manually:
 ```bash
 # From my-sonicjs-app directory
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 ### 3. Activate the Plugin
 
 1. Start your SonicJS application:
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 2. Navigate to the admin dashboard at `http://localhost:8787/admin`
@@ -160,19 +160,19 @@ contact-form/
 
 ```bash
 # Run all tests
-npm run test
+pnpm run test
 
 # Run E2E tests
-npm run e2e
+pnpm run e2e
 
 # Run specific test file
-npx playwright test src/plugins/contact-form/test/contact.spec.ts
+pnpm dlx playwright test src/plugins/contact-form/test/contact.spec.ts
 ```
 
 ### Type Checking
 
 ```bash
-npm run type-check
+pnpm run type-check
 ```
 
 ## Customization

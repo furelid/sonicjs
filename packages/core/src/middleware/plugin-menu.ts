@@ -44,15 +44,14 @@ function renderMenuItem(item: { label: string; path: string; icon?: string }, cu
   const fallbackIcon = `<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`
   const resolvedIcon = resolveIcon(item.icon) || fallbackIcon
   return `
-    <span class="relative">
+    <span class="relative bb">
       ${isActive ? '<span class="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-cyan-500 dark:bg-cyan-400"></span>' : ''}
       <a
         href="${item.path}"
-        class="flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-sm/5 font-medium ${
-          isActive
-            ? 'text-zinc-950 dark:text-white'
-            : 'text-zinc-950 hover:bg-zinc-950/5 dark:text-white dark:hover:bg-white/5'
-        }"
+        class="flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-sm/5 font-medium ${isActive
+      ? 'text-zinc-950 dark:text-white'
+      : 'text-zinc-950 hover:bg-zinc-950/5 dark:text-white dark:hover:bg-white/5'
+    }"
         ${isActive ? 'data-current="true"' : ''}
       >
         <span class="shrink-0 ${isActive ? 'fill-zinc-950 dark:fill-white' : 'fill-zinc-500 dark:fill-zinc-400'}">

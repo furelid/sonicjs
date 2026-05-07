@@ -26,7 +26,7 @@ cd "$SCRIPT_DIR/.."
 
 # Check if database already exists
 echo "Checking for existing database..."
-EXISTING_DB=$(npx wrangler d1 list --json 2>/dev/null | jq -r ".[] | select(.name == \"$DB_NAME\") | .uuid" || echo "")
+EXISTING_DB=$(pnpm dlx wrangler d1 list --json 2>/dev/null | jq -r ".[] | select(.name == \"$DB_NAME\") | .uuid" || echo "")
 
 if [ -n "$EXISTING_DB" ]; then
   echo "Database $DB_NAME already exists with ID: $EXISTING_DB"
@@ -37,7 +37,7 @@ if [ -n "$EXISTING_DB" ]; then
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Deleting existing database..."
-    npx wrangler d1 delete "$DB_NAME" --skip-confirmation
+    pnpm dlx wrangler d1 delete "$DB_NAME" --skip-confirmation
     EXISTING_DB=""
   fi
 fi
@@ -45,7 +45,7 @@ fi
 if [ -z "$EXISTING_DB" ]; then
   # Create new database
   echo "Creating new D1 database: $DB_NAME"
-  CREATE_OUTPUT=$(npx wrangler d1 create "$DB_NAME" 2>&1)
+  CREATE_OUTPUT=$(pnpm dlx wrangler d1 create "$DB_NAME" 2>&1)
   echo "$CREATE_OUTPUT"
 
   # Extract database ID from creation output
@@ -53,7 +53,7 @@ if [ -z "$EXISTING_DB" ]; then
 
   if [ -z "$DB_ID" ]; then
     # Try alternative extraction method
-    DB_ID=$(npx wrangler d1 list --json | jq -r ".[] | select(.name == \"$DB_NAME\") | .uuid")
+    DB_ID=$(pnpm dlx wrangler d1 list --json | jq -r ".[] | select(.name == \"$DB_NAME\") | .uuid")
   fi
 fi
 
@@ -90,17 +90,17 @@ echo "Local database cleared."
 # Run migrations on remote
 echo ""
 echo "Running migrations on remote database..."
-echo "y" | npx wrangler d1 migrations apply "$DB_NAME" --remote
+echo "y" | pnpm dlx wrangler d1 migrations apply "$DB_NAME" --remote
 
 # Run migrations on local
 echo ""
 echo "Running migrations on local database..."
-echo "y" | npx wrangler d1 migrations apply "$DB_NAME" --local
+echo "y" | pnpm dlx wrangler d1 migrations apply "$DB_NAME" --local
 
 # Seed admin user
 echo ""
 echo "Seeding admin user..."
-npx tsx scripts/seed-admin.ts
+pnpm dlx tsx scripts/seed-admin.ts
 
 echo ""
 echo "=========================================="
@@ -111,4 +111,4 @@ echo "Both remote and local databases are ready."
 echo "Admin user: admin@sonicjs.com / sonicjs!"
 echo "=========================================="
 echo ""
-echo "You can now run: npm run dev"
+echo "You can now run: pnpm run dev"

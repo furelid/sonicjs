@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { execSync, spawn } from 'child_process';
-import { readFileSync, writeFileSync, existsSync, rmSync } from 'fs';
+import { execSync } from 'child_process';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
+import { dirname, join } from 'path';
 import { createInterface } from 'readline';
-import { join, dirname } from 'path';
 
 const colors = {
   reset: '\x1b[0m',
@@ -104,7 +104,7 @@ async function main() {
   log('Checking for existing database...', colors.yellow);
   let existingDbId = '';
   try {
-    const listOutput = execCommandOutput('npx wrangler d1 list --json 2>/dev/null');
+    const listOutput = execCommandOutput('pnpm dlx wrangler d1 list --json 2>/dev/null');
     if (listOutput) {
       const databases = JSON.parse(listOutput);
       const existing = databases.find((db) => db.name === dbName);
@@ -125,7 +125,7 @@ async function main() {
     if (answer === 'y' || answer === 'yes') {
       log('\nDeleting existing database...', colors.yellow);
       try {
-        execCommand(`npx wrangler d1 delete "${dbName}" --skip-confirmation`, { silent: true });
+        execCommand(`pnpm dlx wrangler d1 delete "${dbName}" --skip-confirmation`, { silent: true });
         existingDbId = '';
         dbId = '';
       } catch (error) {
@@ -139,7 +139,7 @@ async function main() {
     log(`\nCreating new D1 database: ${dbName}`, colors.cyan);
     let createOutput = '';
     try {
-      createOutput = execCommandOutput(`npx wrangler d1 create "${dbName}" 2>&1`);
+      createOutput = execCommandOutput(`pnpm dlx wrangler d1 create "${dbName}" 2>&1`);
       console.log(createOutput);
     } catch (error) {
       log(`Error creating database: ${error.message}`, colors.red);
@@ -155,7 +155,7 @@ async function main() {
     // If extraction failed, try listing databases
     if (!dbId) {
       try {
-        const listOutput = execCommandOutput('npx wrangler d1 list --json');
+        const listOutput = execCommandOutput('pnpm dlx wrangler d1 list --json');
         if (listOutput) {
           const databases = JSON.parse(listOutput);
           const created = databases.find((db) => db.name === dbName);
@@ -212,7 +212,7 @@ async function main() {
   // Run migrations on remote
   log('\nRunning migrations on remote database...', colors.cyan);
   try {
-    execCommand(`npx wrangler d1 migrations apply "${dbName}" --remote`);
+    execCommand(`pnpm dlx wrangler d1 migrations apply "${dbName}" --remote`);
   } catch (error) {
     log(`Warning: Remote migrations may have failed: ${error.message}`, colors.yellow);
   }
@@ -220,7 +220,7 @@ async function main() {
   // Run migrations on local
   log('\nRunning migrations on local database...', colors.cyan);
   try {
-    execCommand(`npx wrangler d1 migrations apply "${dbName}" --local`);
+    execCommand(`pnpm dlx wrangler d1 migrations apply "${dbName}" --local`);
   } catch (error) {
     log(`Warning: Local migrations may have failed: ${error.message}`, colors.yellow);
   }

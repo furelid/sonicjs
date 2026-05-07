@@ -29,7 +29,7 @@ packages/create-app/
 ### 2. CLI Features ✅
 
 **Interactive Mode:**
-- Project name validation with npm package name rules
+- Project name validation with pnpm package name rules
 - Template selection (starter template, with support for future templates)
 - Database name configuration
 - R2 bucket name configuration
@@ -70,7 +70,7 @@ packages/create-app/
 **Smart Defaults:**
 - Auto-generates database name from project name
 - Auto-generates bucket name from project name
-- Detects package manager (npm/yarn/pnpm)
+- Detects package manager (pnpm/yarn/pnpm)
 - Defaults to including example collection
 
 ### 4. Template Processing ✅
@@ -115,7 +115,7 @@ Installed and configured (48 packages):
   "ora": "^8.0.1",            // Spinners
   "execa": "^9.5.2",          // Command execution
   "fs-extra": "^11.2.0",      // File operations
-  "validate-npm-package-name": "^6.0.0"  // Name validation
+  "validate-pnpm-package-name": "^6.0.0"  // Name validation
 }
 ```
 
@@ -142,9 +142,9 @@ Verified:
 ✓ README.md
 ```
 
-**NPM Test Script:**
+**pnpm Test Script:**
 ```bash
-npm test  # Runs automated test suite
+pnpm test  # Runs automated test suite
 ```
 
 ### 8. Documentation ✅
@@ -165,13 +165,13 @@ npm test  # Runs automated test suite
 
 ```bash
 # Interactive mode (recommended)
-npx create-sonicjs-app
+pnpm dlx create-sonicjs-app
 
 # With project name
-npx create-sonicjs-app my-blog
+pnpm dlx create-sonicjs-app my-blog
 
 # Non-interactive mode
-npx create-sonicjs-app my-app \
+pnpm dlx create-sonicjs-app my-app \
   --template=starter \
   --database=my-app-db \
   --bucket=my-app-media \
@@ -181,7 +181,7 @@ npx create-sonicjs-app my-app \
   --skip-cloudflare
 
 # CI/CD mode
-npx create-sonicjs-app test-app \
+pnpm dlx create-sonicjs-app test-app \
   --template=starter \
   --database=test-db \
   --bucket=test-bucket \
@@ -246,14 +246,14 @@ import '../src/cli.js'
 - Updates bucket_name in wrangler.toml
 
 **`installDependencies(targetDir)`**
-- Detects package manager (npm/yarn/pnpm)
+- Detects package manager (pnpm/yarn/pnpm)
 - Runs appropriate install command
 - Suppresses verbose output
 
 **`detectPackageManager()`**
 - Checks for lock files in parent directories
 - Returns detected package manager
-- Defaults to npm
+- Defaults to pnpm
 
 **`initializeGit(targetDir)`**
 - Initializes git repository
@@ -296,7 +296,7 @@ import '../src/cli.js'
 }
 ```
 
-### Files Included in NPM Package
+### Files Included in pnpm Package
 
 The `files` array ensures these directories are included:
 - `bin/` - Executable entry point
@@ -322,23 +322,23 @@ The `files` array ensures these directories are included:
 
 3. **Test Installation**:
    ```bash
-   npm pack
+   pnpm pack
    # Creates create-sonicjs-app-2.0.0-alpha.1.tgz
 
    # Test in another directory
-   npx /path/to/create-sonicjs-app-2.0.0-alpha.1.tgz test-app
+   pnpm dlx /path/to/create-sonicjs-app-2.0.0-alpha.1.tgz test-app
    ```
 
 4. **Publish**:
    ```bash
-   npm publish --tag alpha --access public
+   pnpm publish --tag alpha --access public
    ```
 
 ### Post-Publishing Verification
 
 ```bash
 # Test published package
-npx create-sonicjs-app@alpha test-project
+pnpm dlx create-sonicjs-app@alpha test-project
 ```
 
 ## Success Metrics
@@ -373,7 +373,7 @@ npx create-sonicjs-app@alpha test-project
 ## Example Output
 
 ```bash
-$ npx create-sonicjs-app my-blog
+$ pnpm dlx create-sonicjs-app my-blog
 
 ✨ Create SonicJS App
    v2.0.0-alpha.1
@@ -405,10 +405,10 @@ Create Cloudflare resources:
   wrangler r2 bucket create my-blog-media
 
 Run migrations:
-  npm run db:migrate:local
+  pnpm run db:migrate:local
 
 Start development:
-  npm run dev
+  pnpm run dev
 
 Visit:
   http://localhost:8787/admin
@@ -442,9 +442,9 @@ Need help? Visit https://docs.sonicjs.com
 
 ### Ready for Publishing
 
-The `create-sonicjs-app` package is now **fully complete** and ready for npm publication alongside `@sonicjs-cms/core`.
+The `create-sonicjs-app` package is now **fully complete** and ready for pnpm publication alongside `@sonicjs-cms/core`.
 
-**Status**: ✅ Ready to publish to npm as `create-sonicjs-app@2.0.0-alpha.1`
+**Status**: ✅ Ready to publish to pnpm as `create-sonicjs-app@2.0.0-alpha.1`
 
 ## Files Modified/Created
 
@@ -471,4 +471,4 @@ The `create-sonicjs-app` CLI tool is a world-class developer experience that mat
 - **Documentation** - Comprehensive README with examples
 - **Testing** - Automated test suite for reliability
 
-This completes Phase 6 of the SonicJS Core to NPM migration project.
+This completes Phase 6 of the SonicJS Core to pnpm migration project.

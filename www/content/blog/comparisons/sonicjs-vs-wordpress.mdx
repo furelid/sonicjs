@@ -111,7 +111,7 @@ const cms = createSonicJS({
 })
 
 export default cms.app
-// Deploy with: npx wrangler deploy
+// Deploy with: pnpm dlx wrangler deploy
 ```
 
 The architectural punchline: WordPress assumes one (or a few) origin servers and uses a CDN for static assets. SonicJS *is* the CDN — your CMS runs in 300+ data centers, as close to your users as possible.
@@ -246,7 +246,7 @@ You'll want PHP 8.x, Composer, Node (for Gutenberg blocks), and likely WP-CLI. O
 
 **SonicJS:**
 ```bash
-npx create-sonicjs@latest my-cms
+pnpm dlx create-sonicjs@latest my-cms
 cd my-cms
 npm run dev
 ```
@@ -417,12 +417,12 @@ You're not picking a winner; you're picking the tool whose defaults match your p
 Ready to try edge-first content management?
 
 ```bash
-npx create-sonicjs@latest my-cms
+pnpm dlx create-sonicjs@latest my-cms
 cd my-cms
 npm run dev
 
 # When you're ready:
-npx wrangler deploy
+pnpm dlx wrangler deploy
 ```
 
 You'll have a typed, edge-deployed CMS in about five minutes — REST API, admin UI, [auth](/authentication), and [caching](/caching) all wired up.

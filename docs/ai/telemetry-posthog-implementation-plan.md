@@ -113,7 +113,7 @@ Implement privacy-respecting telemetry to track:
 
 ### Telemetry Notice
 
-Display during `npx create-sonicjs`:
+Display during `pnpm dlx create-sonicjs`:
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -176,7 +176,7 @@ Display during `npx create-sonicjs`:
 **Properties:**
 - OS (darwin/linux/win32)
 - Node version (major.minor)
-- Package manager (npm/yarn/pnpm/bun)
+- Package manager (pnpm/yarn/pnpm/bun)
 - Installation duration
 - Success/failure reason
 
@@ -230,7 +230,7 @@ Display during `npx create-sonicjs`:
   - timestamp
   - os: string
   - node_version: string
-  - package_manager: 'npm' | 'yarn' | 'pnpm' | 'bun'
+  - package_manager: 'pnpm' | 'yarn' | 'pnpm' | 'bun'
 
 - installation_completed
   - duration_ms: number
@@ -838,10 +838,10 @@ export async function trackInstallationFailed(error: Error, stage: string) {
 }
 
 function detectPackageManager(): string {
-  if (process.env.npm_config_user_agent?.includes('yarn')) return 'yarn'
-  if (process.env.npm_config_user_agent?.includes('pnpm')) return 'pnpm'
-  if (process.env.npm_config_user_agent?.includes('bun')) return 'bun'
-  return 'npm'
+  if (process.env.pnpm_config_user_agent?.includes('yarn')) return 'yarn'
+  if (process.env.pnpm_config_user_agent?.includes('pnpm')) return 'pnpm'
+  if (process.env.pnpm_config_user_agent?.includes('bun')) return 'bun'
+  return 'pnpm'
 }
 
 function sanitizeError(message: string): string {
@@ -964,7 +964,7 @@ describe('Create-SonicJS Telemetry', () => {
 describe('Telemetry E2E', () => {
   it('should complete installation with telemetry', async () => {
     // Run create-sonicjs with telemetry enabled
-    const { stdout } = await exec('npx create-sonicjs test-app')
+    const { stdout } = await exec('pnpm dlx create-sonicjs test-app')
 
     // Check telemetry notice shown
     expect(stdout).toContain('Anonymous Telemetry')
@@ -974,7 +974,7 @@ describe('Telemetry E2E', () => {
 
   it('should respect opt-out flag', async () => {
     // Run with SONICJS_TELEMETRY=false
-    const { stdout } = await exec('SONICJS_TELEMETRY=false npx create-sonicjs test-app')
+    const { stdout } = await exec('SONICJS_TELEMETRY=false pnpm dlx create-sonicjs test-app')
 
     // Verify no events sent
   })
@@ -1019,7 +1019,7 @@ describe('Telemetry E2E', () => {
 **Audience**: All users
 
 - [ ] Merge to main branch
-- [ ] Publish to npm
+- [ ] Publish to pnpm
 - [ ] Announce in documentation
 - [ ] Update website with telemetry policy
 - [ ] Monitor PostHog dashboards
@@ -1047,7 +1047,7 @@ describe('Telemetry E2E', () => {
 - **Installation Duration**: Average time to complete
 - **Platform Distribution**: macOS vs Linux vs Windows
 - **Node Version Distribution**: Which versions are most common
-- **Package Manager Usage**: npm vs yarn vs pnpm vs bun
+- **Package Manager Usage**: pnpm vs yarn vs pnpm vs bun
 
 ### Adoption Metrics
 - **DAI** (Daily Active Installations): Unique installations per day
@@ -1127,7 +1127,7 @@ We collect anonymous, aggregated data about how SonicJS is used:
 
 - ✅ Installation success/failure rates
 - ✅ Operating system and Node.js version
-- ✅ Package manager used (npm/yarn/pnpm/bun)
+- ✅ Package manager used (pnpm/yarn/pnpm/bun)
 - ✅ Feature usage (which admin pages are visited)
 - ✅ Error rates and types
 - ✅ Plugin activation rates
@@ -1154,13 +1154,13 @@ export SONICJS_TELEMETRY=false
 ### Method 2: During Installation
 Use the `--no-telemetry` flag:
 ```bash
-npx create-sonicjs my-app --no-telemetry
+pnpm dlx create-sonicjs my-app --no-telemetry
 ```
 
 ### Method 3: After Installation
 Run the disable command:
 ```bash
-npx sonicjs telemetry disable
+pnpm dlx sonicjs telemetry disable
 ```
 
 ## Privacy Policy
@@ -1199,7 +1199,7 @@ https://github.com/lane711/sonicjs/tree/main/packages/core/src/services/telemetr
 
 4. **Week 4: Production Launch**
    - [ ] Merge to main
-   - [ ] Publish to npm
+   - [ ] Publish to pnpm
    - [ ] Monitor dashboards
    - [ ] Document learnings
 
@@ -1217,8 +1217,8 @@ https://github.com/lane711/sonicjs/tree/main/packages/core/src/services/telemetr
 
 ## Questions & Answers
 
-### Q: Why not just use npm download stats?
-**A**: NPM stats only show downloads, not actual usage or success rates. We need to know:
+### Q: Why not just use pnpm download stats?
+**A**: pnpm stats only show downloads, not actual usage or success rates. We need to know:
 - Did the installation succeed?
 - Are people actually using SonicJS?
 - Which features are popular?
@@ -1228,7 +1228,7 @@ https://github.com/lane711/sonicjs/tree/main/packages/core/src/services/telemetr
 **A**: Yes! Three ways:
 1. Environment variable: `SONICJS_TELEMETRY=false`
 2. CLI flag: `--no-telemetry`
-3. Command: `npx sonicjs telemetry disable`
+3. Command: `pnpm dlx sonicjs telemetry disable`
 
 ### Q: What if users are concerned about privacy?
 **A**: We're transparent:

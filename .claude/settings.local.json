@@ -3,10 +3,10 @@
     "allow": [
       "Bash(source:*)",
       "Bash(git:*)",
-      "Bash(npm:*)",
-      "Bash(npx:*)",
-      "Bash(yarn:*)",
       "Bash(pnpm:*)",
+      "Bash(pnpm dlx:*)",
+      "Bash(yarn:*)",
+      "Bash(ppnpm:*)",
       "Bash(bun:*)",
       "Bash(pip:*)",
       "Bash(python:*)",
@@ -113,11 +113,11 @@
       "Bash(brew:*)",
       "Bash(export:*)",
       "Bash(createdb:*)",
-      "Bash(npm run:*)",
+      "Bash(pnpm run:*)",
       "Bash(cat:*)",
-      "Bash(npx prisma migrate dev:*)",
+      "Bash(pnpm dlx prisma migrate dev:*)",
       "Bash(tsx prisma/seed-large.ts:*)",
-      "Bash(npx tsx:*)",
+      "Bash(pnpm dlx tsx:*)",
       "Bash(ls:*)",
       "Bash(curl:*)",
       "Bash(pkill:*)",
@@ -128,10 +128,10 @@
       "Bash(wrangler d1 execute:*)",
       "WebFetch(domain:demo.sonicjs.com)",
       "Bash(rm:*)",
-      "Bash(timeout 10s npm run dev)",
-      "Bash(timeout 180s npm run test:e2e)",
-      "Bash(timeout 30s npm run test -- src/tests/utils.template-renderer.test.ts)",
-      "Bash(timeout 30 npx vitest --run --coverage --reporter=verbose 2 > /dev/null)",
+      "Bash(timeout 10s pnpm run dev)",
+      "Bash(timeout 180s pnpm run test:e2e)",
+      "Bash(timeout 30s pnpm run test -- src/tests/utils.template-renderer.test.ts)",
+      "Bash(timeout 30 pnpm dlx vitest --run --coverage --reporter=verbose 2 > /dev/null)",
       "Bash(wrangler d1 migrations list:*)",
       "Bash(wrangler d1 migrations apply:*)"
     ],
@@ -139,8 +139,10 @@
   },
   "mcpServers": {
     "memory": {
-      "command": "npx",
-      "args": ["@modelcontextprotocol/server-memory"],
+      "command": "pnpm dlx",
+      "args": [
+        "@modelcontextprotocol/server-memory"
+      ],
       "env": {
         "MEMORY_PERSIST": "true",
         "MEMORY_PATH": "./docs/ai/claude-memory.json"

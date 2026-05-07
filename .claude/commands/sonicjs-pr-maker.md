@@ -262,7 +262,7 @@ gh pr checkout <PR_NUMBER>
 
 1. **Run tests locally to reproduce:**
    ```bash
-   npm test -- --run <failed-test-file>
+   pnpm test -- --run <failed-test-file>
    ```
 
 2. **Identify the issue:**
@@ -274,14 +274,14 @@ gh pr checkout <PR_NUMBER>
 
 4. **Verify fix:**
    ```bash
-   npm test
+   pnpm test
    ```
 
 #### Fixing Build Failures
 
 1. **Run build locally:**
    ```bash
-   npm run build:core
+   pnpm run build:core
    ```
 
 2. **Fix TypeScript errors:**
@@ -291,8 +291,8 @@ gh pr checkout <PR_NUMBER>
 
 3. **Verify fix:**
    ```bash
-   npm run type-check
-   npm run build:core
+   pnpm run type-check
+   pnpm run build:core
    ```
 
 #### Fixing E2E Test Failures
@@ -352,12 +352,12 @@ gh pr checkout <PR_NUMBER>
 
 4. **Run E2E locally against preview (if possible):**
    ```bash
-   BASE_URL=<preview-url> npm run e2e -- <failed-test>
+   BASE_URL=<preview-url> pnpm run e2e -- <failed-test>
    ```
 
    Or run against local dev:
    ```bash
-   npm run e2e -- <failed-test>
+   pnpm run e2e -- <failed-test>
    ```
 
 ### Step 7: Commit Fixes
@@ -450,7 +450,7 @@ The agent will:
 
 | Error | Solution |
 |-------|----------|
-| `Cannot find module` | Check imports, run `npm install` |
+| `Cannot find module` | Check imports, run `pnpm install` |
 | `Timeout - Async callback` | Increase timeout or fix async handling |
 | `Mock not called` | Verify mock setup in beforeEach |
 

@@ -1,4 +1,4 @@
-# NPM Package Publishing Verification
+# pnpm Package Publishing Verification
 
 **Package**: @sonicjs-cms/core
 **Version**: 2.0.2
@@ -78,7 +78,7 @@ The package provides 8 subpath exports for tree-shaking and modular imports:
 {
   "scripts": {
     "build": "tsup",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   }
 }
 ```
@@ -124,7 +124,7 @@ The package provides 8 subpath exports for tree-shaking and modular imports:
 ]
 ```
 
-**SEO Impact**: Package is discoverable on npm for relevant searches.
+**SEO Impact**: Package is discoverable on pnpm for relevant searches.
 
 ### Publish Configuration ✅
 
@@ -132,14 +132,14 @@ The package provides 8 subpath exports for tree-shaking and modular imports:
 {
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.pnpmjs.org/"
   }
 }
 ```
 
 **Verification**:
 - ✅ Public access for open-source package
-- ✅ Registry points to official npm
+- ✅ Registry points to official pnpm
 
 ### Engine Requirements ✅
 
@@ -160,7 +160,7 @@ The package provides 8 subpath exports for tree-shaking and modular imports:
 ### Build Output
 
 ```bash
-cd packages/core && npm run build
+cd packages/core && pnpm run build
 ```
 
 **Results**:
@@ -227,65 +227,65 @@ ls -la packages/core/dist/*.d.ts
 1. **Version Bump** ✅
    ```bash
    cd packages/core
-   npm version patch|minor|major
+   pnpm version patch|minor|major
    ```
    Current version: 2.0.2
 
 2. **Build** ✅
    ```bash
-   npm run build
+   pnpm run build
    ```
    Automatically runs on `prepublishOnly` hook
 
 3. **Type Check** ✅
    ```bash
-   npm run type-check
+   pnpm run type-check
    ```
 
 4. **Tests** ✅
    ```bash
-   npm test
+   pnpm test
    ```
 
 5. **Verify Package Contents** ✅
    ```bash
-   npm pack --dry-run
+   pnpm pack --dry-run
    ```
    Shows what will be published
 
 ### Publishing Commands
 
-#### Publish to npm (Public)
+#### Publish to pnpm (Public)
 
 ```bash
 cd packages/core
-npm publish
+pnpm publish
 ```
 
 #### Publish Beta/Alpha Version
 
 ```bash
-npm publish --tag beta
-npm publish --tag alpha
+pnpm publish --tag beta
+pnpm publish --tag alpha
 ```
 
 #### Publish Specific Version
 
 ```bash
-npm version 2.0.3
-npm publish
+pnpm version 2.0.3
+pnpm publish
 ```
 
 ### Post-Publish Verification
 
-1. **Check npm Registry** ✅
+1. **Check pnpm Registry** ✅
    ```bash
-   npm view @sonicjs-cms/core
+   pnpm view @sonicjs-cms/core
    ```
 
 2. **Install in Test Project** ✅
    ```bash
-   npm install @sonicjs-cms/core@latest
+   pnpm install @sonicjs-cms/core@latest
    ```
 
 3. **Verify Exports** ✅
@@ -303,12 +303,12 @@ npm publish
 
 ---
 
-## npm Package Information
+## pnpm Package Information
 
 ### View Current Published Version
 
 ```bash
-npm view @sonicjs-cms/core version
+pnpm view @sonicjs-cms/core version
 ```
 
 **Output**: `2.0.2`
@@ -316,13 +316,13 @@ npm view @sonicjs-cms/core version
 ### View All Versions
 
 ```bash
-npm view @sonicjs-cms/core versions
+pnpm view @sonicjs-cms/core versions
 ```
 
 ### View Full Package Info
 
 ```bash
-npm view @sonicjs-cms/core
+pnpm view @sonicjs-cms/core
 ```
 
 **Expected Output**:
@@ -335,7 +335,7 @@ https://github.com/sonicjs/sonicjs/tree/main/packages/core
 keywords: cms, headless-cms, cloudflare, workers, edge, typescript, hono, content-management, api, sonicjs
 
 dist
-.tarball: https://registry.npmjs.org/@sonicjs-cms/core/-/core-2.0.2.tgz
+.tarball: https://registry.pnpmjs.org/@sonicjs-cms/core/-/core-2.0.2.tgz
 .shasum: [hash]
 .integrity: [integrity]
 .unpackedSize: ~1.2 MB
@@ -360,28 +360,28 @@ latest: 2.0.2
 ### Install Latest Version
 
 ```bash
-npm install @sonicjs-cms/core@latest
+pnpm install @sonicjs-cms/core@latest
 ```
 
 ### Install Specific Version
 
 ```bash
-npm install @sonicjs-cms/core@2.0.2
+pnpm install @sonicjs-cms/core@2.0.2
 ```
 
 ### Install from Git (Development)
 
 ```bash
-npm install git+https://github.com/sonicjs/sonicjs.git#main
+pnpm install git+https://github.com/sonicjs/sonicjs.git#main
 ```
 
 ### Install Local Package (Testing)
 
 ```bash
 cd packages/core
-npm pack
+pnpm pack
 cd ../test-app
-npm install ../core/sonicjs-cms-core-2.0.2.tgz
+pnpm install ../core/sonicjs-cms-core-2.0.2.tgz
 ```
 
 ---
@@ -408,15 +408,15 @@ npm install ../core/sonicjs-cms-core-2.0.2.tgz
 
 ### Issue 3: Peer Dependency Warnings
 
-**Problem**: `npm WARN @sonicjs-cms/core@2.0.2 requires a peer of hono@^4.0.0`
+**Problem**: `pnpm WARN @sonicjs-cms/core@2.0.2 requires a peer of hono@^4.0.0`
 
 **Solution**:
-- Install peer dependencies: `npm install hono drizzle-orm zod @cloudflare/workers-types`
-- Or use `npm install --legacy-peer-deps` to skip warnings
+- Install peer dependencies: `pnpm install hono drizzle-orm zod @cloudflare/workers-types`
+- Or use `pnpm install --legacy-peer-deps` to skip warnings
 
 ### Issue 4: Build Fails During Install
 
-**Problem**: `prepublishOnly` script fails during `npm install`
+**Problem**: `prepublishOnly` script fails during `pnpm install`
 
 **Solution**:
 - Remove `prepublishOnly` hook from package.json
@@ -476,7 +476,7 @@ npm install ../core/sonicjs-cms-core-2.0.2.tgz
 - Media handling
 
 ### v2.0.0
-- Major architectural change to npm package
+- Major architectural change to pnpm package
 - Separation from monolith
 - Plugin system implementation
 - Cloudflare Workers optimization
@@ -489,10 +489,10 @@ npm install ../core/sonicjs-cms-core-2.0.2.tgz
 
 1. **Development** → Work on features in `main` branch
 2. **Testing** → Run tests and type checks
-3. **Version Bump** → `npm version patch/minor/major`
+3. **Version Bump** → `pnpm version patch/minor/major`
 4. **Build** → Automatic via `prepublishOnly`
-5. **Publish** → `npm publish` (or `npm publish --tag beta`)
-6. **Tag** → Git tag created automatically by `npm version`
+5. **Publish** → `pnpm publish` (or `pnpm publish --tag beta`)
+6. **Tag** → Git tag created automatically by `pnpm version`
 7. **Push** → `git push && git push --tags`
 8. **Verify** → Install in test project
 9. **Announce** → Update changelog, docs, Discord
@@ -503,7 +503,7 @@ Consider setting up CI/CD for automated publishing:
 
 ```yaml
 # .github/workflows/publish.yml
-name: Publish to npm
+name: Publish to pnpm
 on:
   push:
     tags:
@@ -516,12 +516,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish
+          registry-url: 'https://registry.pnpmjs.org'
+      - run: pnpm ci
+      - run: pnpm run build
+      - run: pnpm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.pnpm_TOKEN }}
 ```
 
 ---
@@ -533,13 +533,13 @@ jobs:
 1. **No Secrets**: Package contains no API keys or secrets
 2. **Dependencies**: All dependencies are from trusted sources
 3. **Code Scanning**: GitHub security alerts enabled
-4. **npm Audit**: Run `npm audit` before publishing
-5. **Two-Factor Auth**: Enable 2FA on npm account
+4. **pnpm Audit**: Run `pnpm audit` before publishing
+5. **Two-Factor Auth**: Enable 2FA on pnpm account
 
 ### Publishing Security
 
-1. **Use npm token**: Store in CI/CD secrets
-2. **Verify package**: Review with `npm pack --dry-run`
+1. **Use pnpm token**: Store in CI/CD secrets
+2. **Verify package**: Review with `pnpm pack --dry-run`
 3. **Sign commits**: Use GPG signing for releases
 4. **Monitor downloads**: Check for unusual activity
 
@@ -555,11 +555,11 @@ jobs:
 - **Discord**: https://discord.gg/sonicjs
 - **Email**: support@sonicjs.com
 
-### npm Resources
+### pnpm Resources
 
-- **Package Page**: https://www.npmjs.com/package/@sonicjs-cms/core
-- **npm Docs**: https://docs.npmjs.com/
-- **Publishing Guide**: https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry
+- **Package Page**: https://www.pnpmjs.com/package/@sonicjs-cms/core
+- **pnpm Docs**: https://docs.pnpmjs.com/
+- **Publishing Guide**: https://docs.pnpmjs.com/packages-and-modules/contributing-packages-to-the-registry
 
 ---
 
@@ -580,12 +580,12 @@ jobs:
 
 ---
 
-**Conclusion**: The `@sonicjs-cms/core` package is properly configured and ready for publishing to npm. All verification checks pass, and the package follows npm best practices.
+**Conclusion**: The `@sonicjs-cms/core` package is properly configured and ready for publishing to pnpm. All verification checks pass, and the package follows pnpm best practices.
 
 **Next Steps**:
 1. Continue development on new features
 2. Publish updates as needed (patch/minor/major)
-3. Monitor npm downloads and issues
+3. Monitor pnpm downloads and issues
 4. Consider automated CI/CD publishing
 
 **Last Verified**: October 24, 2025

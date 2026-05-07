@@ -199,7 +199,7 @@ To apply the new configurable fields:
 
 ```bash
 # Run the migration
-npm run migrate
+pnpm run migrate
 
 # Or manually run:
 wrangler d1 execute DB --file=migrations/017_auth_configurable_fields.sql

@@ -9,25 +9,25 @@ Routes are being migrated incrementally, one-by-one, with the following approach
 1. **Select a route** - Choose the simplest route with fewest dependencies
 2. **Create dependencies** - Build any missing services/utilities needed by the route
 3. **Refactor the route** - Remove monolith-specific dependencies
-4. **Test locally** - Use `npm link` to test without publishing
+4. **Test locally** - Use `pnpm link` to test without publishing
 5. **Verify** - Ensure route works correctly in a test application
 6. **Document** - Record the migration for future reference
 
 ## Local Testing Setup
 
-The core package is set up for local testing using npm link:
+The core package is set up for local testing using pnpm link:
 
 ```bash
 # In packages/core
-npm run build
-npm link
+pnpm run build
+pnpm link
 
 # In test project
-npm link @sonicjs-cms/core
+pnpm link @sonicjs-cms/core
 
 # After making changes to core
 cd packages/core
-npm run build
+pnpm run build
 # Changes are immediately available in linked projects!
 ```
 
@@ -634,7 +634,7 @@ After analyzing all remaining route files, here's what we found:
 
 ## Next Steps
 
-1. ✅ Set up npm link for local testing
+1. ✅ Set up pnpm link for local testing
 2. ✅ Migrate first route (API Content CRUD)
 3. ✅ Migrate second route (API Routes)
 4. ✅ Analyze all remaining routes for complexity
@@ -664,5 +664,5 @@ After analyzing all remaining route files, here's what we found:
 
 ## Resources
 
-- [npm link documentation](https://docs.npmjs.com/cli/v8/commands/npm-link)
+- [pnpm link documentation](https://docs.pnpmjs.com/cli/v8/commands/pnpm-link)
 - [SonicJS Documentation](https://docs.sonicjs.com)

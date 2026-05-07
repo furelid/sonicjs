@@ -12,18 +12,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### 🔧 Fixes
 
 - **Package Name**: Confirmed use of `@sonicjs-cms` organization (not `@sonicjs`)
-- **Version Bump**: Updated to alpha.2 for npm publication
+- **Version Bump**: Updated to alpha.2 for pnpm publication
 
 ### 📝 Notes
 
 - No functional changes from alpha.1
-- This release corrects the npm organization scope
+- This release corrects the pnpm organization scope
 
 ## [2.0.0-alpha.1] - 2025-10-20
 
 ### 🎉 Initial Alpha Release
 
-First alpha release of `@sonicjs-cms/core` as a standalone npm package.
+First alpha release of `@sonicjs-cms/core` as a standalone pnpm package.
 
 ### ✨ Features
 
@@ -163,7 +163,7 @@ Built by the SonicJS team with contributions from the community.
 ## Links
 
 - [GitHub Repository](https://github.com/sonicjs/sonicjs)
-- [npm Package](https://www.npmjs.com/package/@sonicjs-cms/core)
+- [pnpm Package](https://www.pnpmjs.com/package/@sonicjs-cms/core)
 - [Documentation](https://docs.sonicjs.com)
 - [Discord Community](https://discord.gg/sonicjs)
 

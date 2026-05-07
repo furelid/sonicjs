@@ -1,11 +1,11 @@
 # Publishing Guide: @sonicjs-cms/core
 
-This guide covers publishing the `@sonicjs-cms/core` package to npm.
+This guide covers publishing the `@sonicjs-cms/core` package to pnpm.
 
 ## Prerequisites
 
-1. **npm Account**: You need an npm account with publish access to the `@sonicjs-cms` scope
-2. **npm Login**: Run `npm login` and authenticate
+1. **pnpm Account**: You need an pnpm account with publish access to the `@sonicjs-cms` scope
+2. **pnpm Login**: Run `pnpm login` and authenticate
 3. **Clean Build**: Ensure the package builds without errors
 4. **Version Bump**: Update version in `package.json` and `src/index.ts`
 5. **Changelog**: Update `CHANGELOG.md` with release notes
@@ -29,17 +29,17 @@ cd packages/core
 
 # Clean build
 rm -rf dist/
-npm run build
+pnpm run build
 
 # Verify no errors
-npm run type-check
+pnpm run type-check
 ```
 
 ### 3. Test Package Contents
 
 ```bash
 # Dry run to see what will be published
-npm pack --dry-run
+pnpm pack --dry-run
 
 # Verify includes:
 # ✓ dist/ folder (all compiled files)
@@ -54,12 +54,12 @@ npm pack --dry-run
 
 ```bash
 # Pack the package
-npm pack
+pnpm pack
 
 # In a test project
 cd /tmp/test-sonicjs
-npm init -y
-npm install /path/to/sonicjs-cms-core-2.0.0-alpha.1.tgz
+pnpm init -y
+pnpm install /path/to/sonicjs-cms-core-2.0.0-alpha.1.tgz
 
 # Verify it installs correctly
 ```
@@ -74,10 +74,10 @@ For alpha releases (experimental):
 cd packages/core
 
 # Publish with alpha tag
-npm publish --tag alpha --access public
+pnpm publish --tag alpha --access public
 
 # Users install with:
-# npm install @sonicjs-cms/core@alpha
+# pnpm install @sonicjs-cms/core@alpha
 ```
 
 ### Beta Release
@@ -92,13 +92,13 @@ cd packages/core
 # Edit src/index.ts: export const VERSION = '2.0.0-beta.1'
 
 # Build
-npm run build
+pnpm run build
 
 # Publish with beta tag
-npm publish --tag beta --access public
+pnpm publish --tag beta --access public
 
 # Users install with:
-# npm install @sonicjs-cms/core@beta
+# pnpm install @sonicjs-cms/core@beta
 ```
 
 ### Release Candidate
@@ -113,8 +113,8 @@ cd packages/core
 # src/index.ts: VERSION = '2.0.0-rc.1'
 
 # Build and publish
-npm run build
-npm publish --tag rc --access public
+pnpm run build
+pnpm publish --tag rc --access public
 ```
 
 ### Stable Release
@@ -131,13 +131,13 @@ cd packages/core
 # Update CHANGELOG.md with final release notes
 
 # Build
-npm run build
+pnpm run build
 
 # Publish as latest (default tag)
-npm publish --access public
+pnpm publish --access public
 
 # Users install with:
-# npm install @sonicjs-cms/core
+# pnpm install @sonicjs-cms/core
 ```
 
 ## Post-Publish
@@ -145,14 +145,14 @@ npm publish --access public
 ### 1. Verify Publication
 
 ```bash
-# Check npm
-npm view @sonicjs-cms/core
+# Check pnpm
+pnpm view @sonicjs-cms/core
 
 # Check specific version
-npm view @sonicjs-cms/core@2.0.0-alpha.1
+pnpm view @sonicjs-cms/core@2.0.0-alpha.1
 
 # Verify dist-tags
-npm dist-tag ls @sonicjs-cms/core
+pnpm dist-tag ls @sonicjs-cms/core
 ```
 
 ### 2. Create Git Tag
@@ -172,7 +172,7 @@ gh release create v2.0.0-alpha.1 \
 
 ```bash
 # Fresh install
-npm install @sonicjs-cms/core@alpha
+pnpm install @sonicjs-cms/core@alpha
 
 # Verify imports work
 node -e "const { createSonicJSApp } = require('@sonicjs-cms/core'); console.log('OK')"
@@ -199,7 +199,7 @@ node -e "const { createSonicJSApp } = require('@sonicjs-cms/core'); console.log(
 - `2.0.0` → `2.1.0` (minor) → `2.2.0`
 - `2.0.0` → `3.0.0` (major)
 
-### npm Tags
+### pnpm Tags
 
 - `alpha` - Experimental, breaking changes expected
 - `beta` - Feature complete, API stabilizing
@@ -212,13 +212,13 @@ If you need to unpublish or deprecate:
 
 ```bash
 # Deprecate a version (preferred over unpublish)
-npm deprecate @sonicjs-cms/core@2.0.0-alpha.1 "Use 2.0.0-alpha.2 instead"
+pnpm deprecate @sonicjs-cms/core@2.0.0-alpha.1 "Use 2.0.0-alpha.2 instead"
 
 # Unpublish (only within 72 hours, use with caution)
-npm unpublish @sonicjs-cms/core@2.0.0-alpha.1
+pnpm unpublish @sonicjs-cms/core@2.0.0-alpha.1
 
 # Update latest tag if needed
-npm dist-tag add @sonicjs-cms/core@2.0.0-alpha.2 alpha
+pnpm dist-tag add @sonicjs-cms/core@2.0.0-alpha.2 alpha
 ```
 
 ## Automation (Future)
@@ -227,7 +227,7 @@ npm dist-tag add @sonicjs-cms/core@2.0.0-alpha.2 alpha
 
 ```yaml
 # .github/workflows/publish.yml
-name: Publish to npm
+name: Publish to pnpm
 
 on:
   release:
@@ -241,34 +241,34 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: 'https://registry.pnpmjs.org'
 
       - name: Install dependencies
         run: |
           cd packages/core
-          npm install
+          pnpm install
 
       - name: Build
         run: |
           cd packages/core
-          npm run build
+          pnpm run build
 
       - name: Publish
         run: |
           cd packages/core
-          npm publish --access public
+          pnpm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.pnpm_TOKEN }}
 ```
 
 ## Security
 
-### npm 2FA
+### pnpm 2FA
 
 Enable two-factor authentication:
 
 ```bash
-npm profile enable-2fa auth-and-writes
+pnpm profile enable-2fa auth-and-writes
 ```
 
 ### Access Tokens
@@ -276,8 +276,8 @@ npm profile enable-2fa auth-and-writes
 Use automation tokens for CI/CD:
 
 ```bash
-# Create token at: https://www.npmjs.com/settings/YOUR_USERNAME/tokens
-# Add as secret: NPM_TOKEN in GitHub
+# Create token at: https://www.pnpmjs.com/settings/YOUR_USERNAME/tokens
+# Add as secret: pnpm_TOKEN in GitHub
 ```
 
 ## Troubleshooting
@@ -285,11 +285,11 @@ Use automation tokens for CI/CD:
 ### "Package name too similar to existing package"
 
 - Ensure `@sonicjs-cms/core` scope is available
-- Contact npm support if needed
+- Contact pnpm support if needed
 
 ### "403 Forbidden"
 
-- Check you're logged in: `npm whoami`
+- Check you're logged in: `pnpm whoami`
 - Verify you have publish access to the scope
 - Check 2FA is set up correctly
 
@@ -302,7 +302,7 @@ Use automation tokens for CI/CD:
 
 - Check `package.json` `files` field
 - Ensure `dist/` is built and included
-- Use `npm pack --dry-run` to verify
+- Use `pnpm pack --dry-run` to verify
 
 ## Package Size
 
@@ -320,7 +320,7 @@ Includes:
 
 ## Support
 
-- **npm Issues**: https://npm.community/
+- **pnpm Issues**: https://pnpm.community/
 - **SonicJS Issues**: https://github.com/sonicjs/sonicjs/issues
 - **Publishing Questions**: Ask in Discord
 

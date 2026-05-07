@@ -5,7 +5,7 @@ This guide covers deploying the SonicJS documentation site to Cloudflare.
 ## Prerequisites
 
 - Node.js 20.0.0 or higher
-- npm 10.0.0 or higher
+- pnpm 10.0.0 or higher
 - Cloudflare account
 - Wrangler CLI (installed as dev dependency)
 
@@ -24,20 +24,20 @@ This guide covers deploying the SonicJS documentation site to Cloudflare.
 ### 1. Install Dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Authenticate with Cloudflare
 
 ```bash
-npx wrangler login
+pnpm dlx wrangler login
 ```
 
 ### 3. Attempt Deploy (Will Fail)
 
 ```bash
 # This currently fails with OpenNext bundling errors
-npm run deploy
+pnpm run deploy
 ```
 
 **Known Issue:**
@@ -53,9 +53,9 @@ Error: Could not resolve "./node-polyfill-crypto"
 
 | Command | Description | Status |
 |---------|-------------|--------|
-| `npm run preview` | Build and preview locally before deploying | ✅ Works |
-| `npm run deploy` | Build and deploy to Cloudflare Workers | ❌ Fails (OpenNext issue) |
-| `npm run upload` | Alias for deploy command | ❌ Fails (OpenNext issue) |
+| `pnpm run preview` | Build and preview locally before deploying | ✅ Works |
+| `pnpm run deploy` | Build and deploy to Cloudflare Workers | ❌ Fails (OpenNext issue) |
+| `pnpm run upload` | Alias for deploy command | ❌ Fails (OpenNext issue) |
 
 ## Configuration Files
 
@@ -105,7 +105,7 @@ If you want to attempt Cloudflare Workers deployment:
 
 **Build command**:
 ```bash
-npx @opennextjs/cloudflare build
+pnpm dlx @opennextjs/cloudflare build
 ```
 
 **Build output directory**:
@@ -140,7 +140,7 @@ This means Cloudflare has a saved build command with `next export`.
 1. Go to your Cloudflare Pages project
 2. Click **Settings** → **Builds & deployments**
 3. Find **Build command** and click **Edit**
-4. Change to: `npx @opennextjs/cloudflare build`
+4. Change to: `pnpm dlx @opennextjs/cloudflare build`
 5. Change **Build output directory** to: `.open-next`
 6. Save and retry deployment
 
@@ -151,7 +151,7 @@ For deploying to Vercel instead:
 ### 1. Install Vercel CLI
 
 ```bash
-npm i -g vercel
+pnpm i -g vercel
 ```
 
 ### 2. Deploy
@@ -166,19 +166,19 @@ Follow the prompts to complete deployment.
 
 ### Development
 ```bash
-npm run dev
+pnpm run dev
 # Site runs at http://localhost:3010
 ```
 
 ### Preview (Cloudflare)
 ```bash
-npm run preview
+pnpm run preview
 # Builds and runs local preview
 ```
 
 ### Production
 ```bash
-npm run deploy
+pnpm run deploy
 # Deploys to Cloudflare Workers
 ```
 
@@ -230,18 +230,18 @@ node --version  # Should show v20.x.x
 
 ```bash
 # ✅ Correct
-npm run build
-npm run deploy
+pnpm run build
+pnpm run deploy
 
 # ❌ Wrong
-npm run build && npm run export
+pnpm run build && pnpm run export
 ```
 
 ### Cloudflare Build Settings
 
 If deploying via Cloudflare Dashboard, ensure:
 
-**Build command**: `npm run build` (NOT `npx next build && npx next export`)
+**Build command**: `pnpm run build` (NOT `pnpm dlx next build && pnpm dlx next export`)
 
 **Build output**: `.next`
 
@@ -253,7 +253,7 @@ If you encounter memory issues during build:
 
 ```bash
 # Increase Node.js memory
-NODE_OPTIONS=--max-old-space-size=4096 npm run build
+NODE_OPTIONS=--max-old-space-size=4096 pnpm run build
 ```
 
 Add to package.json:
@@ -342,16 +342,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
       - name: Deploy to Cloudflare
-        run: npm run deploy
+        run: pnpm run deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 ```

@@ -252,16 +252,16 @@ const mockKV = {
 
 ```bash
 # Run all tests with coverage
-npm run test:cov
+pnpm run test:cov
 
 # Run specific test file
-npx vitest run src/plugins/cache/tests/cache.test.ts
+pnpm dlx vitest run src/plugins/cache/tests/cache.test.ts
 
 # Run with verbose output
-npx vitest run --reporter=verbose
+pnpm dlx vitest run --reporter=verbose
 
 # Generate HTML coverage report
-npm run test:cov && open packages/core/coverage/index.html
+pnpm run test:cov && open packages/core/coverage/index.html
 ```
 
 ## Approval

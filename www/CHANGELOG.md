@@ -162,7 +162,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.1] - 2025-10-23
 
 ### Added
-- Published core package v2.0.1 to npm
+- Published core package v2.0.1 to pnpm
 - WIP notices to non-functional settings tabs
 - Real-time metrics endpoint for analytics chart
 - Admin dashboard route
@@ -188,20 +188,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Wrangler warnings and seedAdmin scope
 - Cloudflare resource creation error handling
-- Template path resolution for npm installed package
+- Template path resolution for pnpm installed package
 - Missing API routes (apiContentCrudRoutes, adminApiRoutes, apiSystemRoutes)
 
 ## [2.0.0-beta] - 2025-10-22
 
 ### Added
-- Beta releases for testing npm package distribution
+- Beta releases for testing pnpm package distribution
 - Auto-copy migrations from core package
 - Dynamic version management utilities
 
 ## [2.0.0-alpha] - 2025-10-17
 
 ### Added
-- Core package npm migration
+- Core package pnpm migration
 - Phase 1: Extract core functionality
 - Phase 2: Add middleware, plugins, and services
 - Phase 3: Complete migration with templates
@@ -381,7 +381,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History Summary
 
-- **2.0.x** (2025): Modern cloud-native CMS with npm package distribution
+- **2.0.x** (2025): Modern cloud-native CMS with pnpm package distribution
 - **1.0.x** (2025): Stable release with E2E testing and comprehensive features
 - **0.6.0** (2025): Media management and bulk operations
 - **0.5.x** (2025): Dashboard analytics and activity logging

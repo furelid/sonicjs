@@ -70,7 +70,7 @@ If you don't already have a SonicJS instance running, let's set one up quickly.
 
 ```bash
 # Create a new SonicJS application
-npx create-sonicjs my-cms
+pnpm dlx create-sonicjs my-cms
 
 # Navigate to your project
 cd my-cms
@@ -933,7 +933,7 @@ Deploy to Cloudflare Pages:
 npm run build
 
 # Deploy via Wrangler
-npx wrangler pages deploy ./dist
+pnpm dlx wrangler pages deploy ./dist
 ```
 
 Or connect your Git repository to Cloudflare Pages for automatic deployments.
@@ -972,7 +972,7 @@ For SSG sites, content is fetched at build time. To update:
 ```bash
 # Rebuild and redeploy
 npm run build
-npx wrangler pages deploy ./dist
+pnpm dlx wrangler pages deploy ./dist
 ```
 
 For SSR sites, check the cache headers and consider reducing TTL:

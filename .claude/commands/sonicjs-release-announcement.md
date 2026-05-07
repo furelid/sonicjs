@@ -84,7 +84,7 @@ Create a `.release-content.json` file in the project root with this structure:
     "hashtags": ["SonicJS", "CloudflareWorkers", "HeadlessCMS", "OpenSource"],
     "thread": [
       "✨ What's new:\n\n1. Feature one\n2. Feature two\n3. Feature three",
-      "📦 Get started:\nnpx create-sonicjs@latest my-app\n\nSonicJS is 6x faster than Node/Express and deploys globally on Cloudflare Workers.",
+      "📦 Get started:\npnpm dlx create-sonicjs@latest my-app\n\nSonicJS is 6x faster than Node/Express and deploys globally on Cloudflare Workers.",
       "⭐ Love SonicJS? Star us on GitHub!\n\nhttps://github.com/lane711/sonicjs\n\nYour support helps us keep improving!"
     ]
   },
@@ -106,7 +106,7 @@ Check if `.release-content.json` exists. If not, generate it first using Workflo
 ### Step 2: Dry Run (Recommended)
 
 ```bash
-npm run release:announce:dry
+pnpm run release:announce:dry
 ```
 
 Review the output to ensure content looks correct.
@@ -114,7 +114,7 @@ Review the output to ensure content looks correct.
 ### Step 3: Post Announcement
 
 ```bash
-npm run release:announce
+pnpm run release:announce
 ```
 
 This will:
@@ -133,17 +133,17 @@ After posting, verify:
 
 ### Discord Only
 ```bash
-npm run release:announce -- --skip-twitter --skip-www
+pnpm run release:announce -- --skip-twitter --skip-www
 ```
 
 ### Twitter Only
 ```bash
-npm run release:announce -- --skip-discord --skip-www
+pnpm run release:announce -- --skip-discord --skip-www
 ```
 
 ### Website Only
 ```bash
-npm run release:announce -- --skip-discord --skip-twitter
+pnpm run release:announce -- --skip-discord --skip-twitter
 ```
 
 ## Workflow 4: Manual Discord Notification
@@ -151,7 +151,7 @@ npm run release:announce -- --skip-discord --skip-twitter
 For quick Discord notifications without full release:
 
 ```bash
-npm run notify:discord
+pnpm run notify:discord
 ```
 
 Or send a custom message:
@@ -181,7 +181,7 @@ node scripts/notify-discord.js "Custom message here"
     "thread": [
       "✨ What's new in v2.4.0:\n\n1. 🔄 Real-time GraphQL subscriptions\n2. ⚡ 50% faster admin dashboard\n3. 📦 Bulk operations API\n4. 🔷 Better TypeScript support",
       "Real-time subscriptions let you build live dashboards, collaborative apps, and instant notifications - all running on the edge!\n\nPowered by Cloudflare Durable Objects.",
-      "📦 Get started today:\nnpx create-sonicjs@latest my-app\n\nOr upgrade:\nnpm install @sonicjs-cms/core@latest",
+      "📦 Get started today:\npnpm dlx create-sonicjs@latest my-app\n\nOr upgrade:\npnpm install @sonicjs-cms/core@latest",
       "⭐ If SonicJS is useful for your projects, please star us on GitHub!\n\nhttps://github.com/lane711/sonicjs\n\nYour support helps us build more awesome features!"
     ]
   }
@@ -206,7 +206,7 @@ node scripts/notify-discord.js "Custom message here"
     "hashtags": ["SonicJS", "OpenSource", "BugFix"],
     "thread": [
       "🔧 Fixes in v2.3.13:\n\n• Collection form field editing\n• Database migration edge cases\n• API error handling improvements",
-      "📦 Upgrade now:\nnpm install @sonicjs-cms/core@2.3.13\n\nOr start fresh:\nnpx create-sonicjs@latest my-app"
+      "📦 Upgrade now:\npnpm install @sonicjs-cms/core@2.3.13\n\nOr start fresh:\npnpm dlx create-sonicjs@latest my-app"
     ]
   }
 }

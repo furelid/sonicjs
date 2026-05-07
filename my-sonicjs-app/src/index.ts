@@ -4,16 +4,17 @@
  * Entry point for your SonicJS headless CMS application
  */
 
-import { Hono } from 'hono'
-import { createSonicJSApp, registerCollections } from '@sonicjs-cms/core'
 import type { SonicJSConfig } from '@sonicjs-cms/core'
+import { createSonicJSApp, registerCollections } from '@sonicjs-cms/core'
+import { Hono } from 'hono'
 
 // Import custom collections
 import blogPostsCollection from './collections/blog-posts.collection'
-import pageBlocksCollection from './collections/page-blocks.collection'
 import contactMessagesCollection from './collections/contact-messages.collection'
+import pageBlocksCollection from './collections/page-blocks.collection'
 
 // Import plugins (manual mounting until auto-loading is implemented)
+// import { multisitePlugin } from './plugins'
 import contactFormPlugin from './plugins/contact-form/index'
 
 // Register all custom collections
@@ -30,9 +31,9 @@ const config: SonicJSConfig = {
   },
   plugins: {
     directory: './src/plugins',
-    autoLoad: false,  // Set to true to auto-load custom plugins
+    autoLoad: true,  // Set to true to auto-load custom plugins
     disableAll: false,  // Enable plugins
-    enabled: ['email', 'contact-form']  // Enable specific plugins
+    enabled: ['contact-form']  // Enable specific plugins
   }
 }
 
@@ -46,9 +47,18 @@ const app = new Hono()
 // Mount plugin routes
 if (contactFormPlugin.routes) {
   for (const route of contactFormPlugin.routes) {
+    console.log(`[CF] Mounting plugin route: ${route.path}`)
     app.route(route.path, route.handler)
   }
 }
+
+// // Mount multisite tenant plugin routes
+// if (multisitePlugin.routes) {
+//   for (const route of multisitePlugin.routes) {
+//     console.log(`[MT] Mounting plugin route: ${route.path}`)
+//     app.route(route.path, route.handler)
+//   }
+// }
 
 // Mount core app last (catch-all)
 app.route('/', coreApp)

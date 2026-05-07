@@ -915,11 +915,11 @@ touch packages/core/migrations/027_add_feature.sql
 
 # Step 3: Regenerate the migrations bundle
 cd packages/core
-npm run generate:migrations
-# This runs automatically during: npm run build
+pnpm run generate:migrations
+# This runs automatically during: pnpm run build
 
 # Step 4: Rebuild the package
-npm run build
+pnpm run build
 
 # Step 5: Apply to your test database
 cd my-sonicjs-app
@@ -932,10 +932,10 @@ wrangler d1 migrations apply DB --local
 
 ```bash
 # Local development (uses local D1 database)
-npm run db:migrate
+pnpm run db:migrate
 
 # Production
-npm run db:migrate:prod
+pnpm run db:migrate:prod
 
 # Using wrangler directly
 wrangler d1 migrations apply DB --local
@@ -1106,7 +1106,7 @@ export async function syncCollection(db: D1Database, config: CollectionConfig): 
 
 ```bash
 # Sync collections from config files
-npm run sync-collections
+pnpm run sync-collections
 ```
 
 ---
@@ -2025,7 +2025,7 @@ SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = 'content';
 
 ```bash
 # Regenerate Drizzle types after schema changes
-npm run db:generate
+pnpm run db:generate
 
 # Verify TypeScript compilation
 tsc --noEmit

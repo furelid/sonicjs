@@ -5,6 +5,6 @@
  * They will be automatically discovered and loaded by SonicJS.
  */
 
-export { default as contactFormPlugin } from './contact-form/index'
-export { default as qrGeneratorPlugin } from './qr-generator/index'
+export { default as contactFormPlugin } from './contact-form/index';
+// export { default as multisitePlugin } from './multisite-tenant/index'
 

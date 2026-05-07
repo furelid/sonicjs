@@ -237,7 +237,7 @@ export const HOOKS = {
 - TypeScript knowledge
 - Understanding of Hono.js framework
 - Familiarity with SonicJS architecture
-- Node.js and npm installed
+- Node.js and pnpm installed
 
 ### Plugin Directory Structure
 

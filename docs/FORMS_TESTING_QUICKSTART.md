@@ -8,23 +8,23 @@
 
 ```bash
 # Run everything
-npm test && npm run e2e
+pnpm test && pnpm run e2e
 
 # Just unit tests
-npm test
+pnpm test
 
 # Just E2E tests
-npm run e2e
+pnpm run e2e
 
 # Forms tests specifically
-npm test -- forms.test.ts
-npx playwright test 50-forms.spec.ts
+pnpm test -- forms.test.ts
+pnpm dlx playwright test 50-forms.spec.ts
 
 # With UI (interactive)
-npx playwright test 50-forms.spec.ts --ui
+pnpm dlx playwright test 50-forms.spec.ts --ui
 
 # Debug mode
-npx playwright test 50-forms.spec.ts --debug
+pnpm dlx playwright test 50-forms.spec.ts --debug
 ```
 
 ---
@@ -56,13 +56,13 @@ See `/docs/FORMS_TESTING_SCENARIOS.md` for step-by-step testing guide.
 
 1. **Start dev server:**
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 2. **Setup database:**
    ```bash
    cd my-sonicjs-app
-   npm run setup:db
+   pnpm run setup:db
    cd ..
    ```
 
@@ -110,7 +110,7 @@ Tests:      45 passed (45)
 ## 🐛 Common Issues
 
 ### Issue: "Form not found" in tests
-**Fix:** Ensure database is set up with `npm run setup:db`
+**Fix:** Ensure database is set up with `pnpm run setup:db`
 
 ### Issue: "Builder not loading"
 **Fix:** Increase timeout in test (Form.io takes 10-15 seconds to load)
@@ -127,8 +127,8 @@ Tests:      45 passed (45)
 
 Before launch, verify:
 
-- [ ] `npm test` - All unit tests pass
-- [ ] `npm run e2e` - All E2E tests pass
+- [ ] `pnpm test` - All unit tests pass
+- [ ] `pnpm run e2e` - All E2E tests pass
 - [ ] Manual testing complete (25/25 scenarios)
 - [ ] Tested in Chrome, Firefox, Safari
 - [ ] Tested on mobile
@@ -157,4 +157,4 @@ Before launch, verify:
 
 ---
 
-**Ready to test? Run `npm test && npm run e2e` now!** 🚀
+**Ready to test? Run `pnpm test && pnpm run e2e` now!** 🚀

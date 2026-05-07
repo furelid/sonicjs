@@ -14,8 +14,8 @@
     "type-check": "tsc --noEmit",
     "test": "vitest --run",
     "test:watch": "vitest",
-    "update": "npm install @sonicjs-cms/core@latest --save",
-    "update:beta": "npm install @sonicjs-cms/core@beta --save"
+    "update": "pnpm install @sonicjs-cms/core@latest --save",
+    "update:beta": "pnpm install @sonicjs-cms/core@beta --save"
   },
   "dependencies": {},
   "devDependencies": {

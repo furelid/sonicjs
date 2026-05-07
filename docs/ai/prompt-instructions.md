@@ -12,8 +12,8 @@
 1. **Understand First**: Read existing code patterns and project structure
 2. **Plan with Todos**: Use TodoWrite to break down complex tasks
 3. **Follow Conventions**: Match existing code style and patterns
-4. **Test Changes**: Run `npm test` for unit tests, `npm run test:e2e` for E2E
-5. **Build Verification**: Run `npm run build` to ensure TypeScript compilation
+4. **Test Changes**: Run `pnpm test` for unit tests, `pnpm run test:e2e` for E2E
+5. **Build Verification**: Run `pnpm run build` to ensure TypeScript compilation
 6. **Keep it Simple**: Make minimal, targeted changes
 
 ## Key Project Patterns
@@ -25,12 +25,12 @@
 - **Validation**: Zod schemas in `/src/schemas/`
 
 ## Common Commands
-- `npm run dev` - Start development server
-- `npm test` - Run unit tests
-- `npm run test:e2e` - Run E2E tests
-- `npm run build` - Build and validate TypeScript
-- `npm run db:generate` - Generate database migrations
-- `npm run db:migrate` - Apply migrations locally
+- `pnpm run dev` - Start development server
+- `pnpm test` - Run unit tests
+- `pnpm run test:e2e` - Run E2E tests
+- `pnpm run build` - Build and validate TypeScript
+- `pnpm run db:generate` - Generate database migrations
+- `pnpm run db:migrate` - Apply migrations locally
 
 ## Best Practices
 - Always use TypeScript with strict typing

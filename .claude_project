@@ -18,9 +18,9 @@ This is a **monorepo** with the following structure:
 
 ### Test Application
 - **Location**: `my-sonicjs-app/`
-- **Purpose**: Test installation created with `npx create-sonicjs`
+- **Purpose**: Test installation created with `pnpm dlx create-sonicjs`
 - **Used for**: Testing the published npm package in a real-world scenario
-- **Created via**: `npx create-sonicjs@latest my-sonicjs-app`
+- **Created via**: `pnpm dlx create-sonicjs@latest my-sonicjs-app`
 - **Note**: This is a gitignored test folder, can be safely deleted and recreated
 
 ### Other Packages

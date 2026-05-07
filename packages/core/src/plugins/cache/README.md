@@ -340,7 +340,7 @@ You may want to disable the cache plugin if:
 ### Running Tests
 
 ```bash
-npm run test -- src/plugins/cache/tests
+pnpm run test -- src/plugins/cache/tests
 ```
 
 ### Adding Custom Cache Configs

@@ -161,27 +161,27 @@
 
 ### Run All Tests
 ```bash
-npm run e2e
+pnpm run e2e
 ```
 
 ### Run Only Forms Tests
 ```bash
-npm run e2e tests/e2e/50-forms.spec.ts
+pnpm run e2e tests/e2e/50-forms.spec.ts
 ```
 
 ### Run Only Turnstile Tests
 ```bash
-npm run e2e tests/e2e/51-turnstile-integration.spec.ts
+pnpm run e2e tests/e2e/51-turnstile-integration.spec.ts
 ```
 
 ### Run Specific Test Suite
 ```bash
-npm run e2e --grep "Turnstile Plugin Configuration"
+pnpm run e2e --grep "Turnstile Plugin Configuration"
 ```
 
 ### Run in UI Mode (for debugging)
 ```bash
-npm run e2e:ui
+pnpm run e2e:ui
 ```
 
 ---
@@ -189,9 +189,9 @@ npm run e2e:ui
 ## 📋 Test Configuration
 
 ### Prerequisites
-- Playwright installed: `npx playwright install`
-- Dev server running: `npm run dev`
-- Database migrated: `npm run db:migrate`
+- Playwright installed: `pnpm dlx playwright install`
+- Dev server running: `pnpm run dev`
+- Database migrated: `pnpm run db:migrate`
 - Admin user exists (created automatically in tests)
 
 ### Test Environment

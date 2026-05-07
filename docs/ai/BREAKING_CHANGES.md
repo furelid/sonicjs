@@ -300,7 +300,7 @@ export default app
 
 1. **Install core package**:
    ```bash
-   npm install @sonicjs-cms/core@1.0.0-alpha.1
+   pnpm install @sonicjs-cms/core@1.0.0-alpha.1
    ```
 
 2. **Create config object**:
@@ -322,8 +322,8 @@ export default app
 
 5. **Test thoroughly**:
    ```bash
-   npm run dev
-   npm run test
+   pnpm run dev
+   pnpm run test
    ```
 
 ### Backward Compatibility Option
@@ -582,19 +582,19 @@ export class MigrationService {
 
 ### Phase 2: Package Installation (Day 1)
 ```bash
-npm install @sonicjs-cms/core@1.0.0-alpha.1
+pnpm install @sonicjs-cms/core@1.0.0-alpha.1
 ```
 
 ### Phase 3: Automated Fixes (Day 1)
 ```bash
 # Run codemod for import paths
-npx @sonicjs/migrate --from=current --to=1.0.0
+pnpm dlx @sonicjs/migrate --from=current --to=1.0.0
 
 # Verify changes
 git diff
 
 # Test
-npm run test
+pnpm run test
 ```
 
 ### Phase 4: Manual Fixes (Day 2)
@@ -606,32 +606,32 @@ npm run test
 ### Phase 5: Migration Runner (Day 2)
 ```bash
 # Run database migrations
-npm run db:migrate
+pnpm run db:migrate
 
 # Verify all migrations applied
-npm run db:status
+pnpm run db:status
 ```
 
 ### Phase 6: Testing (Day 2-3)
 ```bash
 # Unit tests
-npm run test
+pnpm run test
 
 # E2E tests
-npm run test:e2e
+pnpm run test:e2e
 
 # Manual testing
-npm run dev
+pnpm run dev
 ```
 
 ### Phase 7: Deployment (Day 3)
 ```bash
 # Deploy to preview
-npm run deploy:preview
+pnpm run deploy:preview
 
 # Test preview
 # Deploy to production
-npm run deploy:production
+pnpm run deploy:production
 ```
 
 ## Migration Tools
@@ -639,23 +639,23 @@ npm run deploy:production
 ### 1. CLI Migration Tool
 
 ```bash
-npx @sonicjs/migrate --from=current --to=1.0.0
+pnpm dlx @sonicjs/migrate --from=current --to=1.0.0
 
 # Interactive mode
-npx @sonicjs/migrate --interactive
+pnpm dlx @sonicjs/migrate --interactive
 
 # Dry run (show changes without applying)
-npx @sonicjs/migrate --dry-run
+pnpm dlx @sonicjs/migrate --dry-run
 
 # Specific migration
-npx @sonicjs/migrate --fix=import-paths
+pnpm dlx @sonicjs/migrate --fix=import-paths
 ```
 
 ### 2. Validation Tool
 
 ```bash
 # Validate project structure
-npx @sonicjs/validate
+pnpm dlx @sonicjs/validate
 
 # Output:
 # ✓ Core package installed (@sonicjs-cms/core@1.0.0)
@@ -672,7 +672,7 @@ npx @sonicjs/validate
 
 ```bash
 # Check if your code is compatible with new version
-npx @sonicjs/compat-check
+pnpm dlx @sonicjs/compat-check
 
 # Output:
 # Checking compatibility with @sonicjs-cms/core@1.0.0...
@@ -697,13 +697,13 @@ If migration fails:
 git checkout HEAD package.json package-lock.json
 
 # Reinstall dependencies
-npm install
+pnpm install
 
 # Restore source files
 git checkout HEAD src/
 
 # Restart
-npm run dev
+pnpm run dev
 ```
 
 ### 2. Database Rollback

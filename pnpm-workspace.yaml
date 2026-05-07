@@ -1,0 +1,10 @@
+packages:
+  - "packages/*"
+  - "www"
+  - "my-sonicjs-app"
+
+# hoist: true
+shamefullyHoist: true
+useNodeVersion: 24.14.0
+nodeVersion: 24.14.0
+packageManagerStrict: true

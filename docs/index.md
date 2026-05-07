@@ -49,7 +49,7 @@ RESTful APIs with OpenAPI documentation. Integrate with any frontend framework o
 ```bash
 git clone https://github.com/lane711/sonicjs-ai.git
 cd sonicjs-ai
-npm install && npm run dev
+pnpm install && pnpm run dev
 # Your CMS is running on localhost:3000
 ```
 

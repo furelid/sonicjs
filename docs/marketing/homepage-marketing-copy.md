@@ -47,9 +47,9 @@ Hot reload, TypeScript support, intelligent debugging, and tools that actually m
 ## Get Started in 30 Seconds
 
 ```bash
-npx create-app my-project
+pnpm dlx create-app my-project
 cd my-project
-npm run dev
+pnpm run dev
 # Your app is running on localhost:3000
 ```
 

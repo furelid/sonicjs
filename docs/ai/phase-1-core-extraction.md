@@ -7,7 +7,7 @@
 
 ## Overview
 
-Phase 1 focuses on preparation and foundation work for extracting SonicJS core into an npm package. No code migration happens yet - this phase is about understanding what we have and planning the extraction.
+Phase 1 focuses on preparation and foundation work for extracting SonicJS core into an pnpm package. No code migration happens yet - this phase is about understanding what we have and planning the extraction.
 
 ## Objectives
 
@@ -85,7 +85,7 @@ sonicjs/
 │   │   ├── tsconfig.json
 │   │   ├── tsup.config.ts       # Build config
 │   │   └── README.md
-│   └── create-sonicjs/          # npx create-sonicjs-app (future)
+│   └── create-sonicjs/          # pnpm dlx create-sonicjs-app (future)
 ├── examples/
 │   └── basic/                   # Example user project
 ├── package.json                 # Root workspace config
@@ -94,7 +94,7 @@ sonicjs/
 
 **Steps**:
 1. Create `packages/core` directory
-2. Set up npm workspaces in root package.json
+2. Set up pnpm workspaces in root package.json
 3. Copy package.json to packages/core
 4. Configure TypeScript for monorepo
 

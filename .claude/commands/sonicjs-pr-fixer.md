@@ -75,9 +75,9 @@ git log --oneline -<N> --format="%h %an <%ae> - %s"
 
 #### Step 7: Run Tests & Fix Issues
 ```bash
-npm run type-check
-npm test
-npm run e2e
+pnpm run type-check
+pnpm test
+pnpm run e2e
 ```
 
 If tests fail:
@@ -200,8 +200,8 @@ gh pr checkout <PR_NUMBER>
 
 #### Step 2: Analyze Issues
 ```bash
-npm run type-check
-npm test
+pnpm run type-check
+pnpm test
 ```
 
 Report any failures to user.

@@ -1,10 +1,10 @@
 # Type-check failures in `@sonicjs-cms/core`
 
 ## Summary
-`npm run type-check` currently fails in the core workspace. The compiler reports 30+ errors across plugins, admin routes, and template helpers, so CI never reaches the build/test steps. This blocks any typed release of the CMS packages because `tsc --noEmit` is part of the publish pipeline.
+`pnpm run type-check` currently fails in the core workspace. The compiler reports 30+ errors across plugins, admin routes, and template helpers, so CI never reaches the build/test steps. This blocks any typed release of the CMS packages because `tsc --noEmit` is part of the publish pipeline.
 
 ## Reproduction
-1. Run `npm run type-check` at the repo root (the script delegates to `@sonicjs-cms/core`).
+1. Run `pnpm run type-check` at the repo root (the script delegates to `@sonicjs-cms/core`).
 2. TypeScript exits with code 2. The same behavior reproduces inside `packages/core`.
 
 ## Current progress
@@ -22,7 +22,7 @@
 - **Validation gaps**: Zod parsing in `src/routes/auth.ts` produces `unknown` because its schema types are not inferred. Template helpers such as `admin-content-list` use implicit `any` parameters and undefined interfaces (e.g., `FilterBarData`).
 - **Telemetry utilities** (`src/utils/telemetry-id.ts`): `context.projectName` is optional but dereferenced without narrowing, so TypeScript reports `Object is possibly 'undefined'`.
 
-See the `npm run type-check` output in this workspace run (timestamped Feb 25, 2025) for the full 33-error log.
+See the `pnpm run type-check` output in this workspace run (timestamped Feb 25, 2025) for the full 33-error log.
 
 ## Next steps
 1. **Stabilize plugin/config schemas** – update the Zod builders so helper functions always receive the required arguments or provide defaults.

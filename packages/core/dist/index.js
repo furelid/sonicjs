@@ -1,21 +1,21 @@
-import { getCustomData, renderConfirmationDialog, getConfirmationDialogScript, api_default, api_media_default, api_system_default, admin_api_default, router, adminCollectionsRoutes, adminFormsRoutes, adminSettingsRoutes, public_forms_default, router2, admin_content_default, adminMediaRoutes, userProfilesPlugin, adminPluginRoutes, adminLogsRoutes, userRoutes, auth_default, test_cleanup_default } from './chunk-M2PKQJ6J.js';
-export { ROUTES_INFO, admin_api_default as adminApiRoutes, adminCheckboxRoutes, admin_code_examples_default as adminCodeExamplesRoutes, adminCollectionsRoutes, admin_content_default as adminContentRoutes, router as adminDashboardRoutes, adminDesignRoutes, adminLogsRoutes, adminMediaRoutes, adminPluginRoutes, adminSettingsRoutes, admin_testimonials_default as adminTestimonialsRoutes, userRoutes as adminUsersRoutes, api_content_crud_default as apiContentCrudRoutes, api_media_default as apiMediaRoutes, api_default as apiRoutes, api_system_default as apiSystemRoutes, auth_default as authRoutes, createUserProfilesPlugin, defineUserProfile, getUserProfileConfig, userProfilesPlugin } from './chunk-M2PKQJ6J.js';
-import { SettingsService, setAppInstance, schema_exports } from './chunk-GQEIPW3L.js';
-export { Logger, apiTokens, collections, content, contentVersions, getLogger, initLogger, insertCollectionSchema, insertContentSchema, insertLogConfigSchema, insertMediaSchema, insertPluginActivityLogSchema, insertPluginAssetSchema, insertPluginHookSchema, insertPluginRouteSchema, insertPluginSchema, insertSystemLogSchema, insertUserSchema, insertWorkflowHistorySchema, logConfig, media, pluginActivityLog, pluginAssets, pluginHooks, pluginRoutes, plugins, selectCollectionSchema, selectContentSchema, selectLogConfigSchema, selectMediaSchema, selectPluginActivityLogSchema, selectPluginAssetSchema, selectPluginHookSchema, selectPluginRouteSchema, selectPluginSchema, selectSystemLogSchema, selectUserSchema, selectWorkflowHistorySchema, systemLogs, users, workflowHistory } from './chunk-GQEIPW3L.js';
-import { requireAuth, getJwtExpirySecondsFromDb, AuthManager, metricsMiddleware, bootstrapMiddleware, securityHeadersMiddleware, csrfProtection, requireRole } from './chunk-5QK3FXKX.js';
-export { AuthManager, PermissionManager, bootstrapMiddleware, cacheHeaders, compressionMiddleware, detailedLoggingMiddleware, getActivePlugins, isPluginActive, logActivity, loggingMiddleware, optionalAuth, performanceLoggingMiddleware, requireActivePlugin, requireActivePlugins, requireAnyPermission, requireAuth, requirePermission, requireRole, securityHeadersMiddleware as securityHeaders, securityLoggingMiddleware } from './chunk-5QK3FXKX.js';
-import { PluginService, PLUGIN_REGISTRY } from './chunk-CJOLOONT.js';
-export { PluginBootstrapService, PluginService as PluginServiceClass, backfillFormSubmissions, cleanupRemovedCollections, createContentFromSubmission, deriveCollectionSchemaFromFormio, deriveSubmissionTitle, fullCollectionSync, getAvailableCollectionNames, getManagedCollections, isCollectionManaged, loadCollectionConfig, loadCollectionConfigs, mapFormStatusToContentStatus, registerCollections, syncAllFormCollections, syncCollection, syncCollections, syncFormCollection, validateCollectionConfig } from './chunk-CJOLOONT.js';
-export { MigrationService } from './chunk-CSQWOYGZ.js';
-export { renderFilterBar } from './chunk-ON5ZMSU4.js';
-import { renderAdminLayout } from './chunk-XWIA3HVX.js';
-export { getConfirmationDialogScript, renderAlert, renderConfirmationDialog, renderForm, renderFormField, renderPagination, renderTable } from './chunk-XWIA3HVX.js';
-import { init_admin_layout_catalyst_template, renderAdminLayoutCatalyst } from './chunk-55RDMDOP.js';
-export { HookSystemImpl, HookUtils, PluginManager as PluginManagerClass, PluginRegistryImpl, PluginValidator as PluginValidatorClass, ScopedHookSystem as ScopedHookSystemClass } from './chunk-NGTBJJXZ.js';
+import { getCustomData, renderConfirmationDialog, getConfirmationDialogScript, api_default, api_media_default, api_system_default, admin_api_default, router, adminCollectionsRoutes, adminFormsRoutes, adminSettingsRoutes, public_forms_default, router2, admin_content_default, adminMediaRoutes, userProfilesPlugin, adminPluginRoutes, adminLogsRoutes, userRoutes, auth_default, test_cleanup_default } from './chunk-V57MVYD2.js';
+export { ROUTES_INFO, admin_api_default as adminApiRoutes, adminCheckboxRoutes, admin_code_examples_default as adminCodeExamplesRoutes, adminCollectionsRoutes, admin_content_default as adminContentRoutes, router as adminDashboardRoutes, adminDesignRoutes, adminLogsRoutes, adminMediaRoutes, adminPluginRoutes, adminSettingsRoutes, admin_testimonials_default as adminTestimonialsRoutes, userRoutes as adminUsersRoutes, api_content_crud_default as apiContentCrudRoutes, api_media_default as apiMediaRoutes, api_default as apiRoutes, api_system_default as apiSystemRoutes, auth_default as authRoutes, createUserProfilesPlugin, defineUserProfile, getUserProfileConfig, userProfilesPlugin } from './chunk-V57MVYD2.js';
+import { SettingsService, setAppInstance, schema_exports } from './chunk-5EQN4O4N.js';
+export { Logger, apiTokens, collections, content, contentVersions, getLogger, initLogger, insertCollectionSchema, insertContentSchema, insertLogConfigSchema, insertMediaSchema, insertPluginActivityLogSchema, insertPluginAssetSchema, insertPluginHookSchema, insertPluginRouteSchema, insertPluginSchema, insertSystemLogSchema, insertUserSchema, insertWorkflowHistorySchema, logConfig, media, pluginActivityLog, pluginAssets, pluginHooks, pluginRoutes, plugins, selectCollectionSchema, selectContentSchema, selectLogConfigSchema, selectMediaSchema, selectPluginActivityLogSchema, selectPluginAssetSchema, selectPluginHookSchema, selectPluginRouteSchema, selectPluginSchema, selectSystemLogSchema, selectUserSchema, selectWorkflowHistorySchema, systemLogs, users, workflowHistory } from './chunk-5EQN4O4N.js';
+import { requireAuth, getJwtExpirySecondsFromDb, AuthManager, metricsMiddleware, bootstrapMiddleware, securityHeadersMiddleware, csrfProtection, requireRole } from './chunk-76QHSWWW.js';
+export { AuthManager, PermissionManager, bootstrapMiddleware, cacheHeaders, compressionMiddleware, detailedLoggingMiddleware, getActivePlugins, isPluginActive, logActivity, loggingMiddleware, optionalAuth, performanceLoggingMiddleware, requireActivePlugin, requireActivePlugins, requireAnyPermission, requireAuth, requirePermission, requireRole, securityHeadersMiddleware as securityHeaders, securityLoggingMiddleware } from './chunk-76QHSWWW.js';
+import { PluginService, PLUGIN_REGISTRY } from './chunk-YNZUMQHM.js';
+export { PluginBootstrapService, PluginService as PluginServiceClass, backfillFormSubmissions, cleanupRemovedCollections, createContentFromSubmission, deriveCollectionSchemaFromFormio, deriveSubmissionTitle, fullCollectionSync, getAvailableCollectionNames, getManagedCollections, isCollectionManaged, loadCollectionConfig, loadCollectionConfigs, mapFormStatusToContentStatus, registerCollections, syncAllFormCollections, syncCollection, syncCollections, syncFormCollection, validateCollectionConfig } from './chunk-YNZUMQHM.js';
+export { MigrationService } from './chunk-CYV6X6RG.js';
+export { renderFilterBar } from './chunk-TXRTBTPJ.js';
+import { renderAdminLayout } from './chunk-4TUBQRUY.js';
+export { getConfirmationDialogScript, renderAlert, renderConfirmationDialog, renderForm, renderFormField, renderPagination, renderTable } from './chunk-4TUBQRUY.js';
+import { init_admin_layout_catalyst_template, renderAdminLayoutCatalyst } from './chunk-3FZVSQEN.js';
+export { HookSystemImpl, HookUtils, PluginManager as PluginManagerClass, PluginRegistryImpl, PluginValidator as PluginValidatorClass, ScopedHookSystem as ScopedHookSystemClass } from './chunk-WOVYE2JG.js';
 import { PluginBuilder, PluginHelpers } from './chunk-EXNEW5US.js';
 export { PluginBuilder, PluginHelpers } from './chunk-EXNEW5US.js';
-import { package_default, getCoreVersion } from './chunk-NDS4S4AG.js';
-export { QueryFilterBuilder, SONICJS_VERSION, TemplateRenderer, buildQuery, getCoreVersion, renderTemplate, templateRenderer } from './chunk-NDS4S4AG.js';
+import { package_default, getCoreVersion } from './chunk-D6K2BCN3.js';
+export { QueryFilterBuilder, SONICJS_VERSION, TemplateRenderer, buildQuery, getCoreVersion, renderTemplate, templateRenderer } from './chunk-D6K2BCN3.js';
 import './chunk-X7ZAEI5S.js';
 export { metricsTracker } from './chunk-FICTAGD4.js';
 export { escapeHtml, sanitizeInput, sanitizeObject } from './chunk-TQABQWOP.js';
@@ -31,6 +31,7 @@ var DatabaseToolsService = class {
   constructor(db) {
     this.db = db;
   }
+  db;
   /**
    * Get database statistics
    */
@@ -751,6 +752,7 @@ var SeedDataService = class {
   constructor(db) {
     this.db = db;
   }
+  db;
   // First names for generating realistic users
   firstNames = [
     "Emma",
@@ -1444,6 +1446,7 @@ var OTPService = class {
   constructor(db) {
     this.db = db;
   }
+  db;
   /**
    * Generate a secure random OTP code
    */
@@ -2106,6 +2109,7 @@ var OAuthService = class {
   constructor(db) {
     this.db = db;
   }
+  db;
   /**
    * Build the authorization redirect URL for a provider.
    */
@@ -2641,6 +2645,7 @@ var EmbeddingService = class {
   constructor(ai) {
     this.ai = ai;
   }
+  ai;
   /**
    * Generate embedding for a single text
    */
@@ -2845,6 +2850,9 @@ var CustomRAGService = class {
     this.embeddingService = new EmbeddingService(ai);
     this.chunkingService = new ChunkingService();
   }
+  db;
+  ai;
+  vectorize;
   embeddingService;
   chunkingService;
   /**
@@ -3135,6 +3143,9 @@ var AISearchService = class {
       console.log("[AISearchService] Custom RAG not available, using keyword search only");
     }
   }
+  db;
+  ai;
+  vectorize;
   customRAG;
   /**
    * Get plugin settings
@@ -3584,6 +3595,9 @@ var IndexManager = class {
       console.log("[IndexManager] Custom RAG initialized");
     }
   }
+  db;
+  ai;
+  vectorize;
   customRAG;
   /**
    * Index all content items within a collection using Custom RAG
@@ -4798,6 +4812,8 @@ var SecurityAuditService = class {
     this.db = db;
     this.settings = settings;
   }
+  db;
+  settings;
   async logEvent(event) {
     const id = crypto.randomUUID();
     const now = Date.now();
@@ -5764,6 +5780,7 @@ var BruteForceDetector = class {
     this.kv = kv;
     this.settings = settings || DEFAULT_SETTINGS2.bruteForce;
   }
+  kv;
   settings;
   async recordFailedAttempt(ip, email) {
     if (!this.settings.enabled || !this.kv) {
@@ -6344,6 +6361,7 @@ var SubscriptionService = class {
   constructor(db) {
     this.db = db;
   }
+  db;
   /**
    * Ensure the subscriptions table exists
    */
@@ -6582,6 +6600,7 @@ var StripeEventService = class {
   constructor(db) {
     this.db = db;
   }
+  db;
   async ensureTable() {
     await this.db.prepare(`
       CREATE TABLE IF NOT EXISTS stripe_events (
@@ -7150,7 +7169,7 @@ adminRoutes3.get("/settings", async (c) => {
   const db = c.env.DB;
   const user = c.get("user");
   const settings = await getSettings3(db);
-  const { renderAdminLayoutCatalyst: renderAdminLayoutCatalyst2 } = await import('./admin-layout-catalyst.template-UMTIN66R.js');
+  const { renderAdminLayoutCatalyst: renderAdminLayoutCatalyst2 } = await import('./admin-layout-catalyst.template-RP6OTCBP.js');
   const content2 = `
     <div>
       <div class="mb-6">
@@ -7278,6 +7297,7 @@ var StripeAPI = class {
   constructor(secretKey) {
     this.secretKey = secretKey;
   }
+  secretKey;
   baseUrl = "https://api.stripe.com/v1";
   /**
    * Verify a webhook signature
@@ -7781,7 +7801,7 @@ function renderMenuItem(item, currentPath) {
   const fallbackIcon = `<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`;
   const resolvedIcon = resolveIcon(item.icon) || fallbackIcon;
   return `
-    <span class="relative">
+    <span class="relative bb">
       ${isActive ? '<span class="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-cyan-500 dark:bg-cyan-400"></span>' : ""}
       <a
         href="${item.path}"
@@ -8307,6 +8327,7 @@ var EventTrackingService = class {
   constructor(db) {
     this.db = db;
   }
+  db;
   async trackEvent(input) {
     const id = crypto.randomUUID();
     const category = input.category || "user-activity";

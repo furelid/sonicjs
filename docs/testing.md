@@ -69,10 +69,10 @@ As of the latest test run:
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Install Playwright browsers (first time only)
-npx playwright install
+pnpm dlx playwright install
 ```
 
 ### Configuration Files
@@ -370,7 +370,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run dev',
+    command: 'pnpm run dev',
     url: 'http://localhost:8787',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
@@ -846,51 +846,51 @@ test.describe('Plugin Management', () => {
 
 ```bash
 # Run all unit tests
-npm test
+pnpm test
 
 # Run tests in watch mode
-npm run test:watch
+pnpm run test:watch
 
 # Run with coverage
-npm run test:cov
+pnpm run test:cov
 
 # Run with coverage in watch mode
-npm run test:cov:watch
+pnpm run test:cov:watch
 
 # Run with coverage and UI
-npm run test:cov:ui
+pnpm run test:cov:ui
 ```
 
 ### E2E Tests
 
 ```bash
 # Run all E2E tests
-npm run test:e2e
+pnpm run test:e2e
 
 # Run E2E tests with UI mode
-npm run test:e2e:ui
+pnpm run test:e2e:ui
 
 # Run specific test file
-npx playwright test tests/e2e/02-authentication.spec.ts
+pnpm dlx playwright test tests/e2e/02-authentication.spec.ts
 
 # Run tests in headed mode (see browser)
-npx playwright test --headed
+pnpm dlx playwright test --headed
 
 # Run tests in debug mode
-npx playwright test --debug
+pnpm dlx playwright test --debug
 ```
 
 ### Running Specific Tests
 
 ```bash
 # Run single test file
-npx vitest src/plugins/cache/tests/cache.test.ts
+pnpm dlx vitest src/plugins/cache/tests/cache.test.ts
 
 # Run tests matching pattern
-npx vitest --grep "CacheService"
+pnpm dlx vitest --grep "CacheService"
 
 # Run E2E tests for specific feature
-npx playwright test tests/e2e/05-content.spec.ts
+pnpm dlx playwright test tests/e2e/05-content.spec.ts
 ```
 
 ## Coverage Reporting
@@ -899,7 +899,7 @@ npx playwright test tests/e2e/05-content.spec.ts
 
 ```bash
 # Generate coverage report
-npm run test:cov
+pnpm run test:cov
 
 # Coverage files are generated in:
 # - coverage/index.html (HTML report)
@@ -1167,13 +1167,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Run unit tests
-        run: npm run test:cov
+        run: pnpm run test:cov
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3
@@ -1187,16 +1187,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Install Playwright
-        run: npx playwright install --with-deps
+        run: pnpm dlx playwright install --with-deps
 
       - name: Run E2E tests
-        run: npm run test:e2e
+        run: pnpm run test:e2e
 
       - name: Upload test results
         uses: actions/upload-artifact@v3
@@ -1378,11 +1378,11 @@ await page.waitForResponse(resp =>
 
 ```bash
 # Generate coverage and open report
-npm run test:cov
+pnpm run test:cov
 open coverage/index.html  # macOS
 
 # View detailed coverage by file
-npm run test:cov | grep -A 30 "Coverage report"
+pnpm run test:cov | grep -A 30 "Coverage report"
 ```
 
 #### 4. Playwright Browser Issues
@@ -1392,7 +1392,7 @@ npm run test:cov | grep -A 30 "Coverage report"
 **Solution**: Reinstall Playwright browsers
 
 ```bash
-npx playwright install --with-deps
+pnpm dlx playwright install --with-deps
 ```
 
 #### 5. HTMX Dynamic Content
@@ -1414,26 +1414,26 @@ await waitForHTMX(page)  // Wait for HTMX to update DOM
 
 ```bash
 # Run in debug mode with inspector
-npx playwright test --debug
+pnpm dlx playwright test --debug
 
 # Run headed to see browser
-npx playwright test --headed
+pnpm dlx playwright test --headed
 
 # Run with slow motion
-npx playwright test --headed --slow-mo=1000
+pnpm dlx playwright test --headed --slow-mo=1000
 ```
 
 #### Vitest Debugging
 
 ```bash
 # Run in watch mode
-npm run test:watch
+pnpm run test:watch
 
 # Run with UI
-npm run test:cov:ui
+pnpm run test:cov:ui
 
 # Run single test file
-npx vitest src/plugins/cache/tests/cache.test.ts
+pnpm dlx vitest src/plugins/cache/tests/cache.test.ts
 ```
 
 ### Test Artifacts
@@ -1447,7 +1447,7 @@ Playwright saves artifacts on failure:
 View trace files:
 
 ```bash
-npx playwright show-trace test-results/*/trace.zip
+pnpm dlx playwright show-trace test-results/*/trace.zip
 ```
 
 ## Additional Resources

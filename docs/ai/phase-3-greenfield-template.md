@@ -6,7 +6,7 @@
 
 ## Objectives Completed
 
-Created a greenfield starter template for new SonicJS projects that use the `@sonicjs-cms/core` npm package.
+Created a greenfield starter template for new SonicJS projects that use the `@sonicjs-cms/core` pnpm package.
 
 ## Tasks Completed
 
@@ -110,13 +110,13 @@ Includes:
 ## Next Steps
 
 ### Immediate
-1. Test the template locally with npm link
+1. Test the template locally with pnpm link
 2. Verify type-checking works
 3. Test development workflow
 
 ### Phase 4: Testing & Publishing
 1. Create automated tests for template
-2. Set up npm publishing workflow
+2. Set up pnpm publishing workflow
 3. Create alpha release
 4. Document plugin usage
 5. Beta testing with early adopters

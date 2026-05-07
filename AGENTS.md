@@ -3,28 +3,28 @@
 These instructions mirror the workflow Claude Code already follows in Conductor so every coding agent behaves consistently.
 
 ## Project Structure & Stack
-- Monorepo managed with npm workspaces. Core Hono + Workers code, routes, middleware, templates, plugins, utils, and DB lives in `packages/core/src`.
+- Monorepo managed with pnpm workspaces. Core Hono + Workers code, routes, middleware, templates, plugins, utils, and DB lives in `packages/core/src`.
 - Shared templates/components: `packages/templates/`. CLI scaffolder: `packages/create-app/`. Helper scripts: `packages/scripts/`.
 - Marketing/docs site is `www/` (Next.js + MDX). Long-form docs, AI plans, and architecture notes live in `docs/`.
 - E2E specs use Playwright in `tests/e2e/` (configs in `tests/playwright*.config.ts`). Postman and smoke docs sit under `tests/`.
-- `my-sonicjs-app/` is the sand-boxed sample install; recreate freely and use it to exercise migrations (`npm run setup:db` produces a fresh branch-specific D1 DB).
+- `my-sonicjs-app/` is the sand-boxed sample install; recreate freely and use it to exercise migrations (`pnpm run setup:db` produces a fresh branch-specific D1 DB).
 
 ## Preferred Workflow (Claude Code parity)
 1. **Understand & Plan** – Read the issue and affected modules, skim relevant docs, and outline a plan/todo list before heavy editing. Keep changes minimal and targeted.
-2. **Prep Environment** – From `my-sonicjs-app/`, run `npm run setup:db` for a clean Cloudflare D1 database tied to the worktree. Run `npm install` at repo root if dependencies changed.
+2. **Prep Environment** – From `my-sonicjs-app/`, run `pnpm run setup:db` for a clean Cloudflare D1 database tied to the worktree. Run `pnpm install` at repo root if dependencies changed.
 3. **Implement** – Match existing TypeScript/Hono patterns (server templates, plugins, Drizzle schema, HTMX UI). Keep types explicit and favor async/await.
 4. **Add Tests** – Unit tests go beside the feature in `packages/core/src/__tests__`. Every change also needs an accompanying Playwright spec under `tests/e2e/##-description.spec.ts`.
-5. **Verify** – Run `npm run type-check`, `npm test`, and `npm run e2e` locally. Use `npm run e2e:smoke` or `npm run e2e:ui` only for debugging, but ensure the full suite passes before sign-off.
+5. **Verify** – Run `pnpm run type-check`, `pnpm test`, and `pnpm run e2e` locally. Use `pnpm run e2e:smoke` or `pnpm run e2e:ui` only for debugging, but ensure the full suite passes before sign-off.
 6. **Document** – Update README/docs or AI plans when APIs, migrations, or workflows change. Mention any fixtures or DB prep needed in the PR/test plan.
 
 ## Build & Test Commands
-- Install deps: `npm install`
-- Build core only: `npm run build:core`; full build + sample app: `npm run build`
-- Dev servers: `npm run dev` (proxies to `my-sonicjs-app`), `npm run dev:www` (marketing)
-- Type safety: `npm run type-check`
-- Unit tests: `npm test` or `npm run test:watch`
-- Playwright E2E: `npm run e2e`, smoke subset via `npm run e2e:smoke`, headed/UI via `npm run e2e:ui`
-- Sample-app DB reset: `npm run db:reset` (or `npm run setup:db` inside `my-sonicjs-app`)
+- Install deps: `pnpm install`
+- Build core only: `pnpm run build:core`; full build + sample app: `pnpm run build`
+- Dev servers: `pnpm run dev` (proxies to `my-sonicjs-app`), `pnpm run dev:www` (marketing)
+- Type safety: `pnpm run type-check`
+- Unit tests: `pnpm test` or `pnpm run test:watch`
+- Playwright E2E: `pnpm run e2e`, smoke subset via `pnpm run e2e:smoke`, headed/UI via `pnpm run e2e:ui`
+- Sample-app DB reset: `pnpm run db:reset` (or `pnpm run setup:db` inside `my-sonicjs-app`)
 
 ## Coding Style & Patterns
 - TypeScript-first ES modules. Keep exported/public signatures fully typed; lean on Zod validation where applicable.
@@ -53,7 +53,7 @@ These instructions mirror the workflow Claude Code already follows in Conductor 
   Co-Authored-By: Claude <noreply@anthropic.com>
   ```
   Types: `fix`, `feat`, `refactor`, `test`, `docs`, `chore`.
-- Before creating a PR run: `npm run type-check && npm test && npm run e2e`. CI repeats these plus deploys a Workers preview with a fresh D1 instance.
+- Before creating a PR run: `pnpm run type-check && pnpm test && pnpm run e2e`. CI repeats these plus deploys a Workers preview with a fresh D1 instance.
 - PR body should mirror `.github/pull_request_template.md`: include summary, linked issue, detailed change bullets, and explicit test commands + outcomes (unit + E2E).
 - Keep docs in sync (`docs/`, `www/src/app/*.mdx`, READMEs). Mention any migrations or plugin contract changes.
 

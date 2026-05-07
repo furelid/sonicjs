@@ -49,7 +49,7 @@ Based on the 31+ documentation files, organize into the following sections:
 
 - **Installation** (`/installation/page.mdx`)
   - Prerequisites
-  - NPM/PNPM setup
+  - pnpm/pnpm setup
   - Cloudflare account setup
   - Environment configuration
 
@@ -692,9 +692,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm install
-      - run: npm run build
-      - run: npm run test # Lint, type check
+      - run: pnpm install
+      - run: pnpm run build
+      - run: pnpm run test # Lint, type check
       - uses: vercel/action@v2 # or cloudflare/pages-action
 ```
 

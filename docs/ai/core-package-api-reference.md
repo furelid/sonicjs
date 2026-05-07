@@ -22,8 +22,8 @@
 ## Installation
 
 ```bash
-# Install via npm
-npm install @sonicjs-cms/core
+# Install via pnpm
+pnpm install @sonicjs-cms/core
 
 # Install via pnpm
 pnpm add @sonicjs-cms/core
@@ -962,7 +962,7 @@ export default myPlugin
 - **Documentation**: https://docs.sonicjs.com
 - **GitHub**: https://github.com/sonicjs/sonicjs
 - **Issues**: https://github.com/sonicjs/sonicjs/issues
-- **NPM**: https://www.npmjs.com/package/@sonicjs-cms/core
+- **pnpm**: https://www.pnpmjs.com/package/@sonicjs-cms/core
 
 ---
 

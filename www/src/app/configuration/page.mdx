@@ -569,17 +569,17 @@ ENVIRONMENT = "staging"
 
 ```bash
 # Set JWT secret
-npx wrangler secret put JWT_SECRET
+pnpm dlx wrangler secret put JWT_SECRET
 # Enter your secret when prompted
 
 # Set SendGrid API key
-npx wrangler secret put SENDGRID_API_KEY
+pnpm dlx wrangler secret put SENDGRID_API_KEY
 
 # Set initial admin password
-npx wrangler secret put ADMIN_PASSWORD
+pnpm dlx wrangler secret put ADMIN_PASSWORD
 
 # For specific environment
-npx wrangler secret put JWT_SECRET --env production
+pnpm dlx wrangler secret put JWT_SECRET --env production
 ```
 
 </CodeGroup>

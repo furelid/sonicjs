@@ -11,7 +11,7 @@ This documentation site provides comprehensive guides, API references, and tutor
 ### Prerequisites
 
 - Node.js >= 20.0.0
-- npm >= 10.0.0
+- pnpm >= 10.0.0
 
 ### Development
 
@@ -19,13 +19,13 @@ From the monorepo root:
 
 ```bash
 # Start docs development server
-npm run dev:www
+pnpm run dev:www
 ```
 
 Or from this directory:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 The site will be available at [http://localhost:3010](http://localhost:3010)
@@ -34,10 +34,10 @@ The site will be available at [http://localhost:3010](http://localhost:3010)
 
 ```bash
 # From monorepo root
-npm run build:www
+pnpm run build:www
 
 # From this directory
-npm run build
+pnpm run build
 ```
 
 ## Features
@@ -70,10 +70,10 @@ This site is configured to deploy to Cloudflare Pages using OpenNext.
 
 ```bash
 # From monorepo root
-npm run deploy:www
+pnpm run deploy:www
 
 # From this directory
-npm run deploy
+pnpm run deploy
 ```
 
 ## Writing Documentation

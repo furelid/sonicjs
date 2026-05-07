@@ -219,10 +219,10 @@ This PR introduces a **comprehensive form management system** to SonicJS, featur
 ### For Developers
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Run local development
-npm run dev
+pnpm run dev
 
 # Access forms at
 http://localhost:8787/admin/forms
@@ -259,12 +259,12 @@ See `docs/FORMS_EMBEDDING_GUIDE.md` for complete integration guide.
 
 2. **Install dependencies**
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. **Run migrations**
    ```bash
-   npm run db:migrate
+   pnpm run db:migrate
    ```
 
 4. **Configure Turnstile (optional)**

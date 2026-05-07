@@ -9,7 +9,7 @@ Renamed all package references from `@sonicjs-cms` to `@sonicjs` organization th
 
 ## Rationale
 
-Using the `@sonicjs` npm organization name for consistency and branding.
+Using the `@sonicjs` pnpm organization name for consistency and branding.
 
 ## Changes Made
 
@@ -44,7 +44,7 @@ Using the `@sonicjs` npm organization name for consistency and branding.
 - ✅ `phase-4-testing-results.md`
 - ✅ `phase-5-publishing-prep-complete.md`
 - ✅ `phase-6-create-app-cli-complete.md`
-- ✅ `npm-migration-complete.md`
+- ✅ `pnpm-migration-complete.md`
 
 ## Verification
 
@@ -52,7 +52,7 @@ Using the `@sonicjs` npm organization name for consistency and branding.
 
 ```bash
 cd packages/create-app
-npm test
+pnpm test
 ```
 
 **Result**: All checks passed
@@ -72,7 +72,7 @@ cat verify-test/package.json | grep "@sonicjs"
 
 ### Before Publishing
 
-The following files will be included in npm packages:
+The following files will be included in pnpm packages:
 
 #### @sonicjs-cms/core package:
 - `package.json` - Contains `"name": "@sonicjs-cms/core"`
@@ -88,29 +88,29 @@ The following files will be included in npm packages:
 ```bash
 # Core package
 cd packages/core
-npm publish --tag alpha --access public
+pnpm publish --tag alpha --access public
 
 # Verify
-npm view @sonicjs-cms/core@alpha
+pnpm view @sonicjs-cms/core@alpha
 
 # Create-app package
 cd packages/create-app
 mkdir -p templates
 cp -r ../../templates/starter templates/
-npm publish --tag alpha --access public
+pnpm publish --tag alpha --access public
 
 # Verify
-npm view create-sonicjs-app@alpha
+pnpm view create-sonicjs-app@alpha
 ```
 
 ### Installation (Updated)
 
 ```bash
 # Install core package
-npm install @sonicjs-cms/core@alpha
+pnpm install @sonicjs-cms/core@alpha
 
 # Use CLI
-npx create-sonicjs-app@alpha my-app
+pnpm dlx create-sonicjs-app@alpha my-app
 ```
 
 ## Import Statements (Updated)
@@ -127,20 +127,20 @@ import { createSonicJSApp } from '@sonicjs-cms/core'
 import type { CollectionConfig } from '@sonicjs-cms/core'
 ```
 
-## NPM Organization
+## pnpm Organization
 
 ### Requirements
 
 To publish to `@sonicjs`:
-1. Must have access to `@sonicjs` npm organization
-2. If organization doesn't exist, create it at: https://www.npmjs.com/org/create
+1. Must have access to `@sonicjs` pnpm organization
+2. If organization doesn't exist, create it at: https://www.pnpmjs.com/org/create
 3. Add collaborators as needed
 
 ### Scope Availability
 
 Check if scope is available:
 ```bash
-npm view @sonicjs-cms/core
+pnpm view @sonicjs-cms/core
 # If not found, scope is available
 ```
 
@@ -180,7 +180,7 @@ If we ever need to reserve the `@sonicjs-cms` scope for other purposes, we can p
 ---
 
 **Next Steps**:
-1. Ensure access to `@sonicjs` npm organization
+1. Ensure access to `@sonicjs` pnpm organization
 2. Copy templates to create-app package
 3. Publish `@sonicjs-cms/core`
 4. Publish `create-sonicjs-app`

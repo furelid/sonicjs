@@ -94,7 +94,7 @@ SonicJS forms are **fully headless-ready** with a JSON API that returns Form.io 
 ### Installation
 
 ```bash
-npm install @formio/react
+pnpm install @formio/react
 ```
 
 ### Basic React Component
@@ -332,7 +332,7 @@ const API_URL = import.meta.env.PUBLIC_API_URL || 'http://localhost:8787'
 ### Installation
 
 ```bash
-npm install @formio/angular
+pnpm install @formio/angular
 ```
 
 ### Angular Component
@@ -409,7 +409,7 @@ export class AppModule {}
 ### Installation
 
 ```bash
-npm install @formio/vue
+pnpm install @formio/vue
 ```
 
 ### Vue Component

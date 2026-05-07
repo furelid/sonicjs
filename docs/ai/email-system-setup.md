@@ -25,7 +25,7 @@ The email system provides:
 The email system tables should already be created if you've run the latest migrations:
 
 ```bash
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 This creates the following tables:

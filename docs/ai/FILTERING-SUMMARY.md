@@ -208,13 +208,13 @@ Enhanced metadata in all responses:
 
 ```bash
 # Run filter tests
-npm test -- src/tests/query-filter.test.ts
+pnpm test -- src/tests/query-filter.test.ts
 
 # Run all tests
-npm test
+pnpm test
 
 # Run with coverage
-npm run test:cov
+pnpm run test:cov
 ```
 
 ## Documentation Links

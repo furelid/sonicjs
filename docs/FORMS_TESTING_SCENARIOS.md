@@ -17,8 +17,8 @@ This document provides **step-by-step testing scenarios** for real users to vali
 
 Before starting, verify:
 
-- [ ] Development server is running (`npm run dev`)
-- [ ] Database is migrated (`npm run setup:db` in `my-sonicjs-app/`)
+- [ ] Development server is running (`pnpm run dev`)
+- [ ] Database is migrated (`pnpm run setup:db` in `my-sonicjs-app/`)
 - [ ] Admin account credentials are available
 - [ ] Browser console is open (F12) to check for errors
 - [ ] Test data is prepared (sample emails, phone numbers, addresses)

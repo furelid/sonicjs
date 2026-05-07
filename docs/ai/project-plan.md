@@ -23,7 +23,7 @@ This document outlines the systematic development plan for rebuilding SonicJS as
 - [x] TypeScript compilation passes without errors
 - [x] Database connection established with D1
 - [x] Basic schema can be defined and validated
-- [x] Tests can be run with `npm test` (Vitest)
+- [x] Tests can be run with `pnpm test` (Vitest)
 - [x] CLI tool can generate basic project structure
 
 #### Stage 1 Todo List

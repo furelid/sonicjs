@@ -292,7 +292,7 @@ What this plugin does and why you'd use it.
 <CodeGroup>
 ```bash
 # If optional plugin
-npm install @sonicjs/[plugin-name]
+pnpm install @sonicjs/[plugin-name]
 ```
 </CodeGroup>
 

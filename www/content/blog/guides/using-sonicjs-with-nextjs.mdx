@@ -77,7 +77,7 @@ node --version  # v20.0.0 or higher
 If you don't already have SonicJS running, scaffold a project in two commands:
 
 ```bash
-npx create-sonicjs my-cms
+pnpm dlx create-sonicjs my-cms
 cd my-cms
 npm run dev
 # CMS available at http://localhost:8787
@@ -107,7 +107,7 @@ Read endpoints are public by default. Write endpoints require a JWT — see the 
 ## Part 2: Bootstrap the Next.js App
 
 ```bash
-npx create-next-app@latest my-next-site \
+pnpm dlx create-next-app@latest my-next-site \
   --typescript --app --tailwind --eslint \
   --src-dir --import-alias "@/*"
 
@@ -513,7 +513,7 @@ export default config
 
 ```bash
 npm run build
-npx wrangler pages deploy ./out
+pnpm dlx wrangler pages deploy ./out
 ```
 
 Every page is built ahead of time using `generateStaticParams` and uploaded as static assets. No cold starts, no compute, just edge HTML. Trade-off: no ISR, no Route Handlers — re-deploy to update.
@@ -532,7 +532,7 @@ Add a build script:
 // package.json
 {
   "scripts": {
-    "build:cf": "next build && npx @cloudflare/next-on-pages",
+    "build:cf": "next build && pnpm dlx @cloudflare/next-on-pages",
     "preview:cf": "wrangler pages dev .vercel/output/static",
     "deploy:cf": "npm run build:cf && wrangler pages deploy .vercel/output/static"
   }

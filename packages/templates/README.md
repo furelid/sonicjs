@@ -5,7 +5,7 @@ Template system for SonicJS CMS. This package contains all admin interface templ
 ## Installation
 
 ```bash
-npm install @sonicjs-cms/templates
+pnpm install @sonicjs-cms/templates
 ```
 
 ## Usage

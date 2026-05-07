@@ -1,8 +1,8 @@
-# SonicJS Core Package - NPM Update Strategy
+# SonicJS Core Package - pnpm Update Strategy
 
 ## Overview
 
-This document outlines the strategy for enabling seamless npm-based updates for SonicJS core, allowing developers to update their cloned projects without manual git merges or conflict resolution.
+This document outlines the strategy for enabling seamless pnpm-based updates for SonicJS core, allowing developers to update their cloned projects without manual git merges or conflict resolution.
 
 ## Current State vs Future State
 
@@ -16,32 +16,32 @@ Developers must clone entire repository and manually manage core updates.
 - ❌ No version control of core functionality
 - ❌ Can't easily rollback core updates
 
-### Future Experience (NPM-Based, Greenfield)
+### Future Experience (pnpm-Based, Greenfield)
 
 ```bash
 # Future workflow - clean and simple
-npm update @sonicjs-cms/core
+pnpm update @sonicjs-cms/core
 
 # Check what changed
-npm show @sonicjs-cms/core changelog
+pnpm show @sonicjs-cms/core changelog
 
 # Run any new migrations
-npm run db:migrate
+pnpm run db:migrate
 
 # Test your app
-npm run test
+pnpm run test
 
 # Deploy
-npm run deploy
+pnpm run deploy
 
 # Done! ✅
 ```
 
 **Benefits:**
-- ✅ Core updates via standard npm workflow
+- ✅ Core updates via standard pnpm workflow
 - ✅ Clear separation: core vs custom code
 - ✅ Semantic versioning for predictable updates
-- ✅ Easy rollback: `npm install @sonicjs-cms/core@1.2.3`
+- ✅ Easy rollback: `pnpm install @sonicjs-cms/core@1.2.3`
 - ✅ Automated migration scripts
 - ✅ Test compatibility before deploying
 
@@ -51,7 +51,7 @@ npm run deploy
 
 ```
 @sonicjs-cms/core/
-├── package.json                 # Published to npm
+├── package.json                 # Published to pnpm
 ├── dist/                        # Compiled for distribution
 │   ├── index.js                # Main entry point
 │   ├── index.d.ts              # TypeScript definitions
@@ -117,9 +117,9 @@ Following strict semantic versioning (MAJOR.MINOR.PATCH):
 - Auto-update safe
 
 ```bash
-npm update @sonicjs-cms/core
+pnpm update @sonicjs-cms/core
 # No migration needed, just restart
-npm run dev
+pnpm run dev
 ```
 
 **Minor Release (1.2.4 → 1.3.0)**
@@ -129,9 +129,9 @@ npm run dev
 - Safe to update
 
 ```bash
-npm update @sonicjs-cms/core
-npm run db:migrate    # Apply new optional features
-npm run dev
+pnpm update @sonicjs-cms/core
+pnpm run db:migrate    # Apply new optional features
+pnpm run dev
 ```
 
 **Major Release (1.3.0 → 2.0.0)**
@@ -142,13 +142,13 @@ npm run dev
 
 ```bash
 # Read changelog first!
-npm info @sonicjs-cms/core@2.0.0
+pnpm info @sonicjs-cms/core@2.0.0
 
 # Update when ready
-npm install @sonicjs-cms/core@2.0.0
-npm run db:migrate
-npm run test
-npm run dev
+pnpm install @sonicjs-cms/core@2.0.0
+pnpm run db:migrate
+pnpm run test
+pnpm run dev
 ```
 
 ## Update Workflows
@@ -157,34 +157,34 @@ npm run dev
 
 ```bash
 # Check for available updates
-npm outdated
+pnpm outdated
 
 # Output:
 # Package          Current  Wanted  Latest  Location
 # @sonicjs-cms/core    1.2.3    1.2.5   2.0.0   my-project
 
 # View changelog for specific version
-npm show @sonicjs-cms/core@1.2.5 changelog
+pnpm show @sonicjs-cms/core@1.2.5 changelog
 ```
 
 ### 2. Safe Update (Patch/Minor)
 
 ```bash
 # Update to latest compatible version
-npm update @sonicjs-cms/core
+pnpm update @sonicjs-cms/core
 
 # This updates within your semver range:
 # ^1.2.3 → updates to latest 1.x.x
 # ~1.2.3 → updates to latest 1.2.x
 
 # Run migrations (if any)
-npm run db:migrate
+pnpm run db:migrate
 
 # Run tests
-npm run test
+pnpm run test
 
 # Restart dev server
-npm run dev
+pnpm run dev
 ```
 
 ### 3. Major Version Update
@@ -194,28 +194,28 @@ npm run dev
 wrangler d1 backup DB
 
 # 2. Review breaking changes
-npm show @sonicjs-cms/core@2.0.0
+pnpm show @sonicjs-cms/core@2.0.0
 
 # 3. Install new major version
-npm install @sonicjs-cms/core@2.0.0
+pnpm install @sonicjs-cms/core@2.0.0
 
 # 4. Run database migrations
-npm run db:migrate
+pnpm run db:migrate
 
 # 5. Test thoroughly
-npm run test
-npm run test:e2e
+pnpm run test
+pnpm run test:e2e
 
 # 6. Test in dev mode
-npm run dev
+pnpm run dev
 
 # 7. Deploy to preview
-npm run deploy:preview
+pnpm run deploy:preview
 
 # 8. Test preview environment
 
 # 9. Deploy to production
-npm run deploy:production
+pnpm run deploy:production
 ```
 
 ### 4. Rollback Strategy
@@ -224,13 +224,13 @@ npm run deploy:production
 # If something breaks after update, rollback:
 
 # 1. Reinstall previous version
-npm install @sonicjs-cms/core@1.2.3
+pnpm install @sonicjs-cms/core@1.2.3
 
 # 2. Restore database (if migrations ran)
 wrangler d1 restore DB --backup=<backup-id>
 
 # 3. Restart
-npm run dev
+pnpm run dev
 
 # Everything back to working state ✅
 ```
@@ -349,7 +349,7 @@ export class MigrationManager {
 
 **Migration:**
 ```bash
-npx @sonicjs/migrate --fix=field-types
+pnpm dlx @sonicjs/migrate --fix=field-types
 # Automatically updates all collection configs
 ```
 
@@ -400,8 +400,8 @@ Breaking changes are clearly documented in changelog with upgrade notes:
 
 ### Upgrade Instructions
 
-1. Update to v2.0.0: `npm install @sonicjs-cms/core@2.0.0`
-2. Run database migrations: `npm run db:migrate`
+1. Update to v2.0.0: `pnpm install @sonicjs-cms/core@2.0.0`
+2. Run database migrations: `pnpm run db:migrate`
 3. Review breaking changes above and update your code
 4. Test your application thoroughly
 ```
@@ -436,18 +436,18 @@ All plugins are included in the core package, so no separate plugin versioning i
 
 ```bash
 # Install pre-release version
-npm install @sonicjs-cms/core@2.0.0-beta.1
+pnpm install @sonicjs-cms/core@2.0.0-beta.1
 
 # Run full test suite
-npm run test           # Unit tests
-npm run test:e2e       # E2E tests
-npm run type-check     # TypeScript validation
+pnpm run test           # Unit tests
+pnpm run test:e2e       # E2E tests
+pnpm run type-check     # TypeScript validation
 
 # Test in development
-npm run dev
+pnpm run dev
 
 # Test in preview environment
-npm run deploy:preview
+pnpm run deploy:preview
 ```
 
 ### Automated Compatibility Tests
@@ -472,18 +472,18 @@ describe('Core Version Compatibility', () => {
 
 ## Distribution Strategy
 
-### NPM Publishing
+### pnpm Publishing
 
 ```bash
 # Build for distribution
 cd packages/core
-npm run build
+pnpm run build
 
 # Test the build
-npm run test:dist
+pnpm run test:dist
 
-# Publish to npm
-npm publish --access public
+# Publish to pnpm
+pnpm publish --access public
 
 # Tag specific versions
 git tag v1.2.3
@@ -524,7 +524,7 @@ export default defineConfig({
 ### 🚨 Breaking Changes
 
 - **Collections**: Field type `string` renamed to `text`
-  - Migration: Run `npx @sonicjs/migrate --fix=field-types`
+  - Migration: Run `pnpm dlx @sonicjs/migrate --fix=field-types`
   - See: [Migration Guide](./migration/v2.md)
 
 - **Auth**: `requireAuth()` now returns user directly
@@ -570,7 +570,7 @@ export default defineConfig({
 export class UpdateChecker {
   async checkForUpdates(): Promise<UpdateInfo | null> {
     const currentVersion = require('../package.json').version
-    const response = await fetch('https://registry.npmjs.org/@sonicjs-cms/core/latest')
+    const response = await fetch('https://registry.pnpmjs.org/@sonicjs-cms/core/latest')
     const data = await response.json()
     const latestVersion = data.version
 
@@ -603,17 +603,17 @@ app.get('/admin', async (c) => {
 
 ```bash
 # Installed with @sonicjs-cms/core
-npm install @sonicjs-cms/core
+pnpm install @sonicjs-cms/core
 
 # Available commands
-npx sonicjs --help
+pnpm dlx sonicjs --help
 ```
 
 ### Commands
 
 ```bash
 # Check for updates
-npx sonicjs check-updates
+pnpm dlx sonicjs check-updates
 
 # Output:
 # Current version: 1.2.3
@@ -624,27 +624,27 @@ npx sonicjs check-updates
 # - Fixed authentication bug
 # - Added new field types
 #
-# To update: npm update @sonicjs-cms/core
+# To update: pnpm update @sonicjs-cms/core
 
 # Update with migration
-npx sonicjs update
+pnpm dlx sonicjs update
 # Interactive prompts:
 # - Backup database? (Y/n)
 # - Run migrations? (Y/n)
 # - Run tests? (Y/n)
 
 # Migrate between major versions
-npx sonicjs migrate --from=1.x --to=2.0.0
+pnpm dlx sonicjs migrate --from=1.x --to=2.0.0
 
 # Show version info
-npx sonicjs version
+pnpm dlx sonicjs version
 # Output:
 # Core:     1.2.3
 # Node:     20.0.0
 # Wrangler: 4.0.0
 
 # Validate project structure
-npx sonicjs validate
+pnpm dlx sonicjs validate
 # Output:
 # ✓ Core package installed
 # ✓ TypeScript configured
@@ -702,8 +702,8 @@ npx sonicjs validate
 - ✅ 100% automated migration rate
 
 ### Adoption Metrics
-- ✅ 1000+ weekly npm downloads
-- ✅ 100+ projects using npm package
+- ✅ 1000+ weekly pnpm downloads
+- ✅ 100+ projects using pnpm package
 - ✅ 90%+ upgrade rate (within 30 days)
 - ✅ < 1% rollback rate
 
@@ -755,12 +755,12 @@ npx sonicjs validate
 
 ## Conclusion
 
-The npm package strategy will transform SonicJS from a "clone and customize" framework into a true "install and extend" platform. Developers will benefit from:
+The pnpm package strategy will transform SonicJS from a "clone and customize" framework into a true "install and extend" platform. Developers will benefit from:
 
 1. **Faster updates**: Minutes instead of hours
 2. **Lower risk**: Rollback capability and tested migrations
 3. **Clear separation**: Core vs custom code
-4. **Better DX**: Standard npm workflow
+4. **Better DX**: Standard pnpm workflow
 5. **Growing ecosystem**: Installable plugins
 
 This is a significant investment that will pay dividends in:

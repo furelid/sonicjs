@@ -10,14 +10,14 @@ export interface CatalystCheckboxProps {
   label?: string;
   description?: string;
   color?:
-    | "dark/zinc"
-    | "dark/white"
-    | "white"
-    | "dark"
-    | "zinc"
-    | "blue"
-    | "green"
-    | "red";
+  | "dark/zinc"
+  | "dark/white"
+  | "white"
+  | "dark"
+  | "zinc"
+  | "blue"
+  | "green"
+  | "red";
   className?: string;
 }
 
@@ -301,46 +301,44 @@ export function renderAdminLayoutCatalyst(
     });
   </script>
 
-  ${
-    data.styles
+  ${data.styles
       ? data.styles
-          .map((style) => `<link rel="stylesheet" href="${style}">`)
-          .join("\n  ")
+        .map((style) => `<link rel="stylesheet" href="${style}">`)
+        .join("\n  ")
       : ""
-  }
-  ${
-    data.scripts
+    }
+  ${data.scripts
       ? data.scripts
-          .map((script) => `<script src="${script}"></script>`)
-          .join("\n  ")
+        .map((script) => `<script src="${script}"></script>`)
+        .join("\n  ")
       : ""
-  }
+    }
 </head>
 <body class="min-h-screen bg-white dark:bg-zinc-900">
   <div class="relative isolate flex min-h-svh w-full max-lg:flex-col lg:bg-zinc-100 dark:lg:bg-zinc-950">
     <!-- Sidebar on desktop -->
     <div class="fixed inset-y-0 left-0 w-64 max-lg:hidden">
       ${renderCatalystSidebar(
-        data.currentPath,
-        data.user,
-        data.dynamicMenuItems,
-        false,
-        data.version,
-        data.enableExperimentalFeatures
-      )}
+      data.currentPath,
+      data.user,
+      data.dynamicMenuItems,
+      false,
+      data.version,
+      data.enableExperimentalFeatures
+    )}
     </div>
 
     <!-- Mobile sidebar (hidden by default) -->
     <div id="mobile-sidebar-overlay" class="fixed inset-0 bg-black/30 lg:hidden hidden z-40" onclick="closeMobileSidebar()"></div>
     <div id="mobile-sidebar" class="fixed inset-y-0 left-0 w-80 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden z-50">
       ${renderCatalystSidebar(
-        data.currentPath,
-        data.user,
-        data.dynamicMenuItems,
-        true,
-        data.version,
-        data.enableExperimentalFeatures
-      )}
+      data.currentPath,
+      data.user,
+      data.dynamicMenuItems,
+      true,
+      data.version,
+      data.enableExperimentalFeatures
+    )}
     </div>
 
     <!-- Main content area -->
@@ -594,6 +592,7 @@ function renderCatalystSidebar(
 
   // Combine base menu items with dynamic menu items
   const allMenuItems = [...baseMenuItems];
+
   if (dynamicMenuItems && dynamicMenuItems.length > 0) {
     // Insert dynamic menu items after Users menu item
     const usersIndex = allMenuItems.findIndex(
@@ -622,9 +621,8 @@ function renderCatalystSidebar(
   `
     : "";
 
-  return `
-    <nav class="flex h-full min-h-0 flex-col bg-white shadow-sm ring-1 ring-zinc-950/5 dark:bg-zinc-900 dark:ring-white/10 ${
-      isMobile ? "is-mobile rounded-lg p-2 m-2" : ""
+  return ` 
+    <nav class="flex h-full min-h-0 flex-col bg-white shadow-sm ring-1 ring-zinc-950/5 dark:bg-zinc-900 dark:ring-white/10 ${isMobile ? "is-mobile rounded-lg p-2 m-2" : ""
     }">
       ${closeButton}
 
@@ -635,43 +633,40 @@ function renderCatalystSidebar(
 
       <!-- Sidebar Body -->
       <div class="flex flex-1 flex-col overflow-y-auto p-4">
-        <div class="flex flex-col gap-0.5">
+        <div class="flex flex-col gap-0.5 aaa">
           ${allMenuItems
-            .map((item) => {
-              const isActive =
-                currentPath === item.path ||
-                (item.path !== "/admin" && currentPath?.startsWith(item.path));
-              return `
-              <span class="relative">
-                ${
-                  isActive
-                    ? `
+      .map((item) => {
+        const isActive =
+          currentPath === item.path ||
+          (item.path !== "/admin" && currentPath?.startsWith(item.path));
+        return `
+              <span class="relative aa">
+                ${isActive
+            ? `
                   <span class="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-cyan-500 dark:bg-cyan-400"></span>
                 `
-                    : ""
-                }
+            : ""
+          }
                 <a
                   href="${item.path}"
-                  class="flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-sm/5 font-medium ${
-                    isActive
-                      ? "text-zinc-950 dark:text-white"
-                      : "text-zinc-950 hover:bg-zinc-950/5 dark:text-white dark:hover:bg-white/5"
-                  }"
+                  class="flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-sm/5 font-medium ${isActive
+            ? "text-zinc-950 dark:text-white"
+            : "text-zinc-950 hover:bg-zinc-950/5 dark:text-white dark:hover:bg-white/5"
+          }"
                   ${isActive ? 'data-current="true"' : ""}
                 >
-                  <span class="shrink-0 ${
-                    isActive
-                      ? "fill-zinc-950 dark:fill-white"
-                      : "fill-zinc-500 dark:fill-zinc-400"
-                  }">
+                  <span class="shrink-0 ${isActive
+            ? "fill-zinc-950 dark:fill-white"
+            : "fill-zinc-500 dark:fill-zinc-400"
+          }">
                     ${item.icon}
                   </span>
                   <span class="truncate">${item.label}</span>
                 </a>
               </span>
             `;
-            })
-            .join("")}
+      })
+      .join("")}
           ${pluginMenuMarker}
         </div>
       </div>
@@ -679,45 +674,41 @@ function renderCatalystSidebar(
       <!-- Settings Menu Item (Bottom) -->
       <div class="border-t border-zinc-950/5 p-4 dark:border-white/5">
         ${(() => {
-          const isActive =
-            currentPath === settingsMenuItem.path ||
-            currentPath?.startsWith(settingsMenuItem.path);
-          return `
-            <span class="relative">
-              ${
-                isActive
-                  ? `
+      const isActive =
+        currentPath === settingsMenuItem.path ||
+        currentPath?.startsWith(settingsMenuItem.path);
+      return `
+            <span class="relative aa">
+              ${isActive
+          ? `
                 <span class="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-cyan-500 dark:bg-cyan-400"></span>
               `
-                  : ""
-              }
+          : ""
+        }
               <a
                 href="${settingsMenuItem.path}"
-                class="flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-sm/5 font-medium ${
-                  isActive
-                    ? "text-zinc-950 dark:text-white"
-                    : "text-zinc-950 hover:bg-zinc-950/5 dark:text-white dark:hover:bg-white/5"
-                }"
+                class="flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-sm/5 font-medium ${isActive
+          ? "text-zinc-950 dark:text-white"
+          : "text-zinc-950 hover:bg-zinc-950/5 dark:text-white dark:hover:bg-white/5"
+        }"
                 ${isActive ? 'data-current="true"' : ""}
               >
-                <span class="shrink-0 ${
-                  isActive
-                    ? "fill-zinc-950 dark:fill-white"
-                    : "fill-zinc-500 dark:fill-zinc-400"
-                }">
+                <span class="shrink-0 ${isActive
+          ? "fill-zinc-950 dark:fill-white"
+          : "fill-zinc-500 dark:fill-zinc-400"
+        }">
                   ${settingsMenuItem.icon}
                 </span>
                 <span class="truncate">${settingsMenuItem.label}</span>
               </a>
             </span>
           `;
-        })()}
+    })()}
       </div>
 
       <!-- Sidebar Footer (User) -->
-      ${
-        user
-          ? `
+      ${user
+      ? `
         <div class="flex flex-col border-t border-zinc-950/5 p-4 dark:border-white/5">
           <div class="relative">
             <button
@@ -727,16 +718,15 @@ function renderCatalystSidebar(
             >
               <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-950 text-white dark:bg-white dark:text-zinc-950">
                 <span class="text-xs font-semibold">${(
-                  user.name ||
-                  user.email ||
-                  "U"
-                )
-                  .charAt(0)
-                  .toUpperCase()}</span>
+        user.name ||
+        user.email ||
+        "U"
+      )
+        .charAt(0)
+        .toUpperCase()}</span>
               </div>
-              <span class="flex-1 truncate">${
-                user.name || user.email || "User"
-              }</span>
+              <span class="flex-1 truncate">${user.name || user.email || "User"
+      }</span>
               <svg class="h-4 w-4 shrink-0 fill-zinc-500 dark:fill-zinc-400" viewBox="0 0 20 20">
                 <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
               </svg>
@@ -746,12 +736,10 @@ function renderCatalystSidebar(
             <div class="userDropdown hidden absolute bottom-full mb-2 left-0 right-0 mx-2 rounded-xl bg-white shadow-lg ring-1 ring-zinc-950/10 dark:bg-zinc-800 dark:ring-white/10 z-50">
               <div class="p-2">
                 <div class="px-3 py-2 border-b border-zinc-950/5 dark:border-white/5">
-                  <p class="text-sm font-medium text-zinc-950 dark:text-white">${
-                    user.name || user.email || "User"
-                  }</p>
-                  <p class="text-xs text-zinc-500 dark:text-zinc-400">${
-                    user.email || ""
-                  }</p>
+                  <p class="text-sm font-medium text-zinc-950 dark:text-white">${user.name || user.email || "User"
+      }</p>
+                  <p class="text-xs text-zinc-500 dark:text-zinc-400">${user.email || ""
+      }</p>
                 </div>
                 <a href="/admin/profile" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-zinc-950 hover:bg-zinc-950/5 dark:text-white dark:hover:bg-white/5">
                   <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -770,8 +758,8 @@ function renderCatalystSidebar(
           </div>
         </div>
       `
-          : ""
-      }
+      : ""
+    }
     </nav>
   `;
 }

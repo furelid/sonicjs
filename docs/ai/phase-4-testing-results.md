@@ -11,19 +11,19 @@ Successfully tested the greenfield starter template with the local `@sonicjs-cms
 ## Tests Performed
 
 ### 1. Dependency Installation ✅
-- **Command**: `npm install`
+- **Command**: `pnpm install`
 - **Result**: SUCCESS
 - **Notes**: All dev dependencies installed correctly (128 packages)
 - **Warnings**: Some deprecated packages (expected from upstream dependencies)
 
 ### 2. Local Package Linking ✅
-- **Command**: `npm link ../../packages/core`
+- **Command**: `pnpm link ../../packages/core`
 - **Result**: SUCCESS
 - **Verification**: Symlink created at `node_modules/@sonicjs-cms/core`
 - **Notes**: Core package correctly linked from `packages/core`
 
 ### 3. TypeScript Compilation ✅
-- **Command**: `npm run type-check`
+- **Command**: `pnpm run type-check`
 - **Result**: SUCCESS
 - **Notes**:
   - Initial failures due to template using incorrect types
@@ -32,7 +32,7 @@ Successfully tested the greenfield starter template with the local `@sonicjs-cms
   - All type checks passing after fixes
 
 ### 4. Wrangler Dev Server ✅
-- **Command**: `npm run dev`
+- **Command**: `pnpm run dev`
 - **Result**: SUCCESS
 - **Server**: Started on `http://localhost:63624`
 - **Bindings**:

@@ -7,7 +7,13 @@
   "homepage": "https://sonicjs.com/plugins/contact-form",
   "license": "MIT",
   "category": "communication",
-  "tags": ["contact", "forms", "maps", "communication", "messaging"],
+  "tags": [
+    "contact",
+    "forms",
+    "maps",
+    "communication",
+    "messaging"
+  ],
   "dependencies": [],
   "settings": {
     "companyName": {

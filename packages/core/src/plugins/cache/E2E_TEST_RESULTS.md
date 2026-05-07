@@ -57,7 +57,7 @@ The comprehensive e2e test suite covers all Phase 3 features:
 ## Test Execution
 
 ```bash
-npm run test -- src/tests/cache.e2e.test.ts
+pnpm run test -- src/tests/cache.e2e.test.ts
 ```
 
 ### Results Summary
@@ -125,11 +125,11 @@ To run all cache-related tests:
 
 ```bash
 # Unit tests
-npm run test -- src/plugins/cache/tests/cache.test.ts
+pnpm run test -- src/plugins/cache/tests/cache.test.ts
 
 # E2E tests
-npm run test -- src/tests/cache.e2e.test.ts
+pnpm run test -- src/tests/cache.e2e.test.ts
 
 # All tests together
-npm run test
+pnpm run test
 ```

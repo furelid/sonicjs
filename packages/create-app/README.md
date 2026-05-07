@@ -2,13 +2,13 @@
 
 > The easiest way to create a new SonicJS application
 
-[![Version](https://img.shields.io/npm/v/create-sonicjs)](https://www.npmjs.com/package/create-sonicjs)
-[![License](https://img.shields.io/npm/l/create-sonicjs)](./LICENSE)
+[![Version](https://img.shields.io/pnpm/v/create-sonicjs)](https://www.pnpmjs.com/package/create-sonicjs)
+[![License](https://img.shields.io/pnpm/l/create-sonicjs)](./LICENSE)
 
 ## Quick Start
 
 ```bash
-npx create-sonicjs my-app
+pnpm dlx create-sonicjs my-app
 ```
 
 That's it! Follow the interactive prompts and you'll have a running SonicJS application in minutes.
@@ -30,7 +30,7 @@ That's it! Follow the interactive prompts and you'll have a running SonicJS appl
 ### Interactive Mode (Recommended)
 
 ```bash
-npx create-sonicjs
+pnpm dlx create-sonicjs
 ```
 
 You'll be prompted for:
@@ -45,13 +45,13 @@ You'll be prompted for:
 ### With Project Name
 
 ```bash
-npx create-sonicjs my-blog
+pnpm dlx create-sonicjs my-blog
 ```
 
 ### Command Line Options
 
 ```bash
-npx create-sonicjs my-app --template=starter --skip-install
+pnpm dlx create-sonicjs my-app --template=starter --skip-install
 ```
 
 **Available flags:**
@@ -83,7 +83,7 @@ Includes:
 ## Requirements
 
 - **Node.js** 18 or higher
-- **npm** 7 or higher (or yarn/pnpm)
+- **pnpm** 7 or higher (or yarn/pnpm)
 - **wrangler** (optional, for Cloudflare resources)
 
 ## What Gets Created
@@ -121,13 +121,13 @@ wrangler r2 bucket create my-app-media
 ### 3. Run database migrations
 
 ```bash
-npm run db:migrate:local
+pnpm run db:migrate:local
 ```
 
 ### 4. Start development server
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ### 5. Open admin interface
@@ -143,8 +143,8 @@ Default credentials:
 Works with all major package managers:
 
 ```bash
-# npm
-npx create-sonicjs my-app
+# pnpm
+pnpm dlx create-sonicjs my-app
 
 # yarn
 yarn create sonicjs my-app
@@ -190,7 +190,7 @@ wrangler r2 bucket create my-app-media
 
 Install wrangler globally:
 ```bash
-npm install -g wrangler
+pnpm install -g wrangler
 ```
 
 ### "Directory already exists"
@@ -205,7 +205,7 @@ rm -rf my-app
 Try manually:
 ```bash
 cd my-app
-npm install
+pnpm install
 ```
 
 ### Cloudflare resource creation fails
@@ -217,7 +217,7 @@ You can create resources manually after project creation. See the [After Creatio
 ### Skip All Prompts (Non-Interactive Mode)
 
 ```bash
-npx create-sonicjs my-app \
+pnpm dlx create-sonicjs my-app \
   --template=starter \
   --database=my-app-db \
   --bucket=my-app-media \
@@ -230,7 +230,7 @@ npx create-sonicjs my-app \
 ### Use in CI/CD
 
 ```bash
-npx create-sonicjs test-app \
+pnpm dlx create-sonicjs test-app \
   --template=starter \
   --database=test-db \
   --bucket=test-bucket \
@@ -254,7 +254,7 @@ npx create-sonicjs test-app \
 ### Create a blog
 
 ```bash
-npx create-sonicjs my-blog
+pnpm dlx create-sonicjs my-blog
 # Select "Starter" template
 # Include example collection: Yes
 ```
@@ -262,7 +262,7 @@ npx create-sonicjs my-blog
 ### Create without examples
 
 ```bash
-npx create-sonicjs my-app
+pnpm dlx create-sonicjs my-app
 # Include example collection: No
 ```
 

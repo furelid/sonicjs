@@ -61,12 +61,12 @@ SonicJS AI runs on Cloudflare's global edge network, providing:
 ### Required Tools
 
 ```bash
-# Node.js 18+ and npm
+# Node.js 18+ and pnpm
 node --version  # Should be v18.0.0 or higher
-npm --version
+pnpm --version
 
 # Wrangler CLI (Cloudflare Workers CLI)
-npm install -g wrangler@latest
+pnpm install -g wrangler@latest
 wrangler --version  # Should be v3.0.0 or higher
 
 # Git for version control
@@ -77,7 +77,7 @@ git --version
 
 ```bash
 # Install Wrangler globally
-npm install -g wrangler@latest
+pnpm install -g wrangler@latest
 
 # Login to Cloudflare
 wrangler login
@@ -247,7 +247,7 @@ SonicJS uses Drizzle ORM for migrations. Apply all migrations to production:
 
 ```bash
 # Apply migrations to production database
-npm run db:migrate:prod
+pnpm run db:migrate:prod
 
 # Or manually with wrangler
 wrangler d1 migrations apply DB --env production
@@ -310,7 +310,7 @@ VALUES (
 wrangler d1 execute sonicjs-dev --local --file=./drizzle/migrations/0000_happy_donald_blake.sql
 
 # Apply all migrations locally
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 ## R2 Bucket Setup
@@ -552,7 +552,7 @@ export default {
 
 ```bash
 # 1. Start local development server
-npm run dev
+pnpm run dev
 
 # This runs: wrangler dev
 # - Uses local D1 database
@@ -560,10 +560,10 @@ npm run dev
 # - Access at: http://localhost:8787
 
 # 2. Run tests
-npm test
+pnpm test
 
 # 3. Build project
-npm run build
+pnpm run build
 
 # This runs: tsc && wrangler deploy --dry-run
 # - Compiles TypeScript
@@ -591,10 +591,10 @@ curl https://sonicjs-ai-preview.workers.dev/api/health
 
 ```bash
 # Run all tests
-npm test
+pnpm test
 
 # Check TypeScript compilation
-npm run build
+pnpm run build
 
 # Verify migrations are up to date
 wrangler d1 migrations list DB --env production
@@ -604,7 +604,7 @@ wrangler d1 migrations list DB --env production
 
 ```bash
 # Option 1: Using predeploy script (runs tests + build)
-npm run predeploy && npm run deploy
+pnpm run predeploy && pnpm run deploy
 
 # Option 2: Direct deployment
 wrangler deploy --env production
@@ -1152,7 +1152,7 @@ CREATE INDEX IF NOT EXISTS idx_collections_name ON collections(name);
 ```toml
 # Compress responses
 [build]
-command = "npm run build"
+command = "pnpm run build"
 
 [build.upload]
 format = "modules"
@@ -1259,16 +1259,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Run tests
-        run: npm test
+        run: pnpm test
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
   deploy-preview:
     needs: test
@@ -1283,7 +1283,7 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Deploy to Preview
         uses: cloudflare/wrangler-action@v3
@@ -1308,7 +1308,7 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Run database migrations
         uses: cloudflare/wrangler-action@v3
@@ -1354,7 +1354,7 @@ jobs:
           node-version: '18'
 
       - name: Install Wrangler
-        run: npm install -g wrangler@latest
+        run: pnpm install -g wrangler@latest
 
       - name: Backup Database
         env:

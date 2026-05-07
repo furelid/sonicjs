@@ -537,7 +537,7 @@ Requirements: Hosting platform, database service, environment configuration
 
 ```bash
 # SonicJS: One command
-npx wrangler deploy
+pnpm dlx wrangler deploy
 ```
 
 That's it. D1 database, R2 storage, KV caching—all included in the Cloudflare platform. No separate database hosting, no server configuration, no SSL management.
@@ -634,14 +634,14 @@ Ready to try edge-first content management? Get started in under 5 minutes:
 
 ```bash
 # Create your SonicJS project
-npx create-sonicjs@latest my-cms
+pnpm dlx create-sonicjs@latest my-cms
 
 # Start development
 cd my-cms
 npm run dev
 
 # Deploy to production (when ready)
-npx wrangler deploy
+pnpm dlx wrangler deploy
 ```
 
 You'll have a fully functional CMS with sub-50ms global latency. No server configuration, no database hosting, no infrastructure complexity.

@@ -765,7 +765,7 @@ wrangler deploy --env production
 wrangler deploy --env preview
 
 # Local Development
-npm run dev
+pnpm run dev
 ```
 
 ### Environment Configuration

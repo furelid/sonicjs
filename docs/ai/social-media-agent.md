@@ -18,48 +18,48 @@ Use the `/social-post` slash command in Claude Code:
 
 ```bash
 # Simple message
-npm run social:discord "Your message here"
+pnpm run social:discord "Your message here"
 
 # With title
-npm run social:discord -- --title "New Release" --message "We released v2.4!"
+pnpm run social:discord -- --title "New Release" --message "We released v2.4!"
 
 # Dry run (preview without posting)
-npm run social:discord -- --dry-run "Test message"
+pnpm run social:discord -- --dry-run "Test message"
 ```
 
 ### Post to Twitter/X
 
 ```bash
 # Simple tweet
-npm run social:twitter "Your tweet here"
+pnpm run social:twitter "Your tweet here"
 
 # With custom hashtags
-npm run social:twitter -- --hashtags "SonicJS,CMS,CloudFlare" "Your tweet"
+pnpm run social:twitter -- --hashtags "SonicJS,CMS,CloudFlare" "Your tweet"
 
 # With a link
-npm run social:twitter -- --url "https://sonicjs.com" "Check out SonicJS!"
+pnpm run social:twitter -- --url "https://sonicjs.com" "Check out SonicJS!"
 
 # Dry run
-npm run social:twitter -- --dry-run "Test tweet"
+pnpm run social:twitter -- --dry-run "Test tweet"
 ```
 
 ### Post to Both Platforms
 
 ```bash
 # Same message to both
-npm run social:post "Your announcement here"
+pnpm run social:post "Your announcement here"
 
 # With options
-npm run social:post -- --title "Big News" --message "We released v2.4!"
+pnpm run social:post -- --title "Big News" --message "We released v2.4!"
 
 # Discord only
-npm run social:post -- --discord-only "Discord only message"
+pnpm run social:post -- --discord-only "Discord only message"
 
 # Twitter only
-npm run social:post -- --twitter-only "Twitter only message"
+pnpm run social:post -- --twitter-only "Twitter only message"
 
 # Dry run
-npm run social:post -- --dry-run "Test message"
+pnpm run social:post -- --dry-run "Test message"
 ```
 
 ## Environment Variables

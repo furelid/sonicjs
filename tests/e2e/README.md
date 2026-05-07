@@ -77,16 +77,16 @@ The Collections API tests provide comprehensive coverage of:
 
 ```bash
 # Run all tests
-npm run test:e2e
+pnpm run test:e2e
 
 # Run specific test file
-npx playwright test 08-collections-api
+pnpm dlx playwright test 08-collections-api
 
 # Run with UI
-npx playwright test --ui
+pnpm dlx playwright test --ui
 
 # Run in debug mode
-npx playwright test --debug
+pnpm dlx playwright test --debug
 ```
 
 ## Test Strategy

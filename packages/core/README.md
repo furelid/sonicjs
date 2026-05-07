@@ -2,8 +2,8 @@
 
 > Core framework for SonicJS - A modern, TypeScript-first headless CMS built for Cloudflare's edge platform.
 
-[![Version](https://img.shields.io/npm/v/@sonicjs-cms/core)](https://www.npmjs.com/package/@sonicjs-cms/core)
-[![License](https://img.shields.io/npm/l/@sonicjs-cms/core)](./LICENSE)
+[![Version](https://img.shields.io/pnpm/v/@sonicjs-cms/core)](https://www.pnpmjs.com/package/@sonicjs-cms/core)
+[![License](https://img.shields.io/pnpm/l/@sonicjs-cms/core)](./LICENSE)
 
 ---
 
@@ -14,7 +14,7 @@
 To create a new SonicJS project, use:
 
 ```bash
-npx create-sonicjs my-app
+pnpm dlx create-sonicjs my-app
 ```
 
 This is the recommended way to get started with SonicJS. It sets up everything you need with a single command.
@@ -37,19 +37,19 @@ This is the recommended way to get started with SonicJS. It sets up everything y
 ## 📦 Installation
 
 ```bash
-npm install @sonicjs-cms/core
+pnpm install @sonicjs-cms/core
 ```
 
 ### Required Peer Dependencies
 
 ```bash
-npm install @cloudflare/workers-types hono drizzle-orm zod
+pnpm install @cloudflare/workers-types hono drizzle-orm zod
 ```
 
 ### Optional Dependencies
 
 ```bash
-npm install wrangler drizzle-kit  # For development
+pnpm install wrangler drizzle-kit  # For development
 ```
 
 ## 🚀 Quick Start
@@ -360,13 +360,13 @@ SonicJS uses a **build-time migration bundler** because Cloudflare Workers canno
 
 3. **Regenerate the bundle**:
    ```bash
-   npm run generate:migrations
-   # Or this runs automatically during: npm run build
+   pnpm run generate:migrations
+   # Or this runs automatically during: pnpm run build
    ```
 
 4. **Build the package**:
    ```bash
-   npm run build
+   pnpm run build
    ```
 
 5. **Apply to your test database**:
@@ -379,16 +379,16 @@ SonicJS uses a **build-time migration bundler** because Cloudflare Workers canno
 
 ```bash
 # Generate migrations bundle only
-npm run generate:migrations
+pnpm run generate:migrations
 
 # Build (automatically runs generate:migrations first)
-npm run build
+pnpm run build
 
 # Type check
-npm run type-check
+pnpm run type-check
 
 # Run tests
-npm run test
+pnpm run test
 ```
 
 #### How It Works
@@ -408,7 +408,7 @@ The `generate-migrations.ts` script:
 
 SonicJS follows semantic versioning:
 
-- **v2.x.x** - Current npm package (core extracted)
+- **v2.x.x** - Current pnpm package (core extracted)
 - **v1.x.x** - Legacy monolith (deprecated)
 
 **Current Version**: `2.0.0-alpha.1`
@@ -417,13 +417,13 @@ SonicJS follows semantic versioning:
 
 ```bash
 # Install the new package
-npm install @sonicjs-cms/core@2.0.0-alpha.1
+pnpm install @sonicjs-cms/core@2.0.0-alpha.1
 
 # Run any new migrations
 wrangler d1 migrations apply DB
 
 # Test your application
-npm run dev
+pnpm run dev
 ```
 
 ## 📖 Documentation

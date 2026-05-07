@@ -8,10 +8,10 @@ The smoke test suite is a fast, focused set of tests that validates critical fun
 
 ```bash
 # Run smoke tests
-npm run e2e:smoke
+pnpm run e2e:smoke
 
 # Run with Playwright UI (interactive mode)
-npm run e2e:smoke:ui
+pnpm run e2e:smoke:ui
 ```
 
 ## What Gets Tested (15 Tests)
@@ -76,8 +76,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-      - run: npm ci
-      - run: npm run e2e:smoke  # Fast feedback
+      - run: pnpm ci
+      - run: pnpm run e2e:smoke  # Fast feedback
 
   full-tests:
     runs-on: ubuntu-latest
@@ -86,8 +86,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-      - run: npm ci
-      - run: npm run e2e  # Full test suite
+      - run: pnpm ci
+      - run: pnpm run e2e  # Full test suite
 ```
 
 ## Configuration
@@ -127,7 +127,7 @@ test('New critical feature works', async ({ page }) => {
 ## Troubleshooting
 
 ### Smoke tests fail but full tests pass?
-- Check if server is running (`npm run dev`)
+- Check if server is running (`pnpm run dev`)
 - Verify database is initialized
 - Check for port conflicts (8787)
 

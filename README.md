@@ -1,7 +1,7 @@
 # SonicJS
 
 [![GitHub stars](https://img.shields.io/github/stars/lane711/sonicjs?style=social)](https://github.com/lane711/sonicjs)
-[![npm downloads](https://img.shields.io/npm/dm/@sonicjs-cms/core.svg)](https://www.npmjs.com/package/@sonicjs-cms/core)
+[![pnpm downloads](https://img.shields.io/pnpm/dm/@sonicjs-cms/core.svg)](https://www.pnpmjs.com/package/@sonicjs-cms/core)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/lane711/sonicjs)](https://github.com/lane711/sonicjs/commits)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Us-5865F2?logo=discord&logoColor=white)](https://discord.gg/8bMy6bv3sZ)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
@@ -10,7 +10,7 @@
 [![PR Tests](https://github.com/lane711/sonicjs/actions/workflows/pr-tests.yml/badge.svg)](https://github.com/lane711/sonicjs/actions/workflows/pr-tests.yml)
 [![codecov](https://codecov.io/gh/SonicJs-Org/sonicjs/branch/main/graph/badge.svg)](https://codecov.io/gh/SonicJs-Org/sonicjs)
 [![Tests](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Flane711%2F4fc1969ff683812bc49788d43fb4d7e2%2Fraw%2Ftest-count.json)](https://github.com/lane711/sonicjs)
-[![npm version](https://img.shields.io/npm/v/@sonicjs-cms/core.svg)](https://www.npmjs.com/package/@sonicjs-cms/core)
+[![pnpm version](https://img.shields.io/pnpm/v/@sonicjs-cms/core.svg)](https://www.pnpmjs.com/package/@sonicjs-cms/core)
 
 **The edge-native headless CMS for Cloudflare Workers.** Sub-100ms response times globally. Zero cold starts. TypeScript-first.
 
@@ -19,7 +19,7 @@
 ## 📦 Get Started
 
 ```bash
-npx create-sonicjs@latest my-app
+pnpm dlx create-sonicjs@latest my-app
 ```
 
 [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink?style=for-the-badge&logo=github-sponsors)](https://github.com/sponsors/lane711)
@@ -112,13 +112,13 @@ If you want to **build an application** with SonicJS:
 
 ```bash
 # Create a new SonicJS application
-npx create-sonicjs@latest my-app
+pnpm dlx create-sonicjs@latest my-app
 
 # Navigate to your app
 cd my-app
 
 # Start development server
-npm run dev
+pnpm run dev
 
 # Visit http://localhost:8787
 ```
@@ -140,16 +140,16 @@ git clone https://github.com/lane711/sonicjs-ai.git
 cd sonicjs-ai
 
 # Install dependencies
-npm install
+pnpm install
 
 # Build the core package
-npm run build:core
+pnpm run build:core
 
 # Create a test app to validate changes
-npx create-sonicjs@latest my-sonicjs-app
+pnpm dlx create-sonicjs@latest my-sonicjs-app
 
 # Run tests
-npm test
+pnpm test
 ```
 
 #### Setting Up a Fresh Database
@@ -158,7 +158,7 @@ When working in a new worktree or wanting to reset your local database, run from
 
 ```bash
 # Create a fresh D1 database for your branch
-npm run db:reset
+pnpm run db:reset
 ```
 
 This will:
@@ -168,7 +168,7 @@ This will:
 
 #### Working with Database Migrations
 
-When developing the core package, migrations are located in `packages/core/migrations/`. Your test app will reference these migrations through the npm workspace symlink.
+When developing the core package, migrations are located in `packages/core/migrations/`. Your test app will reference these migrations through the pnpm workspace symlink.
 
 **From your test app directory** (e.g., `my-sonicjs-app/`):
 
@@ -185,8 +185,8 @@ wrangler d1 migrations apply DB --remote
 
 **Important Notes:**
 - The test app's `wrangler.toml` points to: `migrations_dir = "./node_modules/@sonicjs-cms/core/migrations"`
-- Since the core package is symlinked via npm workspaces, changes to migrations are immediately available
-- After creating new migrations in `packages/core/migrations/`, rebuild the core package: `npm run build:core`
+- Since the core package is symlinked via pnpm workspaces, changes to migrations are immediately available
+- After creating new migrations in `packages/core/migrations/`, rebuild the core package: `pnpm run build:core`
 - Always apply migrations to your test database before running the dev server or tests
 
 **Creating New Migrations:**
@@ -195,8 +195,8 @@ SonicJS uses a **build-time migration bundler** because Cloudflare Workers canno
 
 1. Create a new migration file in `packages/core/migrations/` following the naming pattern: `NNN_description.sql` (e.g., `027_add_user_preferences.sql`)
 2. Write your migration SQL (use `CREATE TABLE IF NOT EXISTS` and `INSERT OR IGNORE` for idempotency)
-3. Regenerate the migrations bundle: `cd packages/core && npm run generate:migrations`
-4. Rebuild the core package: `npm run build:core` (or just `npm run build` from packages/core - the bundle generation runs automatically as a prebuild step)
+3. Regenerate the migrations bundle: `cd packages/core && pnpm run generate:migrations`
+4. Rebuild the core package: `pnpm run build:core` (or just `pnpm run build` from packages/core - the bundle generation runs automatically as a prebuild step)
 5. Apply to your test database: `cd my-sonicjs-app && wrangler d1 migrations apply DB --local`
 
 **Important**: After modifying any `.sql` files in `migrations/`, you **must** rebuild the package. The SQL files are not used at runtime - only the generated `migrations-bundle.ts` file is included in the build.
@@ -205,22 +205,22 @@ SonicJS uses a **build-time migration bundler** because Cloudflare Workers canno
 
 ```bash
 # Start development server
-npm run dev
+pnpm run dev
 
 # Deploy to Cloudflare
-npm run deploy
+pnpm run deploy
 
 # Database operations
-npm run db:migrate     # Apply migrations
-npm run db:studio      # Open database studio
+pnpm run db:migrate     # Apply migrations
+pnpm run db:studio      # Open database studio
 
 # Run tests
-npm test
+pnpm test
 ```
 
 ## 📁 Project Structure
 
-This is a **package development monorepo** for building and maintaining the SonicJS CMS npm package.
+This is a **package development monorepo** for building and maintaining the SonicJS CMS pnpm package.
 
 ```
 sonicjs-ai/
@@ -237,7 +237,7 @@ sonicjs-ai/
 │   └── scripts/           # Build scripts & generators
 │
 ├── my-sonicjs-app/        # 🧪 Test application (gitignored)
-│   └── ...                # Created with: npx create-sonicjs@latest
+│   └── ...                # Created with: pnpm dlx create-sonicjs@latest
 │                          # Used for testing the published package
 │
 ├── www/                   # 🌐 Marketing website
@@ -247,9 +247,9 @@ sonicjs-ai/
 
 ### Important Notes
 
-⚠️ **This is NOT an application repository** - it's for developing the `@sonicjs-cms/core` npm package.
+⚠️ **This is NOT an application repository** - it's for developing the `@sonicjs-cms/core` pnpm package.
 
-- **`packages/core/`** - The main package published to npm
+- **`packages/core/`** - The main package published to pnpm
 - **`my-sonicjs-app/`** - Test installation for validating the published package (can be deleted/recreated)
 - **No root `src/`** - Application code lives in `packages/core/` or test apps like `my-sonicjs-app/`
 
@@ -309,7 +309,7 @@ INSERT INTO content_fields (collection_id, field_name, field_type, field_label, 
 
 ### Deploying Your SonicJS Application
 
-After creating your app with `npx create-sonicjs@latest`:
+After creating your app with `pnpm dlx create-sonicjs@latest`:
 
 ```bash
 # 1. Configure your Cloudflare project
@@ -319,10 +319,10 @@ After creating your app with `npx create-sonicjs@latest`:
 wrangler d1 create my-app-db
 
 # 3. Apply database migrations
-npm run db:migrate:prod
+pnpm run db:migrate:prod
 
 # 4. Deploy to Cloudflare Workers
-npm run deploy
+pnpm run deploy
 ```
 
 Your app will be live at: `https://your-app.workers.dev`
@@ -349,16 +349,16 @@ bucket_name = "my-app-media"
 
 ```bash
 # Run unit tests
-npm test
+pnpm test
 
 # Run tests in watch mode
-npm run test:watch
+pnpm run test:watch
 
 # Run E2E tests
-npm run test:e2e
+pnpm run test:e2e
 
 # Run E2E tests with UI
-npm run test:e2e:ui
+pnpm run test:e2e:ui
 ```
 
 ## 📚 Documentation

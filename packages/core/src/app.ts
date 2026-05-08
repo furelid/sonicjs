@@ -103,7 +103,17 @@ export interface SonicJSConfig {
   plugins?: {
     directory?: string
     autoLoad?: boolean
-    disableAll?: boolean  // Disable all plugins including core plugins
+    /**
+     * When true, disables all non-core plugins (is_core === false in manifest).
+     * Core plugins (is_core === true) are always active regardless of this flag.
+     * Takes precedence over the `enabled` list and the per-request DB active check.
+     */
+    disableAll?: boolean
+    /**
+     * Explicit allowlist of plugin names to enable.
+     * Only used when `isPluginEnabled` is not provided.
+     * Core plugins (is_core === true) are always enabled regardless of this list.
+     */
     enabled?: string[]
   }
 
@@ -220,6 +230,14 @@ export function mountPluginManagerRoutes(
  * In Cloudflare Workers a module instance can handle many requests within its
  * lifetime, so caching here avoids a D1 read on every hot-path request while
  * still reflecting DB changes within a short window.
+ *
+ * **Invalidation**: status changes made via the admin UI take up to
+ * PLUGIN_STATUS_CACHE_TTL_MS (60 s) to propagate. For immediate effects
+ * (e.g. CI or integration tests) restart the Worker or reduce the TTL.
+ *
+ * **Memory**: the map is bounded by the number of distinct plugin names
+ * passed to mountPluginManagerRoutes (~10 core plugins), so unbounded growth
+ * is not a concern in practice.
  */
 const PLUGIN_STATUS_CACHE_TTL_MS = 60_000
 const pluginStatusCache = new Map<string, { active: boolean; expiresAt: number }>()

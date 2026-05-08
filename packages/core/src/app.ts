@@ -151,6 +151,16 @@ export function mountPluginManagerRoutes(
   const enabledPlugins = new Set(options.enabledPlugins ?? [])
   const isPluginEnabled = options.isPluginEnabled ?? (() => false)
   const hasExplicitEnablement = options.enabledPlugins !== undefined || options.isPluginEnabled !== undefined
+  const shouldEnablePlugin = async (
+    pluginName: string,
+    c: Context<{ Bindings: Bindings; Variables: Variables }>
+  ): Promise<boolean> => {
+    if (!hasExplicitEnablement) {
+      return true
+    }
+
+    return enabledPlugins.has(pluginName) || await isPluginEnabled(pluginName, c)
+  }
 
   for (const plugin of plugins) {
     pluginManager.registerPluginRoutes(plugin)
@@ -162,11 +172,7 @@ export function mountPluginManagerRoutes(
 
     for (const route of plugin.routes) {
       const guard = async (c: Context<{ Bindings: Bindings; Variables: Variables }>, next: () => Promise<void>) => {
-        const pluginEnabled = enabledPlugins.has(pluginName)
-          || await isPluginEnabled(pluginName, c)
-          || !hasExplicitEnablement
-
-        if (pluginEnabled) {
+        if (await shouldEnablePlugin(pluginName, c)) {
           await next()
           return
         }
@@ -174,8 +180,9 @@ export function mountPluginManagerRoutes(
         return c.notFound()
       }
 
-      app.use(route.path, guard)
-      app.use(`${route.path}/*`, guard)
+      for (const guardedPath of [route.path, `${route.path}/*`]) {
+        app.use(guardedPath, guard)
+      }
     }
 
     app.route('/', pluginApp)

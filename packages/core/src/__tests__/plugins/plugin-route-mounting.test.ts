@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { Hono } from 'hono'
 import { PluginBuilder } from '../../plugins/sdk/plugin-builder'
 import { mountPluginManagerRoutes } from '../../app'
+import type { Bindings, Variables } from '../../app'
 
 describe('mountPluginManagerRoutes', () => {
   it('responds for enabled plugin routes', async () => {
@@ -13,10 +14,10 @@ describe('mountPluginManagerRoutes', () => {
       .addRoute('/api/active-plugin', pluginRoutes)
       .build()
 
-    const app = new Hono()
+    const app = new Hono<{ Bindings: Bindings; Variables: Variables }>()
     const isPluginEnabled = vi.fn(async (pluginName: string) => pluginName === 'active-plugin')
 
-    mountPluginManagerRoutes(app as any, [plugin], { isPluginEnabled })
+    mountPluginManagerRoutes(app, [plugin], { isPluginEnabled })
 
     const response = await app.request('http://localhost/api/active-plugin')
 
@@ -34,9 +35,9 @@ describe('mountPluginManagerRoutes', () => {
       .addRoute('/api/inactive-plugin', pluginRoutes)
       .build()
 
-    const app = new Hono()
+    const app = new Hono<{ Bindings: Bindings; Variables: Variables }>()
 
-    mountPluginManagerRoutes(app as any, [plugin], {
+    mountPluginManagerRoutes(app, [plugin], {
       isPluginEnabled: vi.fn(async () => false)
     })
 

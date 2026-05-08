@@ -265,7 +265,6 @@ export class PluginManager implements IPluginManager {
     const pluginApp = new Hono()
 
     for (const route of plugin.routes) {
-      console.debug(`Registering plugin route: ${route.path}`)
       pluginApp.route(route.path, route.handler)
     }
 
@@ -275,7 +274,7 @@ export class PluginManager implements IPluginManager {
   /**
    * Register plugin extensions (routes, middleware, etc.)
    */
-  async registerPluginExtensions(plugin: Plugin, _context?: PluginContext): Promise<void> {
+  private async registerPluginExtensions(plugin: Plugin, _context: PluginContext): Promise<void> {
     this.registerPluginRoutes(plugin)
 
     // Register middleware

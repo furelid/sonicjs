@@ -206,7 +206,7 @@ export function mountPluginManagerRoutes(
           return
         }
 
-        return c.notFound()
+        return c.json({ error: 'Not Found', status: 404 }, 404)
       }
 
       for (const guardedPath of [route.path, `${route.path}/*`]) {

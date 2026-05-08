@@ -52,6 +52,7 @@ import cachePlugin from './plugins/cache'
 import { faviconSvg } from './assets/favicon'
 import { setAppInstance } from './services/route-metadata'
 import { PluginManager } from './plugins/plugin-manager'
+import { getPlugin } from './plugins/manifest-registry'
 
 // ============================================================================
 // Type Definitions
@@ -132,6 +133,10 @@ export type SonicJSApp = Hono<{ Bindings: Bindings; Variables: Variables }>
 export interface PluginRouteMountOptions {
   enabledPlugins?: Iterable<string>
   isPluginEnabled?: (pluginName: string, c: Context<{ Bindings: Bindings; Variables: Variables }>) => boolean | Promise<boolean>
+  /** When true, all non-core plugins are disabled regardless of DB state or enabledPlugins list. */
+  disableAll?: boolean
+  /** Return true for plugins that should always be mounted (i.e. is_core === true in manifest). */
+  isCorePlugin?: (pluginName: string) => boolean
 }
 
 type RoutablePlugin = {
@@ -155,6 +160,16 @@ export function mountPluginManagerRoutes(
     pluginName: string,
     c: Context<{ Bindings: Bindings; Variables: Variables }>
   ): Promise<boolean> => {
+    // Core plugins (is_core === true in manifest) are always enabled.
+    if (options.isCorePlugin?.(pluginName)) {
+      return true
+    }
+
+    // disableAll gates all non-core plugins.
+    if (options.disableAll) {
+      return false
+    }
+
     if (!hasExplicitEnablement) {
       return true
     }
@@ -196,8 +211,30 @@ export function mountPluginManagerRoutes(
 }
 
 // ============================================================================
-// Application Factory
+// Plugin Active Status Cache
 // ============================================================================
+
+/**
+ * Module-level TTL cache for plugin active status.
+ *
+ * In Cloudflare Workers a module instance can handle many requests within its
+ * lifetime, so caching here avoids a D1 read on every hot-path request while
+ * still reflecting DB changes within a short window.
+ */
+const PLUGIN_STATUS_CACHE_TTL_MS = 60_000
+const pluginStatusCache = new Map<string, { active: boolean; expiresAt: number }>()
+
+async function isPluginActiveWithCache(db: D1Database, pluginName: string): Promise<boolean> {
+  const now = Date.now()
+  const cached = pluginStatusCache.get(pluginName)
+  if (cached && now < cached.expiresAt) {
+    return cached.active
+  }
+
+  const active = await isPluginActive(db, pluginName)
+  pluginStatusCache.set(pluginName, { active, expiresAt: now + PLUGIN_STATUS_CACHE_TTL_MS })
+  return active
+}
 
 /**
  * Create a SonicJS application with core functionality
@@ -293,13 +330,9 @@ export function createSonicJSApp(config: SonicJSConfig = {}): SonicJSApp {
     ],
     {
       enabledPlugins: config.plugins?.enabled,
-      isPluginEnabled: async (pluginName, c) => {
-        if (config.plugins?.disableAll) {
-          return false
-        }
-
-        return isPluginActive(c.env.DB, pluginName)
-      },
+      disableAll: config.plugins?.disableAll,
+      isCorePlugin: (name) => getPlugin(name)?.is_core === true,
+      isPluginEnabled: async (pluginName, c) => isPluginActiveWithCache(c.env.DB, pluginName),
     }
   )
 

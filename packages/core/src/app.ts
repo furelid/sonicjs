@@ -159,7 +159,11 @@ export function mountPluginManagerRoutes(
       return true
     }
 
-    return enabledPlugins.has(pluginName) || await isPluginEnabled(pluginName, c)
+    if (options.isPluginEnabled !== undefined) {
+      return await isPluginEnabled(pluginName, c)
+    }
+
+    return enabledPlugins.has(pluginName)
   }
 
   for (const plugin of plugins) {

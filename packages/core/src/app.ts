@@ -132,7 +132,6 @@ export type SonicJSApp = Hono<{ Bindings: Bindings; Variables: Variables }>
 export interface PluginRouteMountOptions {
   enabledPlugins?: Iterable<string>
   isPluginEnabled?: (pluginName: string, c: Context<{ Bindings: Bindings; Variables: Variables }>) => boolean | Promise<boolean>
-  logger?: Pick<Console, 'debug'>
 }
 
 type RoutablePlugin = {
@@ -151,26 +150,27 @@ export function mountPluginManagerRoutes(
   const pluginManager = new PluginManager()
   const enabledPlugins = new Set(options.enabledPlugins ?? [])
   const isPluginEnabled = options.isPluginEnabled ?? (() => false)
-  const logger = options.logger ?? console
+  const hasExplicitEnablement = options.enabledPlugins !== undefined || options.isPluginEnabled !== undefined
 
   for (const plugin of plugins) {
-    pluginManager.registerPluginExtensions(plugin as any)
+    pluginManager.registerPluginRoutes(plugin)
   }
 
   for (const [pluginName, pluginApp] of pluginManager.getPluginRoutes()) {
     const plugin = plugins.find(candidate => candidate.name === pluginName)
     if (!plugin?.routes?.length) continue
 
-    logger.debug?.(`[PluginRoutes] Auto-mounting routes for plugin: ${pluginName}`)
-
     for (const route of plugin.routes) {
       const guard = async (c: Context<{ Bindings: Bindings; Variables: Variables }>, next: () => Promise<void>) => {
-        if (enabledPlugins.has(pluginName) || await isPluginEnabled(pluginName, c)) {
+        const pluginEnabled = enabledPlugins.has(pluginName)
+          || await isPluginEnabled(pluginName, c)
+          || !hasExplicitEnablement
+
+        if (pluginEnabled) {
           await next()
           return
         }
 
-        logger.debug?.(`[PluginRoutes] Skipping inactive plugin route: ${pluginName} -> ${route.path}`)
         return c.notFound()
       }
 
@@ -178,7 +178,7 @@ export function mountPluginManagerRoutes(
       app.use(`${route.path}/*`, guard)
     }
 
-    app.route('/', pluginApp as any)
+    app.route('/', pluginApp)
   }
 
   return pluginManager

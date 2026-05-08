@@ -260,7 +260,7 @@ export class PluginManager implements IPluginManager {
   /**
    * Register plugin extensions (routes, middleware, etc.)
    */
-  private async registerPluginExtensions(plugin: Plugin, _context: PluginContext): Promise<void> {
+  registerPluginExtensions(plugin: Plugin, _context?: PluginContext): void {
     // Register routes
     if (plugin.routes) {
       const pluginApp = new Hono()

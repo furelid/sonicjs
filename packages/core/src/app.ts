@@ -31,6 +31,7 @@ import { bootstrapMiddleware } from './middleware/bootstrap'
 import { metricsMiddleware } from './middleware/metrics'
 import { csrfProtection } from './middleware/csrf'
 import { securityHeadersMiddleware } from './middleware/security-headers'
+import { isPluginActive } from './middleware/plugin-middleware'
 import { createDatabaseToolsAdminRoutes } from './plugins/core-plugins/database-tools-plugin/admin-routes'
 import { createSeedDataAdminRoutes } from './plugins/core-plugins/seed-data-plugin/admin-routes'
 import { emailPlugin } from './plugins/core-plugins/email-plugin'
@@ -42,6 +43,7 @@ import { createMagicLinkAuthPlugin } from './plugins/available/magic-link-auth'
 import { securityAuditPlugin } from './plugins/core-plugins/security-audit-plugin'
 import { securityAuditMiddleware } from './plugins/core-plugins/security-audit-plugin'
 import { stripePlugin } from './plugins/core-plugins/stripe-plugin'
+import { globalVariablesPlugin } from './plugins/core-plugins/global-variables-plugin'
 import { requireAuth, requireRole } from './middleware/auth'
 import { pluginMenuMiddleware } from './middleware/plugin-menu'
 import { analyticsPlugin } from './plugins/core-plugins/analytics'
@@ -49,6 +51,7 @@ import { eventsApiRoutes } from './plugins/core-plugins/analytics/routes/api'
 import cachePlugin from './plugins/cache'
 import { faviconSvg } from './assets/favicon'
 import { setAppInstance } from './services/route-metadata'
+import { PluginManager } from './plugins/plugin-manager'
 
 // ============================================================================
 // Type Definitions
@@ -100,6 +103,7 @@ export interface SonicJSConfig {
     directory?: string
     autoLoad?: boolean
     disableAll?: boolean  // Disable all plugins including core plugins
+    enabled?: string[]
   }
 
   // Custom routes
@@ -124,6 +128,61 @@ export interface SonicJSConfig {
 }
 
 export type SonicJSApp = Hono<{ Bindings: Bindings; Variables: Variables }>
+
+export interface PluginRouteMountOptions {
+  enabledPlugins?: Iterable<string>
+  isPluginEnabled?: (pluginName: string, c: Context<{ Bindings: Bindings; Variables: Variables }>) => boolean | Promise<boolean>
+  logger?: Pick<Console, 'debug'>
+}
+
+type RoutablePlugin = {
+  name: string
+  routes?: Array<{
+    path: string
+    handler: Hono
+  }>
+}
+
+export function mountPluginManagerRoutes(
+  app: SonicJSApp,
+  plugins: RoutablePlugin[],
+  options: PluginRouteMountOptions = {}
+): PluginManager {
+  const pluginManager = new PluginManager()
+  const enabledPlugins = new Set(options.enabledPlugins ?? [])
+  const isPluginEnabled = options.isPluginEnabled ?? (() => false)
+  const logger = options.logger ?? console
+
+  for (const plugin of plugins) {
+    pluginManager.registerPluginExtensions(plugin as any)
+  }
+
+  for (const [pluginName, pluginApp] of pluginManager.getPluginRoutes()) {
+    const plugin = plugins.find(candidate => candidate.name === pluginName)
+    if (!plugin?.routes?.length) continue
+
+    logger.debug?.(`[PluginRoutes] Auto-mounting routes for plugin: ${pluginName}`)
+
+    for (const route of plugin.routes) {
+      const guard = async (c: Context<{ Bindings: Bindings; Variables: Variables }>, next: () => Promise<void>) => {
+        if (enabledPlugins.has(pluginName) || await isPluginEnabled(pluginName, c)) {
+          await next()
+          return
+        }
+
+        logger.debug?.(`[PluginRoutes] Skipping inactive plugin route: ${pluginName} -> ${route.path}`)
+        return c.notFound()
+      }
+
+      app.use(route.path, guard)
+      app.use(`${route.path}/*`, guard)
+    }
+
+    app.route('/', pluginApp as any)
+  }
+
+  return pluginManager
+}
 
 // ============================================================================
 // Application Factory
@@ -155,6 +214,7 @@ export type SonicJSApp = Hono<{ Bindings: Bindings; Variables: Variables }>
  */
 export function createSonicJSApp(config: SonicJSConfig = {}): SonicJSApp {
   const app = new Hono<{ Bindings: Bindings; Variables: Variables }>()
+  const magicLinkPlugin = createMagicLinkAuthPlugin()
 
   // Set app metadata
   const appVersion = config.version || getCoreVersion()
@@ -206,6 +266,32 @@ export function createSonicJSApp(config: SonicJSConfig = {}): SonicJSApp {
   // Plugin dynamic menu items for admin sidebar
   app.use('/admin/*', pluginMenuMiddleware())
 
+  mountPluginManagerRoutes(
+    app,
+    [
+      securityAuditPlugin,
+      aiSearchPlugin,
+      oauthProvidersPlugin,
+      userProfilesPlugin,
+      otpLoginPlugin,
+      analyticsPlugin,
+      stripePlugin,
+      emailPlugin,
+      magicLinkPlugin,
+      globalVariablesPlugin,
+    ],
+    {
+      enabledPlugins: config.plugins?.enabled,
+      isPluginEnabled: async (pluginName, c) => {
+        if (config.plugins?.disableAll) {
+          return false
+        }
+
+        return isPluginActive(c.env.DB, pluginName)
+      },
+    }
+  )
+
   // Core routes
   // Routes are being imported incrementally from routes/*
   // Each route is tested and migrated one-by-one
@@ -227,63 +313,12 @@ export function createSonicJSApp(config: SonicJSConfig = {}): SonicJSApp {
   // Security audit middleware - logs auth events (login, register, logout)
   app.use('/auth/*', securityAuditMiddleware())
 
-  // Plugin routes - Security Audit (MUST be registered BEFORE admin/plugins to avoid route conflict)
-  if (securityAuditPlugin.routes && securityAuditPlugin.routes.length > 0) {
-    for (const route of securityAuditPlugin.routes) {
-      app.route(route.path, route.handler as any)
-    }
-  }
-
-  // Plugin routes - AI Search (MUST be registered BEFORE admin/plugins to avoid route conflict)
-  // Register AI Search routes first so they take precedence over the generic /:id handler
-  if (aiSearchPlugin.routes && aiSearchPlugin.routes.length > 0) {
-    for (const route of aiSearchPlugin.routes) {
-      app.route(route.path, route.handler)
-    }
-  }
-
   // Plugin routes - Cache (dashboard and management API)
   // Fixes GitHub Issue #461: Cache routes were not registered
   app.route('/admin/cache', cachePlugin.getRoutes())
 
-  // Plugin routes - OAuth Providers (MUST be registered BEFORE admin/plugins to avoid route conflict)
-  if (oauthProvidersPlugin.routes && oauthProvidersPlugin.routes.length > 0) {
-    for (const route of oauthProvidersPlugin.routes) {
-      app.route(route.path, route.handler as any)
-    }
-  }
-
-  // Plugin routes - User Profiles
-  if (userProfilesPlugin.routes && userProfilesPlugin.routes.length > 0) {
-    for (const route of userProfilesPlugin.routes) {
-      app.route(route.path, route.handler as any)
-    }
-  }
-
-  // Plugin routes - OTP Login (MUST be registered BEFORE admin/plugins to avoid route conflict)
-  // Register OTP Login routes first so they take precedence over the generic /:id handler
-  if (otpLoginPlugin.routes && otpLoginPlugin.routes.length > 0) {
-    for (const route of otpLoginPlugin.routes) {
-      app.route(route.path, route.handler as any)
-    }
-  }
-
-  // Plugin routes - Analytics (must be before /admin/plugins catch-all)
-  if (analyticsPlugin.routes && analyticsPlugin.routes.length > 0) {
-    for (const route of analyticsPlugin.routes) {
-      app.route(route.path, route.handler as any)
-    }
-  }
-
   // Public event tracking API — POST /api/events (open), GET /api/events (admin)
   app.route('/api/events', eventsApiRoutes)
-
-  // Plugin routes - Stripe (must be before /admin/plugins catch-all)
-  if (stripePlugin.routes && stripePlugin.routes.length > 0) {
-    for (const route of stripePlugin.routes) {
-      app.route(route.path, route.handler as any)
-    }
-  }
 
   app.route('/admin/plugins', adminPluginRoutes)
   app.route('/admin/logs', adminLogsRoutes)
@@ -292,21 +327,6 @@ export function createSonicJSApp(config: SonicJSConfig = {}): SonicJSApp {
 
   // Test cleanup routes (only for development/test environments)
   app.route('/', testCleanupRoutes)
-
-  // Plugin routes - Email
-  if (emailPlugin.routes && emailPlugin.routes.length > 0) {
-    for (const route of emailPlugin.routes) {
-      app.route(route.path, route.handler as any)
-    }
-  }
-
-  // Plugin routes - Magic Link Auth (passwordless authentication via email links)
-  const magicLinkPlugin = createMagicLinkAuthPlugin()
-  if (magicLinkPlugin.routes && magicLinkPlugin.routes.length > 0) {
-    for (const route of magicLinkPlugin.routes) {
-      app.route(route.path, route.handler as any)
-    }
-  }
 
   // Serve favicon
   app.get('/favicon.svg', (c) => {

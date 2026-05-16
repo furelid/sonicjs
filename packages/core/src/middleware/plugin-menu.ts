@@ -4,6 +4,7 @@ import type { Bindings, Variables } from '../app'
 import { PLUGIN_REGISTRY } from '../plugins/manifest-registry'
 
 type ActiveMenuItem = { label: string; path: string; icon?: string; order: number }
+type PluginStatusRow = { name: string }
 
 const MENU_CACHE_TTL_MS = 60 * 1000
 let cachedActiveMenuItems: ActiveMenuItem[] | null = null
@@ -75,7 +76,8 @@ async function loadActiveMenuItems(db: D1Database): Promise<ActiveMenuItem[]> {
     `SELECT name FROM plugins WHERE name IN (${placeholders}) AND status = 'active'`
   ).bind(...pluginCodeNames).all()
 
-  const activeNames = new Set((result.results || []).map((r: any) => r.name))
+  const rows = (result.results || []) as PluginStatusRow[]
+  const activeNames = new Set(rows.map(r => r.name))
   const activeMenuItems: ActiveMenuItem[] = []
 
   for (const plugin of REGISTRY_MENU_PLUGINS) {

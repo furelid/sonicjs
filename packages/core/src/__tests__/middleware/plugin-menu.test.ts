@@ -68,6 +68,18 @@ describe('pluginMenuMiddleware', () => {
     expect(c.set).not.toHaveBeenCalled()
   })
 
+  it('skips plugin DB lookup for exact /admin/api path', async () => {
+    const db = createMockDb()
+    const c = createMockContext('/admin/api', db as any)
+    const next = vi.fn().mockResolvedValue(undefined)
+
+    await pluginMenuMiddleware()(c, next)
+
+    expect(next).toHaveBeenCalledOnce()
+    expect(db.prepare).not.toHaveBeenCalled()
+    expect(c.set).not.toHaveBeenCalled()
+  })
+
   it('uses cached menu items between admin requests', async () => {
     const db = createMockDb()
     const middleware = pluginMenuMiddleware()

@@ -132,7 +132,8 @@ export function pluginMenuMiddleware() {
         activeMenuItems = await loadActiveMenuItems(c.env.DB)
         setCachedActiveMenuItems(activeMenuItems)
       }
-    } catch {
+    } catch (error) {
+      console.error('Failed to load dynamic plugin menu items:', error)
       // DB not ready or plugin table doesn't exist yet
       invalidatePluginMenuCache()
     }

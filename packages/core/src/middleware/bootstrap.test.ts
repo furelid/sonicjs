@@ -11,6 +11,10 @@ vi.mock('../services/collection-sync', () => ({
   syncCollections: vi.fn().mockResolvedValue([])
 }))
 
+vi.mock('../services/form-collection-sync', () => ({
+  syncAllFormCollections: vi.fn().mockResolvedValue(undefined)
+}))
+
 vi.mock('../services/migrations', () => {
   const mockRunPendingMigrations = vi.fn().mockResolvedValue(undefined)
   return {
@@ -35,6 +39,7 @@ vi.mock('../services/plugin-bootstrap', () => {
 
 // Import the mocked modules after mocking
 import { syncCollections } from '../services/collection-sync'
+import { syncAllFormCollections } from '../services/form-collection-sync'
 import { MigrationService } from '../services/migrations'
 import { PluginBootstrapService } from '../services/plugin-bootstrap'
 
@@ -232,6 +237,46 @@ describe('bootstrapMiddleware', () => {
     expect(consoleSpy).toHaveBeenCalledWith('[Bootstrap] Plugin bootstrap skipped (disableAll is true)')
   })
 
+  it('should run bootstrap only once for concurrent cold-start requests', async () => {
+    const app = new Hono()
+    const env = createMockEnv()
+
+    let releaseMigration: (() => void) | undefined
+    const migrationGate = new Promise<void>((resolve) => {
+      releaseMigration = resolve
+    })
+
+    vi.mocked(MigrationService).mockImplementationOnce(function() {
+      this.runPendingMigrations = vi.fn().mockImplementation(async () => {
+        await migrationGate
+      })
+      return this
+    })
+
+    app.use('*', async (c, next) => {
+      c.env = env as any
+      await next()
+    })
+    app.use('*', bootstrapMiddleware())
+    app.get('/test', (c) => c.json({ ok: true }))
+
+    const firstRequest = app.request('/test')
+    await Promise.resolve()
+    const secondRequest = app.request('/test')
+
+    expect(MigrationService).toHaveBeenCalledTimes(1)
+
+    releaseMigration?.()
+    const [firstResponse, secondResponse] = await Promise.all([firstRequest, secondRequest])
+
+    expect(firstResponse.status).toBe(200)
+    expect(secondResponse.status).toBe(200)
+    expect(MigrationService).toHaveBeenCalledTimes(1)
+    expect(syncCollections).toHaveBeenCalledTimes(1)
+    expect(syncAllFormCollections).toHaveBeenCalledTimes(1)
+    expect(PluginBootstrapService).toHaveBeenCalledTimes(1)
+  })
+
   it('should continue on fatal bootstrap error', async () => {
     const app = new Hono()
     const env = createMockEnv()
@@ -258,6 +303,7 @@ describe('bootstrapMiddleware', () => {
 
 describe('resetBootstrap', () => {
   beforeEach(() => {
+    resetBootstrap()
     vi.clearAllMocks()
   })
 

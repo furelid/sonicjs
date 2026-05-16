@@ -9,7 +9,7 @@ import { e as FieldType } from './collection-config-B4PG-AaF.cjs';
 export { C as CollectionConfig, b as CollectionConfigModule, c as CollectionSchema, d as CollectionSyncResult, F as FieldConfig } from './collection-config-B4PG-AaF.cjs';
 export { A as AuthService, C as ContentService, H as HOOKS, a as HookContext, b as HookHandler, c as HookName, d as HookSystem, M as MediaService, P as Plugin, f as PluginAdminPage, g as PluginBuilderOptions, h as PluginComponent, i as PluginConfig, j as PluginContext, k as PluginHook, l as PluginLogger, m as PluginManager, n as PluginMenuItem, o as PluginMiddleware, p as PluginModel, q as PluginRegistry, r as PluginRoutes, s as PluginService, t as PluginStatus, u as PluginValidationResult, v as PluginValidator, S as ScopedHookSystem } from './plugin-DDYetMF-.cjs';
 export { P as PluginManifest } from './plugin-manifest-Dpy8wxIB.cjs';
-export { F as FilterCondition, a as FilterGroup, b as FilterOperator, Q as QueryFilter, c as QueryFilterBuilder, d as QueryResult, S as SONICJS_VERSION, T as TemplateRenderer, e as buildQuery, f as escapeHtml, g as getCoreVersion, m as metricsTracker, r as renderTemplate, s as sanitizeInput, h as sanitizeObject, t as templateRenderer } from './version-DFTyGfIH.cjs';
+export { F as FilterCondition, a as FilterGroup, b as FilterOperator, Q as QueryFilter, c as QueryFilterBuilder, d as QueryResult, S as SONICJS_VERSION, T as TemplateRenderer, e as buildQuery, f as escapeHtml, g as getCoreVersion, m as metricsTracker, r as renderTemplate, s as sanitizeInput, h as sanitizeObject, t as templateRenderer } from './version-DAkTmiEW.cjs';
 import * as drizzle_orm_d1 from 'drizzle-orm/d1';
 import { Hono, MiddlewareHandler, Context } from 'hono';
 import { z } from 'zod';

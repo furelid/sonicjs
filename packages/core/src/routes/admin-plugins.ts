@@ -5,6 +5,7 @@ import { renderPluginSettingsPage, PluginSettingsPageData } from '../templates/p
 import { SettingsService } from '../services/settings'
 import { PluginService } from '../services'
 import { PLUGIN_REGISTRY, findPluginByCodeName } from '../plugins/manifest-registry'
+import { invalidatePluginMenuCache } from '../middleware/plugin-menu'
 import type { Bindings, Variables } from '../app'
 
 const adminPluginRoutes = new Hono<{ Bindings: Bindings; Variables: Variables }>()
@@ -236,6 +237,7 @@ adminPluginRoutes.post('/:id/activate', async (c) => {
 
     const pluginService = new PluginService(db)
     await pluginService.activatePlugin(pluginId)
+    invalidatePluginMenuCache()
 
     return c.json({ success: true })
   } catch (error) {
@@ -259,6 +261,7 @@ adminPluginRoutes.post('/:id/deactivate', async (c) => {
 
     const pluginService = new PluginService(db)
     await pluginService.deactivatePlugin(pluginId)
+    invalidatePluginMenuCache()
 
     return c.json({ success: true })
   } catch (error) {
@@ -307,6 +310,7 @@ adminPluginRoutes.post('/install', async (c) => {
       is_core: registryEntry.is_core,
       settings: registryEntry.defaultSettings,
     })
+    invalidatePluginMenuCache()
 
     return c.json({ success: true, plugin })
   } catch (error) {
@@ -330,6 +334,7 @@ adminPluginRoutes.post('/:id/uninstall', async (c) => {
 
     const pluginService = new PluginService(db)
     await pluginService.uninstallPlugin(pluginId)
+    invalidatePluginMenuCache()
 
     return c.json({ success: true })
   } catch (error) {

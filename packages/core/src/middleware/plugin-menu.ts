@@ -1,6 +1,13 @@
 import type { Context, Next } from 'hono'
+import type { D1Database } from '@cloudflare/workers-types'
 import type { Bindings, Variables } from '../app'
 import { PLUGIN_REGISTRY } from '../plugins/manifest-registry'
+
+type ActiveMenuItem = { label: string; path: string; icon?: string; order: number }
+
+const MENU_CACHE_TTL_MS = 60 * 1000
+let cachedActiveMenuItems: ActiveMenuItem[] | null = null
+let menuCacheExpiresAt = 0
 
 // Build menu plugin data from the auto-generated registry.
 // Any plugin with an adminMenu entry in its manifest.json will
@@ -39,6 +46,53 @@ function resolveIcon(iconName?: string): string {
 
 const MARKER = '<!-- DYNAMIC_PLUGIN_MENU -->'
 
+export function invalidatePluginMenuCache() {
+  cachedActiveMenuItems = null
+  menuCacheExpiresAt = 0
+}
+
+function getCachedActiveMenuItems(now = Date.now()): ActiveMenuItem[] | null {
+  if (cachedActiveMenuItems && now < menuCacheExpiresAt) {
+    return cachedActiveMenuItems
+  }
+
+  return null
+}
+
+function setCachedActiveMenuItems(items: ActiveMenuItem[], now = Date.now()) {
+  cachedActiveMenuItems = items
+  menuCacheExpiresAt = now + MENU_CACHE_TTL_MS
+}
+
+async function loadActiveMenuItems(db: D1Database): Promise<ActiveMenuItem[]> {
+  const pluginCodeNames = REGISTRY_MENU_PLUGINS.map(p => p.codeName)
+  if (pluginCodeNames.length === 0) {
+    return []
+  }
+
+  const placeholders = pluginCodeNames.map(() => '?').join(',')
+  const result = await db.prepare(
+    `SELECT name FROM plugins WHERE name IN (${placeholders}) AND status = 'active'`
+  ).bind(...pluginCodeNames).all()
+
+  const activeNames = new Set((result.results || []).map((r: any) => r.name))
+  const activeMenuItems: ActiveMenuItem[] = []
+
+  for (const plugin of REGISTRY_MENU_PLUGINS) {
+    if (activeNames.has(plugin.codeName)) {
+      activeMenuItems.push({
+        label: plugin.label,
+        path: plugin.path,
+        icon: plugin.icon,
+        order: plugin.order,
+      })
+    }
+  }
+
+  activeMenuItems.sort((a, b) => a.order - b.order)
+  return activeMenuItems
+}
+
 function renderMenuItem(item: { label: string; path: string; icon?: string }, currentPath: string): string {
   const isActive = currentPath === item.path || currentPath.startsWith(item.path)
   const fallbackIcon = `<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`
@@ -66,39 +120,21 @@ function renderMenuItem(item: { label: string; path: string; icon?: string }, cu
 export function pluginMenuMiddleware() {
   return async (c: Context<{ Bindings: Bindings; Variables: Variables }>, next: Next) => {
     const path = new URL(c.req.url).pathname
-    if (!path.startsWith('/admin')) {
+    if (!path.startsWith('/admin') || path === '/admin/api' || path.startsWith('/admin/api/')) {
       return next()
     }
 
     // Collect menu items from active plugins using the registry
-    let activeMenuItems: Array<{ label: string; path: string; icon?: string; order: number }> = []
+    const cachedMenuItems = getCachedActiveMenuItems()
+    let activeMenuItems: ActiveMenuItem[] = cachedMenuItems || []
     try {
-      const db = c.env.DB
-      const pluginCodeNames = REGISTRY_MENU_PLUGINS.map(p => p.codeName)
-      if (pluginCodeNames.length > 0) {
-        const placeholders = pluginCodeNames.map(() => '?').join(',')
-        const result = await db.prepare(
-          `SELECT name FROM plugins WHERE name IN (${placeholders}) AND status = 'active'`
-        ).bind(...pluginCodeNames).all()
-
-        const activeNames = new Set((result.results || []).map((r: any) => r.name))
-
-        for (const plugin of REGISTRY_MENU_PLUGINS) {
-          if (activeNames.has(plugin.codeName)) {
-            activeMenuItems.push({
-              label: plugin.label,
-              path: plugin.path,
-              icon: plugin.icon,
-              order: plugin.order,
-            })
-          }
-        }
-
-        // Sort by order
-        activeMenuItems.sort((a, b) => a.order - b.order)
+      if (!cachedMenuItems) {
+        activeMenuItems = await loadActiveMenuItems(c.env.DB)
+        setCachedActiveMenuItems(activeMenuItems)
       }
     } catch {
       // DB not ready or plugin table doesn't exist yet
+      invalidatePluginMenuCache()
     }
 
     c.set('pluginMenuItems', activeMenuItems.map(m => ({ label: m.label, path: m.path, icon: resolveIcon(m.icon) || '' })))

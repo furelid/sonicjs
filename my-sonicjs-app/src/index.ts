@@ -13,7 +13,7 @@ import blogPostsCollection from './collections/blog-posts.collection'
 import pageBlocksCollection from './collections/page-blocks.collection'
 import contactMessagesCollection from './collections/contact-messages.collection'
 
-// Import plugins (manual mounting until auto-loading is implemented)
+// Import local custom plugins
 import contactFormPlugin from './plugins/contact-form/index'
 
 // Register all custom collections
@@ -39,14 +39,16 @@ const config: SonicJSConfig = {
 // Create the core application
 const coreApp = createSonicJSApp(config)
 
-// Create main app and mount plugin routes manually
-// (Plugin auto-mounting not yet implemented in core)
+// Create main app and mount only app-local custom plugin routes.
+// Core plugin routes are auto-mounted by createSonicJSApp().
 const app = new Hono()
 
-// Mount plugin routes
-if (contactFormPlugin.routes) {
-  for (const route of contactFormPlugin.routes) {
-    app.route(route.path, route.handler)
+// Mount local custom plugin routes
+for (const plugin of [contactFormPlugin]) {
+  if (plugin.routes) {
+    for (const route of plugin.routes) {
+      app.route(route.path, route.handler)
+    }
   }
 }
 

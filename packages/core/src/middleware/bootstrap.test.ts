@@ -242,12 +242,18 @@ describe('bootstrapMiddleware', () => {
     const env = createMockEnv()
 
     let releaseMigration: (() => void) | undefined
+    let markMigrationStarted: (() => void) | undefined
     const migrationGate = new Promise<void>((resolve) => {
       releaseMigration = resolve
     })
+    const migrationStarted = new Promise<void>((resolve) => {
+      markMigrationStarted = resolve
+    })
 
-    vi.mocked(MigrationService).mockImplementationOnce(function() {
+    const migrationServiceMock = vi.mocked(MigrationService)
+    migrationServiceMock.mockImplementation(function() {
       this.runPendingMigrations = vi.fn().mockImplementation(async () => {
+        markMigrationStarted?.()
         await migrationGate
       })
       return this
@@ -261,7 +267,7 @@ describe('bootstrapMiddleware', () => {
     app.get('/test', (c) => c.json({ ok: true }))
 
     const firstRequest = app.request('/test')
-    await Promise.resolve()
+    await migrationStarted
     const secondRequest = app.request('/test')
 
     expect(MigrationService).toHaveBeenCalledTimes(1)
@@ -275,6 +281,12 @@ describe('bootstrapMiddleware', () => {
     expect(syncCollections).toHaveBeenCalledTimes(1)
     expect(syncAllFormCollections).toHaveBeenCalledTimes(1)
     expect(PluginBootstrapService).toHaveBeenCalledTimes(1)
+
+    migrationServiceMock.mockReset()
+    migrationServiceMock.mockImplementation(function() {
+      this.runPendingMigrations = vi.fn().mockResolvedValue(undefined)
+      return this
+    })
   })
 
   it('should continue on fatal bootstrap error', async () => {
